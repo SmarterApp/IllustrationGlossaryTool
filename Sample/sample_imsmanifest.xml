@@ -7,6 +7,36 @@
   <organizations />
   <resources>
   
+    <resource identifier="item-187-1987" type="imsqti_apipitem_xmlv2p2">
+      <file href="Items/Item-187-1987/item-187-1987.xml" />
+      <dependency identifierref="Item_1987_v15_eax" />
+      <dependency identifierref="Item_1987_v15_qrx" />
+      <dependency identifierref="item_1987_ASL_STEM_MP4" />
+      <dependency identifierref="item_1987_v15_graphics1_png256_png" />
+      <dependency identifierref="item_1987_v15_graphics2_png256_png" />
+      <dependency identifierref="item-187-1074" />
+      <dependency identifierref="item-187-2166" />
+      <dependency identifierref="item-187-1987_metadata" />
+    </resource>
+    <resource identifier="item-187-1987_metadata" type="resourcemetadata/apipv1p0">
+      <file href="Items/Item-187-1987/metadata.xml" />
+    </resource>
+    <resource identifier="item_1987_v15_graphics2_png256_png" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1987/item_1987_v15_graphics2_png256.png" />
+    </resource>
+    <resource identifier="item_1987_v15_graphics1_png256_png" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1987/item_1987_v15_graphics1_png256.png" />
+    </resource>
+    <resource identifier="item_1987_ASL_STEM_MP4" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1987/item_1987_ASL_STEM.MP4" />
+    </resource>
+    <resource identifier="Item_1987_v15_qrx" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1987/Item_1987_v15.qrx" />
+    </resource>
+    <resource identifier="Item_1987_v15_eax" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1987/Item_1987_v15.eax" />
+    </resource>
+  
     <resource identifier="item-187-2168" type="imsqti_apipitem_xmlv2p2">
       <file href="Items/Item-187-2168/item-187-2168.xml" />
       <dependency identifierref="item_2168_v8_2168_01spanish_glossary_ogg_m4a_m4a" />

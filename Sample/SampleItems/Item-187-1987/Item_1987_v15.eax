@@ -1,0 +1,51 @@
+<editorconfig xmlns="">
+  <contentLabel />
+  <configure>false</configure>
+  <tabs>true</tabs>
+  <TeXEntryEnabled>true</TeXEntryEnabled>
+  <TeX>\displaystyle {y}</TeX>
+  <mathML>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <mstyle displaystyle="true" />
+    </math>
+  </mathML>
+  <tabConfig>
+    <Order>SBAC3</Order>
+    <SBAC3>
+      <title>SBAC3</title>
+      <rows>
+        <title>Numbers</title>
+        <type>grid</type>
+        <cols>3</cols>
+        <items>1</items>
+        <items>2</items>
+        <items>3</items>
+        <items>4</items>
+        <items>5</items>
+        <items>6</items>
+        <items>7</items>
+        <items>8</items>
+        <items>9</items>
+        <items>0</items>
+        <items>.</items>
+        <items>
+          <key>fraction</key>
+          <text>fraction</text>
+          <value>\frac{\PH}{\PH}</value>
+          <css>mathjax_editor_button_fraction</css>
+        </items>
+      </rows>
+    </SBAC3>
+  </tabConfig>
+  <placeHold>\Box</placeHold>
+  <TeXEntryMode>None</TeXEntryMode>
+  <TeXEntryInit>None</TeXEntryInit>
+  <editMode>INSERT</editMode>
+  <navigation>false</navigation>
+  <FontSizePx>13.396551724137932</FontSizePx>
+  <SanitizeTeXEnabled>true</SanitizeTeXEnabled>
+  <DefaultTextBoxPx>5</DefaultTextBoxPx>
+  <isMobile>false</isMobile>
+  <MagicDisabled>false</MagicDisabled>
+  <FontSizeHt>19</FontSizeHt>
+</editorconfig>

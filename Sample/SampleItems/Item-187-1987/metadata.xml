@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<metadata>
+  <smarterAppMetadata xmlns="http://www.smarterapp.org/ns/1/assessment_item_metadata">
+    <Identifier>1987</Identifier>
+    <Version>15</Version>
+    <ItemAuthorIdentifier>Brianne_Fifield</ItemAuthorIdentifier>
+    <ItemSpecFormat>SmarterApp</ItemSpecFormat>
+    <LastModifiedBy>Brianne_Fifield</LastModifiedBy>
+    <SecurityStatus>Non-secure</SecurityStatus>
+    <SmarterAppItemDescriptor>Clone of Practice Test 561</SmarterAppItemDescriptor>
+    <Status>Ready for Field Test</Status>
+    <StimulusFormat>Standard</StimulusFormat>
+    <Subject>MATH</Subject>
+    <IntendedGrade>3</IntendedGrade>
+    <MinimumGrade>3</MinimumGrade>
+    <MaximumGrade>3</MaximumGrade>
+    <MathematicalPractice>None</MathematicalPractice>
+    <DepthOfKnowledge>1</DepthOfKnowledge>
+    <TargetAssessmentType>Not Applicable</TargetAssessmentType>
+    <InteractionType>EQ</InteractionType>
+    <EducationalDifficulty>Low</EducationalDifficulty>
+    <MaximumNumberOfPoints>1</MaximumNumberOfPoints>
+    <AllowCalculator>N</AllowCalculator>
+    <BrailleType>PRN</BrailleType>
+    <ScorePoints>"0,1"</ScorePoints>
+    <StandardPublication>
+      <Publication>SBAC-MA-v1</Publication>
+      <PrimaryStandard>SBAC-MA-v1:1|MD|J-3|a/s|3.MD.8</PrimaryStandard>
+    </StandardPublication>
+    <StandardPublication>
+      <Publication>SBAC-MA-v3</Publication>
+      <PrimaryStandard>SBAC-MA-v3:MA-Undesignated</PrimaryStandard>
+    </StandardPublication>
+    <AssociatedTutorial>1074</AssociatedTutorial>
+    <AssociatedWordlist>2166</AssociatedWordlist>
+    <Language>eng</Language>
+    <Language>spa</Language>
+  </smarterAppMetadata>
+</metadata>
