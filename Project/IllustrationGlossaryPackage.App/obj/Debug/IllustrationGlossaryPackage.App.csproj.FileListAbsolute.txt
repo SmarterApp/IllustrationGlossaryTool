@@ -1,0 +1,8 @@
+C:\Users\crabtres\workspace\smarter-balanced-glossary-service\Project\GlossaryService\IllustrationGlossaryPackage.App\bin\Debug\IllustrationGlossaryPackage.Console.exe.config
+C:\Users\crabtres\workspace\smarter-balanced-glossary-service\Project\GlossaryService\IllustrationGlossaryPackage.App\bin\Debug\IllustrationGlossaryPackage.Console.exe
+C:\Users\crabtres\workspace\smarter-balanced-glossary-service\Project\GlossaryService\IllustrationGlossaryPackage.App\bin\Debug\IllustrationGlossaryPackage.Console.pdb
+C:\Users\crabtres\workspace\smarter-balanced-glossary-service\Project\GlossaryService\IllustrationGlossaryPackage.App\obj\Debug\IllustrationGlossaryPackage.App.csprojResolveAssemblyReference.cache
+C:\Users\crabtres\workspace\smarter-balanced-glossary-service\Project\GlossaryService\IllustrationGlossaryPackage.App\obj\Debug\IllustrationGlossaryPackage.Console.exe
+C:\Users\crabtres\workspace\smarter-balanced-glossary-service\Project\GlossaryService\IllustrationGlossaryPackage.App\obj\Debug\IllustrationGlossaryPackage.Console.pdb
+C:\Users\crabtres\workspace\smarter-balanced-glossary-service\Project\GlossaryService\IllustrationGlossaryPackage.App\bin\Debug\IllustrationGlossaryPackage.Core.dll
+C:\Users\crabtres\workspace\smarter-balanced-glossary-service\Project\GlossaryService\IllustrationGlossaryPackage.App\bin\Debug\IllustrationGlossaryPackage.Core.pdb

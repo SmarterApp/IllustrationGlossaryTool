@@ -1,0 +1,5 @@
+C:\Users\crabtres\workspace\smarter-balanced-glossary-service\Project\GlossaryService\IllustrationGlossaryPackage.Dal\bin\Debug\IllustrationGlossaryPackage.Dal.dll
+C:\Users\crabtres\workspace\smarter-balanced-glossary-service\Project\GlossaryService\IllustrationGlossaryPackage.Dal\bin\Debug\IllustrationGlossaryPackage.Dal.pdb
+C:\Users\crabtres\workspace\smarter-balanced-glossary-service\Project\GlossaryService\IllustrationGlossaryPackage.Dal\obj\Debug\IllustrationGlossaryPackage.Dal.csprojResolveAssemblyReference.cache
+C:\Users\crabtres\workspace\smarter-balanced-glossary-service\Project\GlossaryService\IllustrationGlossaryPackage.Dal\obj\Debug\IllustrationGlossaryPackage.Dal.dll
+C:\Users\crabtres\workspace\smarter-balanced-glossary-service\Project\GlossaryService\IllustrationGlossaryPackage.Dal\obj\Debug\IllustrationGlossaryPackage.Dal.pdb
