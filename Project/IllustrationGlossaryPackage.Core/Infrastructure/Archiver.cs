@@ -10,6 +10,10 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
 {
     public class Archiver : IArchiver
     {
+        /// <summary>
+        /// Copies the zip file into an archive directory
+        /// </summary>
+        /// <param name="zipFile"></param>
         public void CreateArchive(string zipFile)
         {
             if (zipFile.EndsWith(".zip"))

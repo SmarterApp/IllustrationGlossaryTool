@@ -23,34 +23,22 @@ namespace IllustrationGlossaryPackage.App
             {
                 string testPackageFilePath = args[0];
                 string csvFilePath = args[1];
-                if (!File.Exists(testPackageFilePath))
-                {
-                    Console.WriteLine("File does not exist: " + testPackageFilePath);
-                }
+     
+                IFileValidator fileValidator = new FileValidator();
+                Console.WriteLine("Validating test package...");
+                fileValidator.ValidateTestPackage(testPackageFilePath);
+                Console.WriteLine("Validating illustration list...");
+                fileValidator.ValidateIllustrationSpreadsheet(csvFilePath);
+                Console.WriteLine(); Console.WriteLine();
 
-                else if (!testPackageFilePath.EndsWith(".zip")){
-                    Console.WriteLine("Test package must be a zip file");
-                }
+                IArchiver archiver = new Archiver();
+                Console.WriteLine("Augmenting the test package: " + testPackageFilePath);
+                Console.WriteLine("Using glossary illustrations: " + csvFilePath);   
+                archiver.CreateArchive(testPackageFilePath);
+                Console.WriteLine(); Console.WriteLine();
 
-                else if (!File.Exists(csvFilePath))
-                {
-                    Console.WriteLine("File does not exist: " + csvFilePath);
-                }
-
-                else if (!csvFilePath.EndsWith(".csv"))
-                {
-                    Console.WriteLine("Illustration Glossary Spreadsheet must be a csv");
-                }
-
-                else
-                {
-                    Console.WriteLine("Augmenting the test package: " + testPackageFilePath);
-                    Console.WriteLine("Using glossary illustrations: " + csvFilePath);
-                    IArchiver archiver = new Archiver();
-                    archiver.CreateArchive(testPackageFilePath);
-                    IGlossaryAugmenter augmenter = new GlossaryAugmenter();
-                    augmenter.AddItemsToGlossary(testPackageFilePath, csvFilePath);
-                }
+                IGlossaryAugmenter augmenter = new GlossaryAugmenter();
+                augmenter.AddItemsToGlossary(testPackageFilePath, csvFilePath);
 
             }
 
