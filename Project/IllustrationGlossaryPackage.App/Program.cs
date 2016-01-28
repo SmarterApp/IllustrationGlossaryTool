@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO.Compression;
 
 namespace IllustrationGlossaryPackage.App
 {
@@ -27,20 +28,33 @@ namespace IllustrationGlossaryPackage.App
                     Console.WriteLine("File does not exist: " + testPackageFilePath);
                 }
 
+                else if (!testPackageFilePath.EndsWith(".zip")){
+                    Console.WriteLine("Test package must be a zip file");
+                }
+
                 else if (!File.Exists(csvFilePath))
                 {
                     Console.WriteLine("File does not exist: " + csvFilePath);
                 }
 
+                else if (!csvFilePath.EndsWith(".csv"))
+                {
+                    Console.WriteLine("Illustration Glossary Spreadsheet must be a csv");
+                }
+
                 else
                 {
-                    Console.WriteLine("Augmenting the test package: " + args[0]);
-                    Console.WriteLine("Using glossary illustrations: " + args[1]);
+                    Console.WriteLine("Augmenting the test package: " + testPackageFilePath);
+                    Console.WriteLine("Using glossary illustrations: " + csvFilePath);
+                    IArchiver archiver = new Archiver();
+                    archiver.CreateArchive(testPackageFilePath);
                     IGlossaryAugmenter augmenter = new GlossaryAugmenter();
                     augmenter.AddItemsToGlossary(testPackageFilePath, csvFilePath);
                 }
+
             }
 
+            Console.WriteLine("Finished!");
             Console.Read();
         }
     }
