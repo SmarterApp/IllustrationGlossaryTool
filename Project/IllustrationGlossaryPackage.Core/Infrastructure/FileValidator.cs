@@ -17,14 +17,17 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// <param name="testPackage"></param>
         public void ValidateTestPackage(string testPackage)
         {
+            string zipFileExt = Properties.Resources.ZipFileExtention;
+
             if (!File.Exists(testPackage))
             {
-                throw new FileNotFoundException("File does not exist: " + testPackage);
+                string msg = string.Format(Properties.Resources.FileDNE, testPackage);
+                throw new FileNotFoundException(msg);
             }
 
-            else if (!testPackage.EndsWith(".zip"))
+            else if (!testPackage.EndsWith(zipFileExt))
             {
-                throw new InvalidFileException("Test package must be a zip file");
+                throw new InvalidFileException(Properties.Resources.TestMustZip);
             }
         }
 
@@ -34,14 +37,17 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// <param name="csvPath"></param>
         public void ValidateIllustrationSpreadsheet(string csvPath)
         {
+            string csvFileExt = Properties.Resources.CsvFileExtention;
+
             if (!File.Exists(csvPath))
             {
-                throw new FileNotFoundException("File does not exist: " + csvPath);
+                string msg = string.Format(Properties.Resources.FileDNE, csvPath);
+                throw new FileNotFoundException(msg);
             }
 
-            else if (!csvPath.EndsWith(".csv"))
+            else if (!csvPath.EndsWith(csvFileExt))
             {
-                throw new InvalidFileException("Illustration Glossary Spreadsheet must be a csv");
+                throw new InvalidFileException(Properties.Resources.IllMustCsv);
             }
         }
     }

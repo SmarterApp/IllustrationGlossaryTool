@@ -23,27 +23,30 @@ namespace IllustrationGlossaryPackage.App
             {
                 string testPackageFilePath = args[0];
                 string csvFilePath = args[1];
-     
+                
                 IFileValidator fileValidator = new FileValidator();
-                Console.WriteLine("Validating test package...");
+                string validatingTest = Console.Properties.Resources.ValidatingTest;
+                System.Console.WriteLine(validatingTest);
                 fileValidator.ValidateTestPackage(testPackageFilePath);
-                Console.WriteLine("Validating illustration list...");
+                string validatingIll = Console.Properties.Resources.ValidatingIll;
+                System.Console.WriteLine(validatingIll);
                 fileValidator.ValidateIllustrationSpreadsheet(csvFilePath);
-                Console.WriteLine(); Console.WriteLine();
+                System.Console.WriteLine();
 
                 IArchiver archiver = new Archiver();
-                Console.WriteLine("Augmenting the test package: " + testPackageFilePath);
-                Console.WriteLine("Using glossary illustrations: " + csvFilePath);   
+                string creatingArchive = Console.Properties.Resources.CreatingArchive;
+                System.Console.WriteLine(creatingArchive);
                 archiver.CreateArchive(testPackageFilePath);
-                Console.WriteLine(); Console.WriteLine();
+                System.Console.WriteLine();
 
                 IGlossaryAugmenter augmenter = new GlossaryAugmenter();
                 augmenter.AddItemsToGlossary(testPackageFilePath, csvFilePath);
 
             }
 
-            Console.WriteLine("Finished!");
-            Console.Read();
+            string finished = Console.Properties.Resources.Finished;
+            System.Console.WriteLine(finished);
+            System.Console.Read();
         }
     }
 }
