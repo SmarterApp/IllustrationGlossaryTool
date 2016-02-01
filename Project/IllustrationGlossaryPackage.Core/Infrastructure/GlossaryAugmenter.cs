@@ -14,10 +14,14 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
     public class GlossaryAugmenter : IGlossaryAugmenter
     {
         private IIllustrationGlossaryParser parser;
-        public GlossaryAugmenter() : this(new IllustrationGlossaryParser()) { }
-        public GlossaryAugmenter(IllustrationGlossaryParser parser)
+        private IItemsModifier itemsModifier;
+        private IManifestModifier manifestModifier;
+        public GlossaryAugmenter() : this(new IllustrationGlossaryParser(), new ItemsModifier(), new ManifestModifier()) { }
+        public GlossaryAugmenter(IllustrationGlossaryParser parser, ItemsModifier itemsModifier, ManifestModifier manifestModifier)
         {
             this.parser = parser;
+            this.itemsModifier = itemsModifier;
+            this.manifestModifier = manifestModifier;
         }
 
         /// <summary>
@@ -28,6 +32,8 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         public void AddItemsToGlossary(string testPackageFilePath, string itemsFilePath)
         {
             IEnumerable<Illustration> illustrations = parser.GetIllustrationsFromSpreadsheet(itemsFilePath);
+            itemsModifier.AddIllustrationsToItems(illustrations, testPackageFilePath);
+            manifestModifier.AddIllustrationsToManifest(illustrations, testPackageFilePath);
         }
     }
 }

@@ -40,7 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\ItemsModifier.cs" />
+    <Compile Include="Infrastructure\ManifestModifier.cs" />
     <Compile Include="Interfaces\IIllustrationGlossaryParser.cs" />
+    <Compile Include="Interfaces\IItemsModifier.cs" />
+    <Compile Include="Interfaces\IManifestModifier.cs" />
     <Compile Include="Models\Illustration.cs" />
     <Compile Include="Infrastructure\IllustrationGlossaryParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
