@@ -19,34 +19,75 @@ namespace IllustrationGlossaryPackage.App
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            if (args.Length == 2)
+            if (args.Length != 2)
             {
-                string testPackageFilePath = args[0];
-                string csvFilePath = args[1];
-                
-                IFileValidator fileValidator = new FileValidator();
-                string validatingTest = Console.Properties.Resources.ValidatingTest;
-                System.Console.WriteLine(validatingTest);
+                exitWithErrorString("Error: Two command line arguments are required. Format: ");
+            }
+
+            string testPackageFilePath = args[0];
+            string csvFilePath = args[1];
+
+            //TODO: write directly 
+            string validatingTest = Console.Properties.Resources.ValidatingTest;
+            string validatingIllustation = Console.Properties.Resources.ValidatingIllustration;
+            string creatingArchive = Console.Properties.Resources.CreatingArchive;
+
+            IFileValidator fileValidator = new FileValidator();
+            IArchiver archiver = new Archiver();
+            IGlossaryAugmenter augmenter = new GlossaryAugmenter();
+
+            System.Console.WriteLine(validatingTest);
+
+            try
+            {
                 fileValidator.ValidateTestPackage(testPackageFilePath);
-                string validatingIll = Console.Properties.Resources.ValidatingIll;
-                System.Console.WriteLine(validatingIll);
+            }
+            catch (Exception e)
+            {
+                exitWithErrorString("Error: Test package is invalid: " + e.Message);
+            }
+
+            System.Console.WriteLine(validatingIllustation + Environment.NewLine);
+
+            try
+            {
                 fileValidator.ValidateIllustrationSpreadsheet(csvFilePath);
-                System.Console.WriteLine();
+            }
+            catch (Exception e)
+            {
+                exitWithErrorString("Error: Illustration spreadsheet is invalid: " + e.Message);
+            }
 
-                IArchiver archiver = new Archiver();
-                string creatingArchive = Console.Properties.Resources.CreatingArchive;
-                System.Console.WriteLine(creatingArchive);
+            System.Console.WriteLine(creatingArchive + Environment.NewLine);
+
+            try
+            {
                 archiver.CreateArchive(testPackageFilePath);
-                System.Console.WriteLine();
+            }
+            catch (Exception e)
+            {
+                exitWithErrorString("Error: Failed to create archive: " + e.Message);
+            }
 
-                IGlossaryAugmenter augmenter = new GlossaryAugmenter();
+            try
+            {
                 augmenter.AddItemsToGlossary(testPackageFilePath, csvFilePath);
-
+            }
+            catch (Exception e)
+            {
+                exitWithErrorString("Error: Failed while adding items to glossary: " + e.Message);
             }
 
             string finished = Console.Properties.Resources.Finished;
             System.Console.WriteLine(finished);
             System.Console.Read();
+        }
+
+        static void exitWithErrorString(string errorString)
+        {
+            System.Console.WriteLine(errorString);
+            System.Console.Read();
+            Environment.Exit(1);
         }
     }
 }
