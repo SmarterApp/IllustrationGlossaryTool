@@ -81,9 +81,9 @@ namespace IllustrationGlossaryPackage.Console.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Validating illustration list....
         /// </summary>
-        internal static string ValidatingIll {
+        internal static string ValidatingIllustration {
             get {
-                return ResourceManager.GetString("ValidatingIll", resourceCulture);
+                return ResourceManager.GetString("ValidatingIllustration", resourceCulture);
             }
         }
         
