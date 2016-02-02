@@ -27,16 +27,11 @@ namespace IllustrationGlossaryPackage.App
             string testPackageFilePath = args[0];
             string csvFilePath = args[1];
 
-            //TODO: write directly 
-            string validatingTest = Console.Properties.Resources.ValidatingTest;
-            string validatingIllustation = Console.Properties.Resources.ValidatingIllustration;
-            string creatingArchive = Console.Properties.Resources.CreatingArchive;
-
             IFileValidator fileValidator = new FileValidator();
             IArchiver archiver = new Archiver();
             IGlossaryAugmenter augmenter = new GlossaryAugmenter();
 
-            System.Console.WriteLine(validatingTest);
+            System.Console.WriteLine("Validating test package...");
 
             try
             {
@@ -47,7 +42,7 @@ namespace IllustrationGlossaryPackage.App
                 exitWithErrorString("Error: Test package is invalid: " + e.Message);
             }
 
-            System.Console.WriteLine(validatingIllustation + Environment.NewLine);
+            System.Console.WriteLine("Validating illustration list..." + Environment.NewLine);
 
             try
             {
@@ -58,7 +53,7 @@ namespace IllustrationGlossaryPackage.App
                 exitWithErrorString("Error: Illustration spreadsheet is invalid: " + e.Message);
             }
 
-            System.Console.WriteLine(creatingArchive + Environment.NewLine);
+            System.Console.WriteLine("Creating archive of test package..." + Environment.NewLine);
 
             try
             {
@@ -78,8 +73,7 @@ namespace IllustrationGlossaryPackage.App
                 exitWithErrorString("Error: Failed while adding items to glossary: " + e.Message);
             }
 
-            string finished = Console.Properties.Resources.Finished;
-            System.Console.WriteLine(finished);
+            System.Console.WriteLine("Finished!");
             System.Console.Read();
         }
 
