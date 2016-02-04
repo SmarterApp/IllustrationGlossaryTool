@@ -19,6 +19,7 @@ namespace IllustrationGlossaryPackage.App
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            Console.WriteLine(args.Length);
             if (args.Length != 2)
             {
                 exitWithErrorString("Error: Two command line arguments are required. Format: ");
@@ -31,7 +32,7 @@ namespace IllustrationGlossaryPackage.App
             IArchiver archiver = new Archiver();
             IGlossaryAugmenter augmenter = new GlossaryAugmenter();
 
-            System.Console.WriteLine("Validating test package...");
+            Console.WriteLine("Validating test package...");
 
             try
             {
@@ -42,7 +43,7 @@ namespace IllustrationGlossaryPackage.App
                 exitWithErrorString("Error: Test package is invalid: " + e.Message);
             }
 
-            System.Console.WriteLine("Validating illustration list..." + Environment.NewLine);
+            Console.WriteLine("Validating illustration list..." + Environment.NewLine);
 
             try
             {
@@ -53,7 +54,7 @@ namespace IllustrationGlossaryPackage.App
                 exitWithErrorString("Error: Illustration spreadsheet is invalid: " + e.Message);
             }
 
-            System.Console.WriteLine("Creating archive of test package..." + Environment.NewLine);
+            Console.WriteLine("Creating archive of test package..." + Environment.NewLine);
 
             try
             {
@@ -73,14 +74,14 @@ namespace IllustrationGlossaryPackage.App
                 exitWithErrorString("Error: Failed while adding items to glossary: " + e.Message);
             }
 
-            System.Console.WriteLine("Finished!");
-            System.Console.Read();
+            Console.WriteLine("Finished!");
+            Console.Read();
         }
 
         static void exitWithErrorString(string errorString)
         {
-            System.Console.WriteLine(errorString);
-            System.Console.Read();
+            Console.WriteLine(errorString);
+            Console.Read();
             Environment.Exit(1);
         }
     }
