@@ -1,25 +1,21 @@
-﻿using IllustrationGlossaryPackage.Core.Infrastructure;
-using IllustrationGlossaryPackage.Core.Interfaces;
-using IllustrationGlossaryPackage.Dal.Interfaces;
+﻿using IllustrationGlossaryPackage.Core.Interfaces;
 using IllustrationGlossaryPackage.Dal.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using IllustrationGlossaryPackage.Dal.Interfaces;
 using IllustrationGlossaryPackage.Dal.Models;
+using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace IllustrationGlossaryPackage.Core.Infrastructure
 {
     public class GlossaryAugmenter : IGlossaryAugmenter
     {
-        private IIllustrationGlossaryParser parser;
+        private IIllustrationGlossaryParser glossaryParser;
         private IItemsModifier itemsModifier;
         private IManifestModifier manifestModifier;
         public GlossaryAugmenter() : this(new IllustrationGlossaryParser(), new ItemsModifier(), new ManifestModifier()) { }
-        public GlossaryAugmenter(IllustrationGlossaryParser parser, ItemsModifier itemsModifier, ManifestModifier manifestModifier)
+        public GlossaryAugmenter(IllustrationGlossaryParser glossaryParser, ItemsModifier itemsModifier, ManifestModifier manifestModifier)
         {
-            this.parser = parser;
+            this.glossaryParser = glossaryParser;
             this.itemsModifier = itemsModifier;
             this.manifestModifier = manifestModifier;
         }
@@ -31,7 +27,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// <param name="itemsFilePath"></param>
         public void AddItemsToGlossary(string testPackageFilePath, string itemsFilePath)
         {
-            IEnumerable<Illustration> illustrations = parser.GetIllustrationsFromSpreadsheet(itemsFilePath);
+            IEnumerable<Illustration> illustrations = glossaryParser.GetIllustrationsFromSpreadsheet(itemsFilePath);
             itemsModifier.AddIllustrationsToItems(illustrations, testPackageFilePath);
             manifestModifier.AddIllustrationsToManifest(illustrations, testPackageFilePath);
         }

@@ -1,10 +1,7 @@
 ﻿using IllustrationGlossaryPackage.Dal.Interfaces;
 using IllustrationGlossaryPackage.Dal.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace IllustrationGlossaryPackage.Dal.Infrastructure
 {
@@ -18,6 +15,12 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
         public void AddIllustrationsToManifest(IEnumerable<Illustration> illustrations, string testPackageFilePath)
         {
 
+        }
+
+        public XDocument GetManifestXml(string testPackageFilePath)
+        {
+            XDocument manifestXml = new XDocument();
+            return manifestXml;
         }
     }
 }

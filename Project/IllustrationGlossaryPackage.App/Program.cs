@@ -19,7 +19,6 @@ namespace IllustrationGlossaryPackage.App
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Console.WriteLine(args.Length);
             if (args.Length != 2)
             {
                 exitWithErrorString("Error: Two command line arguments are required. Format: ");

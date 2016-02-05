@@ -1,10 +1,6 @@
 ﻿using IllustrationGlossaryPackage.Dal.Interfaces;
 using IllustrationGlossaryPackage.Dal.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IllustrationGlossaryPackage.Dal.Infrastructure
 {
@@ -16,6 +12,16 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
         /// <param name="illustrations"></param>
         /// <param name="testPackageFilePath"></param>
         public void AddIllustrationsToItems(IEnumerable<Illustration> illustrations, string testPackageFilePath)
+        {
+
+        }
+
+        private static void MoveMediaFileForIllustrationToPath(Illustration illustration, string path)
+        {
+
+        }
+
+        private static void UpdateXmlForIllustration(Illustration illustration)
         {
 
         }

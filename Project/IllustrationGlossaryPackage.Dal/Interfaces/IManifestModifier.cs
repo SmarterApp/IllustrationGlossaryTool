@@ -1,14 +1,12 @@
 ﻿using IllustrationGlossaryPackage.Dal.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace IllustrationGlossaryPackage.Dal.Interfaces
 {
     public interface IManifestModifier
     {
         void AddIllustrationsToManifest(IEnumerable<Illustration> illustrations, string testPackageFilePath);
+        XDocument GetManifestXml(string testPackageFilePath);
     }
 }
