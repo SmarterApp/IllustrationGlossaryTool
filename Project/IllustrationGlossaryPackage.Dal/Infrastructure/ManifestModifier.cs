@@ -2,6 +2,10 @@
 using IllustrationGlossaryPackage.Dal.Models;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using System.IO;
+using System.IO.Compression;
+using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace IllustrationGlossaryPackage.Dal.Infrastructure
 {
@@ -19,7 +23,9 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
 
         public XDocument GetManifestXml(string testPackageFilePath)
         {
-            XDocument manifestXml = new XDocument();
+            ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update);
+            ZipArchiveEntry manifestEntry = testPackageArchive.Entries.SingleOrDefault(t => t.FullName.ToLower().Contains("manifest"));
+            XDocument manifestXml = XDocument.Load(manifestEntry.Open());
             return manifestXml;
         }
     }
