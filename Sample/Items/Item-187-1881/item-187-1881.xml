@@ -64,7 +64,13 @@
         <item type="wordList" id="1881" bankkey="187">
           <keywordList>
             <keyword text="spinner" index="1">
-              <html listType="glossary" listCode="TDS_WL_Illustration"><![CDATA[<p style="">spinner<a href="item_1881_spinner_svg.svg" type="illustration/svg" visible="True"></a></p>]]></html>
+              <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">spinner<a href="item_1881_spinner_svg.svg" type="illustration/svg" visible="True"></a></p>]]></html>
+            </keyword>
+            <keyword text="arrow" index="1">
+              <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">arrow<a href="item_1881_arrow_svg.svg" type="illustration/svg" visible="True"></a></p>]]></html>
+            </keyword>
+            <keyword text="spun" index="1">
+              <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">spun<a href="item_1881_spun_svg.svg" type="illustration/svg" visible="True"></a></p>]]></html>
             </keyword>
           </keywordList>
         </item>
