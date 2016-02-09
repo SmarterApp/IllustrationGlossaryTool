@@ -60,7 +60,27 @@
     </attriblist>
     <tutorial id="1072" bankkey="187" />
     <resourceslist>
-      <resource type="wordList" id="2316" index="1" bankkey="187" />
+      <resource type="wordList" id="2316" index="1" bankkey="187" >
+        <item type="wordList" id="1844" bankkey="187">
+          <keywordList>
+            <keyword text="store" index="1">
+              <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">store<a href="item_1844_store_svg.svg" type="illustration/svg" visible="True"></a></p>]]></html>
+            </keyword>
+            <keyword text="purchasing" index="1">
+              <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">purchasing<a href="item_1844_purchasing_svg.svg" type="illustration/svg" visible="True"></a></p>]]></html>
+            </keyword>
+            <keyword text="clothes" index="1">
+              <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">clothes<a href="item_1844_clothes_svg.svg" type="illustration/svg" visible="True"></a></p>]]></html>
+            </keyword>
+            <keyword text="packs of gum" index="1">
+              <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">packs of gum<a href="item_1844_packs_of_gum_svg.svg" type="illustration/svg" visible="True"></a></p>]]></html>
+            </keyword>
+            <keyword text="pack of gum" index="1">
+              <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">pack of gum<a href="item_1844_pack_of_gum_svg.svg" type="illustration/svg" visible="True"></a></p>]]></html>
+            </keyword>   
+          </keywordList>
+        </item>
+      </resource>
     </resourceslist>
     <statistic />
     <content language="ENU" version="2.0" approvedVersion="6">
