@@ -60,7 +60,18 @@
     </attriblist>
     <tutorial id="1074" bankkey="187" />
     <resourceslist>
-      <resource type="wordList" id="2305" index="1" bankkey="187" />
+      <resource type="wordList" id="2305" index="1" bankkey="187" >
+        <item type="wordList" id="1840" bankkey="187">
+          <keywordList>
+            <keyword text="shelf" index="1">
+              <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">shelf<a href="item_1844_shelf_svg.svg" type="illustration/svg" visible="True"></a></p>]]></html>
+            </keyword>
+            <keyword text="enter" index="1">
+              <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">enter<a href="item_1844_enter_svg.svg" type="illustration/svg" visible="True"></a></p>]]></html>
+            </keyword>
+          </keywordList>
+        </item>
+      </resource>
     </resourceslist>
     <statistic />
     <MachineRubric filename="Item_1840_v9.qrx" />

@@ -10088,6 +10088,8 @@
     <resource identifier="item-187-1840" type="imsqti_apipitem_xmlv2p2">
       <file href="Items/Item-187-1840/item-187-1840.xml" />
       <dependency identifierref="Item_1840_v9_eax" />
+      <dependency identifierref="item_1844_shelf_svg" />
+      <dependency identifierref="item_1844_enter_svg" />
       <dependency identifierref="Item_1840_v9_qrx" />
       <dependency identifierref="item_1840_ASL_STEM_MP4" />
       <dependency identifierref="item_1840_v9_Object2_png16malpha_xml" />
@@ -10102,6 +10104,12 @@
     </resource>
     <resource identifier="item-187-1840_metadata" type="resourcemetadata/apipv1p0">
       <file href="Items/Item-187-1840/metadata.xml" />
+    </resource>
+    <resource identifier="item_1844_shelf_svg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1840/item_1844_shelf_svg.svg" />
+    </resource>
+    <resource identifier="item_1844_enter_svg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1840/item_1844_enter_svg.svg" />
     </resource>
     <resource identifier="item_1840_v9_Stem_png16malpha_png" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
       <file href="Items/Item-187-1840/item_1840_v9_Stem_png16malpha.png" />
