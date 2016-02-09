@@ -4,6 +4,7 @@ using IllustrationGlossaryPackage.Dal.Interfaces;
 using IllustrationGlossaryPackage.Dal.Models;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using System.Linq;
 
 namespace IllustrationGlossaryPackage.Core.Infrastructure
 {
@@ -29,10 +30,29 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         {
             IEnumerable<Illustration> illustrations = glossaryParser.GetIllustrationsFromSpreadsheet(itemsFilePath);
             XDocument manifest = manifestModifier.GetManifestXml(testPackageFilePath);
-            IEnumerable<XDocument> itemsXml = itemsModifier.GetItemsXml(testPackageFilePath);
+            IEnumerable<XDocument> itemXmls = itemsModifier.GetItemsXml(testPackageFilePath);
+
+            UpdateItemXmls(itemXmls, illustrations);
 
             itemsModifier.AddIllustrationsToItems(illustrations, testPackageFilePath);
             manifestModifier.AddIllustrationsToManifest(illustrations, testPackageFilePath);
+        }
+
+        private void UpdateItemXmls(IEnumerable<XDocument> itemXmls, IEnumerable<Illustration> illustrations)
+        {
+            foreach(Illustration illustration in illustrations)
+            {
+                XDocument itemXml = GetXDocumentForIllustration(illustration, itemXmls);
+            }
+        }
+
+        static XDocument GetXDocumentForIllustration(Illustration illustration, IEnumerable<XDocument> documents)
+        {
+            return documents.First(
+                    x => x.Element("itemrelease")
+                    .Element("item")
+                    .Attribute("id")
+                    .Value == illustration.ItemId);
         }
     }
 }
