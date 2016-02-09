@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<itemrelease version="2.0">
+  <item format="mi" id="1873" version="17" bankkey="187">
+    <attriblist>
+      <attrib attid="itm_item_id">
+        <name>Item: ITS ID</name>
+        <val>1873</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_item_subject">
+        <name>Item: Subject</name>
+        <val>MATH</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_item_desc">
+        <name>Item: Item Description</name>
+        <val>cloned from 1057</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_FTUse">
+        <name>Fieldtest Use</name>
+        <val>PracTest::MG7::S2::SP14 (9); PracTest::MG7::S2::SP14::Braille (9); PracTest::MG7::S2::SP14::ESN (9);</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_OPUse">
+        <name>Operational Use</name>
+        <val></val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Answer Key">
+        <name>Item: Answer Key</name>
+        <val>MI</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Grade">
+        <name>Item: Grade</name>
+        <val>7</val>
+        <desc>7</desc>
+      </attrib>
+      <attrib attid="itm_att_Item Format">
+        <name>Item: Item Format</name>
+        <val>MI</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Page Layout">
+        <name>Item: Page Layout</name>
+        <val>8</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Response Type">
+        <name>Item: Response Type</name>
+        <val>TableMatch</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Item Point">
+        <name>Item: Item Point</name>
+        <val>1 pt.</val>
+        <desc></desc>
+      </attrib>
+    </attriblist>
+    <tutorial id="1073" bankkey="187" />
+    <resourceslist>
+      <resource type="wordList" id="2301" index="1" bankkey="187" />
+    </resourceslist>
+    <statistic />
+    <MachineRubric filename="Item_1873_v17.qrx" xmlns:its-scripts="urn:its-scripts" />
+    <content language="ENU" version="2.0" xmlns:its-scripts="urn:its-scripts" approvedVersion="17">
+      <qti spec="itemBody"><![CDATA[<matchInteraction responseIdentifier="RESPONSE" minAssociations="1" maxAssociations="0"><prompt /><simpleMatchSet><simpleAssociableChoice identifier="1"><p style="font-weight:normal; ">5 folders and 5 pens</p></simpleAssociableChoice><simpleAssociableChoice identifier="2"><p style="font-weight:normal; ">6 pens and 6 erasers</p></simpleAssociableChoice><simpleAssociableChoice identifier="3"><p style="font-weight:normal; ">1 pen and 4 notebooks</p></simpleAssociableChoice><simpleAssociableChoice identifier="4"><p style="font-weight:normal; ">3 folders and 7 erasers</p></simpleAssociableChoice><simpleAssociableChoice identifier="5"><p style="font-weight:normal; ">4 folders and 2 notebooks</p></simpleAssociableChoice></simpleMatchSet><simpleMatchSet><simpleAssociableChoice identifier="a"><p style="">Yes</p></simpleAssociableChoice><simpleAssociableChoice identifier="b"><p style="">No</p></simpleAssociableChoice></simpleMatchSet></matchInteraction>]]></qti>
+      <stem><![CDATA[<p style="">Aimee has <span id="item_1873_TAG_3_BEGIN">$10.00</span> <span id="item_1873_TAG_14" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="1"></span>to spend<span class="its-tag" data-tag-ref="item_1873_TAG_14" data-tag-boundary="end"></span> on school <span id="item_1873_TAG_33" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="12"></span>supplies<span class="its-tag" data-tag-ref="item_1873_TAG_33" data-tag-boundary="end"></span>. The <span id="item_1873_TAG_28" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="2"></span>following<span class="its-tag" data-tag-ref="item_1873_TAG_28" data-tag-boundary="end"></span> table shows the <span id="item_1873_TAG_34" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="13"></span>price<span class="its-tag" data-tag-ref="item_1873_TAG_34" data-tag-boundary="end"></span> of <span id="item_1873_TAG_16" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="3"></span>each<span class="its-tag" data-tag-ref="item_1873_TAG_16" data-tag-boundary="end"></span> <span id="item_1873_TAG_17" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="4"></span>item<span class="its-tag" data-tag-ref="item_1873_TAG_17" data-tag-boundary="end"></span> in the school store. No <span id="item_1873_TAG_18" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="5"></span>sales<span class="its-tag" data-tag-ref="item_1873_TAG_18" data-tag-boundary="end"></span> tax <span id="item_1873_TAG_30" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="6"></span>is charged<span class="its-tag" data-tag-ref="item_1873_TAG_30" data-tag-boundary="end"></span> on these <span id="item_1873_TAG_25" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="11"></span>items<span class="its-tag" data-tag-ref="item_1873_TAG_25" data-tag-boundary="end"></span>.</p><p style="">&#xA0;</p><div align="left"><table class="newtable" id="item_1873_Table2" style="width:34.8126em; border-spacing:0;" cellpadding="0" cellspacing="0"><colgroup style="width:22.1250em; " /><colgroup style="width:6.1248em; " /><colgroup style="width:6.5628em; " /><tbody><tr><td style="padding:0.2292em; vertical-align:top; "><p style="text-align:center; font-weight:bold; ">&#xA0;</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-top:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; font-weight:bold; "><span id="item_1873_TAG_5_BEGIN">Item</span></p></td><td style="padding:0.2292em;  border:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; font-weight:bold; "><span id="item_1873_TAG_35" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="13"></span>Price<span class="its-tag" data-tag-ref="item_1873_TAG_35" data-tag-boundary="end"></span></p></td></tr><tr><td style="padding:0.2292em; vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; ">&#xA0;</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; "><span id="item_1873_TAG_6_BEGIN">Eraser</span></p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-right:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; "><span id="item_1873_TAG_10_BEGIN">$0.89</span></p></td></tr><tr><td style="padding:0.2292em; vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; ">&#xA0;</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; "><span id="item_1873_TAG_7_BEGIN">Folder</span></p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-right:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; "><span id="item_1873_TAG_11_BEGIN">$1.29</span></p></td></tr><tr><td style="padding:0.2292em; vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; ">&#xA0;</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; "><span id="item_1873_TAG_8_BEGIN">Notebook</span></p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-right:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; "><span id="item_1873_TAG_12_BEGIN">$2.35</span></p></td></tr><tr><td style="padding:0.2292em; vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; ">&#xA0;</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; "><span id="item_1873_TAG_9_BEGIN">Pen</span></p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-right:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; "><span id="item_1873_TAG_13_BEGIN">$0.70</span></p></td></tr></tbody></table></div><p style="">&#xA0;</p><p style="">Determine <span id="item_1873_TAG_20" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="7"></span>if<span class="its-tag" data-tag-ref="item_1873_TAG_20" data-tag-boundary="end"></span> Aimee <span id="item_1873_TAG_21" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="8"></span>can buy<span class="its-tag" data-tag-ref="item_1873_TAG_21" data-tag-boundary="end"></span> the <span id="item_1873_TAG_31" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="9"></span>combination<span class="its-tag" data-tag-ref="item_1873_TAG_31" data-tag-boundary="end"></span> of <span id="item_1873_TAG_26" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="11"></span>items<span class="its-tag" data-tag-ref="item_1873_TAG_26" data-tag-boundary="end"></span> with her <span id="item_1873_TAG_4_BEGIN">$10.00</span>. <span id="item_1873_TAG_23" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="10"></span>Select<span class="its-tag" data-tag-ref="item_1873_TAG_23" data-tag-boundary="end"></span> <span style="font-weight:normal; ">Yes or No for </span><span id="item_1873_TAG_29" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="14"></span><span style="font-weight:normal; ">each</span><span class="its-tag" data-tag-ref="item_1873_TAG_29" data-tag-boundary="end"></span><span style="font-weight:normal; "> </span><span id="item_1873_TAG_32" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="9"></span><span style="font-weight:normal; ">combination</span><span class="its-tag" data-tag-ref="item_1873_TAG_32" data-tag-boundary="end"></span><span style="font-weight:normal; "> of </span><span id="item_1873_TAG_2_BEGIN"><span style="font-weight:normal; ">items</span></span><span style="font-weight:normal; ">.</span></p>]]></stem>
+      <attachmentlist>
+        <attachment pass="true" id="aslfile1" type="ASL" subtype="STEM" file="item_1873_ASL_STEM.MP4" />
+      </attachmentlist>
+      <apipAccessibility>
+        <accessibilityInfo>
+          <accessElement identifier="ae1">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_3_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>10 dollars and zero cents</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate></textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae11">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_5_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>The table has two columns and four rows. From left to right the column headings reed, Item</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate></textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae13">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_6_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>From left to right the first row reeds, Eraser,</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate></textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae14">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_10_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>zero dollars and 89 cents.</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate></textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae15">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_7_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>The second row reeds, Folder,</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate></textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae16">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_11_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>1 dollar 29 cents.</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate></textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae17">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_8_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>The third row reeds, Notebook,</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate></textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae18">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_12_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>2 dollars 35 cents.</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate></textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae19">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_9_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>The fourth row reeds, Pen,</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate></textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae20">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_13_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>Zero dollars and 70 cents.</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate></textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae25">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_4_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>10 dollars.</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate></textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae29">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_2_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>items. The table has two columns and 5 rows. From left to right the column headings reed, Yes, no. From top to bottom the row headings reed, 5 folders and 5 pens, 6 pens and 6 erasers, 1 pen and 4 notebooks, 3 folders and 7 erasers, 4 folders and 2 notebooks.</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate></textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+        </accessibilityInfo>
+      </apipAccessibility>
+    </content>
+    <content language="ESN" version="2.0" approvedVersion="17">
+      <qti spec="itemBody"><![CDATA[<matchInteraction responseIdentifier="RESPONSE" minAssociations="1" maxAssociations="0"><prompt /><simpleMatchSet><simpleAssociableChoice identifier="1" matchMax="0"><p style="font-weight:normal; ">5 carpetas y 5 plumas</p></simpleAssociableChoice><simpleAssociableChoice identifier="2" matchMax="0"><p style="font-weight:normal; ">6 plumas y 6 borradores</p></simpleAssociableChoice><simpleAssociableChoice identifier="3" matchMax="0"><p style="font-weight:normal; ">1 pluma y 4 cuadernos</p></simpleAssociableChoice><simpleAssociableChoice identifier="4" matchMax="0"><p style="font-weight:normal; ">3 carpetas y 7 borradores</p></simpleAssociableChoice><simpleAssociableChoice identifier="5" matchMax="0"><p style="font-weight:normal; ">4 carpetas y 2 cuadernos</p></simpleAssociableChoice></simpleMatchSet><simpleMatchSet><simpleAssociableChoice identifier="a" matchMax="0"><p style="">Sí</p></simpleAssociableChoice><simpleAssociableChoice identifier="b" matchMax="0"><p style="">No</p></simpleAssociableChoice></simpleMatchSet></matchInteraction>]]></qti>
+      <stem><![CDATA[<p style="">Aimee tiene $10.00 para gastar en útiles escolares. La siguiente tabla muestra el precio de cada artículo en la tienda de la escuela. No se agregan impuestos de venta a estos artículos.</p><p style="">&#xA0;</p><div align="left"><table class="newtable" id="item_1873_Table3" style="width:34.8126em; border-spacing:0;" cellpadding="0" cellspacing="0"><colgroup style="width:22.1250em; " /><colgroup style="width:6.1248em; " /><colgroup style="width:6.5628em; " /><tbody><tr><td style="padding:0.2292em; vertical-align:top; "><p style="text-align:center; font-weight:bold; ">&#xA0;</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-top:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; font-weight:bold; ">Artículo</p></td><td style="padding:0.2292em;  border:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; font-weight:bold; ">Precio</p></td></tr><tr><td style="padding:0.2292em; vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; ">&#xA0;</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; ">Borrador</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-right:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; ">$0.89</p></td></tr><tr><td style="padding:0.2292em; vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; ">&#xA0;</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; ">Carpeta</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-right:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; ">$1.29</p></td></tr><tr><td style="padding:0.2292em; vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; ">&#xA0;</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; ">Cuaderno</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-right:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; ">$2.35</p></td></tr><tr><td style="padding:0.2292em; vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; ">&#xA0;</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; ">Pluma</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-right:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; ">$0.70</p></td></tr></tbody></table></div><p style="">&#xA0;</p><p style="">Determina si Aimee puede comprar la combinación de artículos con sus $10.00. Selecciona Sí o No para cada combinación de artículos<span style="font-weight:normal; ">.</span></p><p class="languagedivider">&#xA0;</p><p style="">Aimee has <span id="item_1873_TAG_3_BEGIN">$10.00</span> <span id="item_1873_TAG_14" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="1"></span>to spend<span class="its-tag" data-tag-ref="item_1873_TAG_14" data-tag-boundary="end"></span> on school <span id="item_1873_TAG_33" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="12"></span>supplies<span class="its-tag" data-tag-ref="item_1873_TAG_33" data-tag-boundary="end"></span>. The <span id="item_1873_TAG_28" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="2"></span>following<span class="its-tag" data-tag-ref="item_1873_TAG_28" data-tag-boundary="end"></span> table shows the <span id="item_1873_TAG_34" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="13"></span>price<span class="its-tag" data-tag-ref="item_1873_TAG_34" data-tag-boundary="end"></span> of <span id="item_1873_TAG_16" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="3"></span>each<span class="its-tag" data-tag-ref="item_1873_TAG_16" data-tag-boundary="end"></span> <span id="item_1873_TAG_17" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="4"></span>item<span class="its-tag" data-tag-ref="item_1873_TAG_17" data-tag-boundary="end"></span> in the school store. No <span id="item_1873_TAG_18" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="5"></span>sales<span class="its-tag" data-tag-ref="item_1873_TAG_18" data-tag-boundary="end"></span> tax <span id="item_1873_TAG_30" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="6"></span>is charged<span class="its-tag" data-tag-ref="item_1873_TAG_30" data-tag-boundary="end"></span> on these <span id="item_1873_TAG_25" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="11"></span>items<span class="its-tag" data-tag-ref="item_1873_TAG_25" data-tag-boundary="end"></span>.</p><p style="">&#xA0;</p><div align="left"><table class="newtable" id="item_1873_Table2" style="width:34.8126em; border-spacing:0;" cellpadding="0" cellspacing="0"><colgroup style="width:22.1250em; " /><colgroup style="width:6.1248em; " /><colgroup style="width:6.5628em; " /><tbody><tr><td style="padding:0.2292em; vertical-align:top; "><p style="text-align:center; font-weight:bold; ">&#xA0;</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-top:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; font-weight:bold; "><span id="item_1873_TAG_5_BEGIN">Item</span></p></td><td style="padding:0.2292em;  border:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; font-weight:bold; "><span id="item_1873_TAG_35" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="13"></span>Price<span class="its-tag" data-tag-ref="item_1873_TAG_35" data-tag-boundary="end"></span></p></td></tr><tr><td style="padding:0.2292em; vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; ">&#xA0;</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; "><span id="item_1873_TAG_6_BEGIN">Eraser</span></p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-right:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; "><span id="item_1873_TAG_10_BEGIN">$0.89</span></p></td></tr><tr><td style="padding:0.2292em; vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; ">&#xA0;</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; "><span id="item_1873_TAG_7_BEGIN">Folder</span></p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-right:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; "><span id="item_1873_TAG_11_BEGIN">$1.29</span></p></td></tr><tr><td style="padding:0.2292em; vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; ">&#xA0;</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; "><span id="item_1873_TAG_8_BEGIN">Notebook</span></p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-right:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; "><span id="item_1873_TAG_12_BEGIN">$2.35</span></p></td></tr><tr><td style="padding:0.2292em; vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; ">&#xA0;</p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="margin-left:0.0035in; margin-right:0.0035in; text-align:left; text-indent:0.0835in; "><span id="item_1873_TAG_9_BEGIN">Pen</span></p></td><td style="padding:0.2292em;  border-left:0.06em solid #000000; border-right:0.06em solid #000000; border-bottom:0.06em solid #000000;vertical-align:top; "><p style="text-align:center; "><span id="item_1873_TAG_13_BEGIN">$0.70</span></p></td></tr></tbody></table></div><p style="">&#xA0;</p><p style="">Determine <span id="item_1873_TAG_20" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="7"></span>if<span class="its-tag" data-tag-ref="item_1873_TAG_20" data-tag-boundary="end"></span> Aimee <span id="item_1873_TAG_21" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="8"></span>can buy<span class="its-tag" data-tag-ref="item_1873_TAG_21" data-tag-boundary="end"></span> the <span id="item_1873_TAG_31" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="9"></span>combination<span class="its-tag" data-tag-ref="item_1873_TAG_31" data-tag-boundary="end"></span> of <span id="item_1873_TAG_26" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="11"></span>items<span class="its-tag" data-tag-ref="item_1873_TAG_26" data-tag-boundary="end"></span> with her <span id="item_1873_TAG_4_BEGIN">$10.00</span>. <span id="item_1873_TAG_23" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="10"></span>Select<span class="its-tag" data-tag-ref="item_1873_TAG_23" data-tag-boundary="end"></span> <span style="font-weight:normal; ">Yes or No for </span><span id="item_1873_TAG_29" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="14"></span><span style="font-weight:normal; ">each</span><span class="its-tag" data-tag-ref="item_1873_TAG_29" data-tag-boundary="end"></span><span style="font-weight:normal; "> </span><span id="item_1873_TAG_32" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="9"></span><span style="font-weight:normal; ">combination</span><span class="its-tag" data-tag-ref="item_1873_TAG_32" data-tag-boundary="end"></span><span style="font-weight:normal; "> of </span><span id="item_1873_TAG_2_BEGIN"><span style="font-weight:normal; ">items</span></span><span style="font-weight:normal; ">.</span></p>]]></stem>
+      <attachmentlist />
+      <apipAccessibility>
+        <accessibilityInfo>
+          <accessElement identifier="ae1">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_3_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>10 dollars and zero cents</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate />
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae11">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_5_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>The table has two columns and four rows. From left to right the column headings reed, Item</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate />
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae13">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_6_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>From left to right the first row reeds, Eraser,</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate />
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae14">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_10_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>zero dollars and 89 cents.</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate />
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae15">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_7_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>The second row reeds, Folder,</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate />
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae16">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_11_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>1 dollar 29 cents.</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate />
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae17">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_8_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>The third row reeds, Notebook,</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate />
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae18">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_12_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>2 dollars 35 cents.</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate />
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae19">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_9_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>The fourth row reeds, Pen,</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate />
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae20">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_13_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>Zero dollars and 70 cents.</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate />
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae25">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_4_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>10 dollars.</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate />
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae29">
+            <contentLinkInfo itsLinkIdentifierRef="item_1873_TAG_2_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>items. The table has two columns and 5 rows. From left to right the column headings reed, Yes, no. From top to bottom the row headings reed, 5 folders and 5 pens, 6 pens and 6 erasers, 1 pen and 4 notebooks, 3 folders and 7 erasers, 4 folders and 2 notebooks.</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate />
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+        </accessibilityInfo>
+      </apipAccessibility>
+    </content>
+  </item>
+</itemrelease>

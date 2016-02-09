@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IllustrationGlossaryPackage.Core.Exceptions
 {
-    class ArchiveAlreadyExistsException : Exception
+    public class ArchiveAlreadyExistsException : Exception
     {
         public ArchiveAlreadyExistsException() : base()
         {

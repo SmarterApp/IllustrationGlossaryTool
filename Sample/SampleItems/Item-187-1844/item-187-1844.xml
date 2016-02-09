@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<itemrelease version="2.0">
+  <item format="mc" id="1844" version="6" bankkey="187">
+    <attriblist>
+      <attrib attid="itm_item_id">
+        <name>Item: ITS ID</name>
+        <val>1844</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_item_subject">
+        <name>Item: Subject</name>
+        <val>MATH</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_item_desc">
+        <name>Item: Item Description</name>
+        <val>7th Grade Practice Test Item #29</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_FTUse">
+        <name>Fieldtest Use</name>
+        <val>PracTest::MG7::S2::SP14 (8); PracTest::MG7::S2::SP14::Braille (8); PracTest::MG7::S2::SP14::ESN (8);</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_OPUse">
+        <name>Operational Use</name>
+        <val></val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Answer Key">
+        <name>Item: Answer Key</name>
+        <val>B</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Grade">
+        <name>Item: Grade</name>
+        <val>7</val>
+        <desc>7</desc>
+      </attrib>
+      <attrib attid="itm_att_Item Format">
+        <name>Item: Item Format</name>
+        <val>MC</val>
+        <desc>MC4 [1]</desc>
+      </attrib>
+      <attrib attid="itm_att_Page Layout">
+        <name>Item: Page Layout</name>
+        <val>8</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Response Type">
+        <name>Item: Response Type</name>
+        <val>Vertical</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Item Point">
+        <name>Item: Item Point</name>
+        <val>1 pt.</val>
+        <desc>1 Point</desc>
+      </attrib>
+    </attriblist>
+    <tutorial id="1072" bankkey="187" />
+    <resourceslist>
+      <resource type="wordList" id="2316" index="1" bankkey="187" />
+    </resourceslist>
+    <statistic />
+    <content language="ENU" version="2.0" approvedVersion="6">
+      <concept>
+        <name>What Knowledge Do Students Need to Understand This Concept?</name>
+        <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+      </concept>
+      <es>
+        <name>Explanation of Correct Answer</name>
+        <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+      </es>
+      <himi>
+        <name>Explanation of Correct Answer</name>
+        <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+      </himi>
+      <rationaleoptlist>
+        <rationale>
+          <name>Rationale for Option A</name>
+          <val><![CDATA[<p style="">If a student chooses A,</p>]]></val>
+        </rationale>
+        <rationale>
+          <name>Rationale for Option B</name>
+          <val><![CDATA[<p style="">If a student chooses B,</p>]]></val>
+        </rationale>
+        <rationale>
+          <name>Rationale for Option C</name>
+          <val><![CDATA[<p style="">If a student chooses C,</p>]]></val>
+        </rationale>
+        <rationale>
+          <name>Rationale for Option D</name>
+          <val><![CDATA[<p style="">If a student chooses D,</p>]]></val>
+        </rationale>
+      </rationaleoptlist>
+      <stem><![CDATA[<p style="">A store is having a <span id="item_1844_TAG_12" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="1"></span>sale<span class="its-tag" data-tag-ref="item_1844_TAG_12" data-tag-boundary="end"></span>. <span id="item_1844_TAG_13" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="2"></span>Each<span class="its-tag" data-tag-ref="item_1844_TAG_13" data-tag-boundary="end"></span> <span id="item_1844_TAG_14" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="3"></span>customer<span class="its-tag" data-tag-ref="item_1844_TAG_14" data-tag-boundary="end"></span> <span id="item_1844_TAG_15" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="4"></span>receives<span class="its-tag" data-tag-ref="item_1844_TAG_15" data-tag-boundary="end"></span> <span id="item_1844_TAG_16" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="5"></span>either<span class="its-tag" data-tag-ref="item_1844_TAG_16" data-tag-boundary="end"></span> a <span id="item_1844_TAG_1_BEGIN">15%</span> discount on purchases <span id="item_1844_TAG_17" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="6"></span>under<span class="its-tag" data-tag-ref="item_1844_TAG_17" data-tag-boundary="end"></span> <span id="item_1844_TAG_2_BEGIN">$100</span> or a <span id="item_1844_TAG_3_BEGIN">20%</span> discount on purchases of <span id="item_1844_TAG_5_BEGIN">$100</span> or <span id="item_1844_TAG_18" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="7"></span>more<span class="its-tag" data-tag-ref="item_1844_TAG_18" data-tag-boundary="end"></span>. Kelly is purchasing <span id="item_1844_TAG_19" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="8"></span>some<span class="its-tag" data-tag-ref="item_1844_TAG_19" data-tag-boundary="end"></span> clothes for <span id="item_1844_TAG_4_BEGIN">$96.60</span> <span id="item_1844_TAG_20" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="9"></span>before<span class="its-tag" data-tag-ref="item_1844_TAG_20" data-tag-boundary="end"></span> the discount. She <span id="item_1844_TAG_21" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="10"></span>decides<span class="its-tag" data-tag-ref="item_1844_TAG_21" data-tag-boundary="end"></span> to buy the <span id="item_1844_TAG_22" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="11"></span>fewest<span class="its-tag" data-tag-ref="item_1844_TAG_22" data-tag-boundary="end"></span> <span id="item_1844_TAG_23" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="12"></span>packs of gum<span class="its-tag" data-tag-ref="item_1844_TAG_23" data-tag-boundary="end"></span> that <span id="item_1844_TAG_24" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="13"></span>will increase<span class="its-tag" data-tag-ref="item_1844_TAG_24" data-tag-boundary="end"></span> her purchase to <span id="item_1844_TAG_25" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="14"></span>over<span class="its-tag" data-tag-ref="item_1844_TAG_25" data-tag-boundary="end"></span> <span id="item_1844_TAG_6_BEGIN">$100</span>. The price of <span id="item_1844_TAG_26" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="15"></span>each<span class="its-tag" data-tag-ref="item_1844_TAG_26" data-tag-boundary="end"></span> <span id="item_1844_TAG_27" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="16"></span>pack of gum<span class="its-tag" data-tag-ref="item_1844_TAG_27" data-tag-boundary="end"></span> is <span id="item_1844_TAG_7_BEGIN">$0.79</span>.</p><p style="">&#xA0;</p><p style=""><span id="item_1844_TAG_28" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="17"></span>After<span class="its-tag" data-tag-ref="item_1844_TAG_28" data-tag-boundary="end"></span> the discount, <span id="item_1844_TAG_29" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="18"></span>how much<span class="its-tag" data-tag-ref="item_1844_TAG_29" data-tag-boundary="end"></span> <span id="item_1844_TAG_30" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="19"></span>less<span class="its-tag" data-tag-ref="item_1844_TAG_30" data-tag-boundary="end"></span> will Kelly pay <span id="item_1844_TAG_31" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="20"></span>by purchasing<span class="its-tag" data-tag-ref="item_1844_TAG_31" data-tag-boundary="end"></span> the clothes and the <span id="item_1844_TAG_32" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="21"></span>gum<span class="its-tag" data-tag-ref="item_1844_TAG_32" data-tag-boundary="end"></span> instead of <span id="item_1844_TAG_33" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="23"></span>purchasing<span class="its-tag" data-tag-ref="item_1844_TAG_33" data-tag-boundary="end"></span> <span id="item_1844_TAG_34" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="24"></span>only<span class="its-tag" data-tag-ref="item_1844_TAG_34" data-tag-boundary="end"></span> the clothes? (Assume there is no <span id="item_1844_TAG_37" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="25"></span>sales<span class="its-tag" data-tag-ref="item_1844_TAG_37" data-tag-boundary="end"></span> tax <span id="item_1844_TAG_36" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="26"></span>to consider<span class="its-tag" data-tag-ref="item_1844_TAG_36" data-tag-boundary="end"></span>.)</p>]]></stem>
+      <optionlist>
+        <option>
+          <name>Option A</name>
+          <val><![CDATA[<p style=""><span id="item_1844_TAG_8_BEGIN">$1.05</span></p>]]></val>
+          <feedback><![CDATA[<p style="">&#xA0;</p>]]></feedback>
+        </option>
+        <option>
+          <name>Option B</name>
+          <val><![CDATA[<p style=""><span id="item_1844_TAG_9_BEGIN">$1.67</span></p>]]></val>
+          <feedback><![CDATA[<p style="">&#xA0;</p>]]></feedback>
+        </option>
+        <option>
+          <name>Option C</name>
+          <val><![CDATA[<p style=""><span id="item_1844_TAG_10_BEGIN">$3.69</span></p>]]></val>
+          <feedback><![CDATA[<p style="">&#xA0;</p>]]></feedback>
+        </option>
+        <option>
+          <name>Option D</name>
+          <val><![CDATA[<p style=""><span id="item_1844_TAG_11_BEGIN">$3.87</span></p>]]></val>
+          <feedback><![CDATA[<p style="">&#xA0;</p>]]></feedback>
+        </option>
+      </optionlist>
+      <attachmentlist>
+        <attachment pass="true" id="aslfile1" type="ASL" subtype="STEM" file="item_1844_ASL_STEM.MP4" />
+      </attachmentlist>
+      <apipAccessibility>
+        <accessibilityInfo>
+          <accessElement identifier="ae6">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_1_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>15 percent</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>15%</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>15%</brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae8">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_2_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>1 hundred dollars</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$100</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae9">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_3_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>20 percent</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>20%</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>20%</brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae10">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_5_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>1 hundred dollars</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$100</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>$100</brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae13">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_4_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>96 dollars and 60 cents</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$96.60</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>$96.60</brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae20">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_6_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>1 hundred dollars</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$100</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae23">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_7_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>0 dollars and 79 cents</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$0.79</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>$0.79</brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae33">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_8_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>1 dollar and five cents</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$1.05</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>$1.05</brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae34">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_9_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>1 dollar and 67 cents</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$1.67</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>$1.67</brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae35">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_10_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>3 dollars and 69 cents</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$3.69</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae36">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_11_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>3 dollars and 87 cents</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$3.87</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+        </accessibilityInfo>
+      </apipAccessibility>
+    </content>
+    <content language="ESN" version="2.0" approvedVersion="6">
+      <concept>
+        <name>What Knowledge Do Students Need to Understand This Concept?</name>
+        <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+      </concept>
+      <es>
+        <name>Explanation of Correct Answer</name>
+        <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+      </es>
+      <himi>
+        <name>Explanation of Correct Answer</name>
+        <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+      </himi>
+      <rationaleoptlist>
+        <rationale>
+          <name>Rationale for Option A</name>
+          <val><![CDATA[<p style="">If a student chooses A,</p>]]></val>
+        </rationale>
+        <rationale>
+          <name>Rationale for Option B</name>
+          <val><![CDATA[<p style="">If a student chooses B,</p>]]></val>
+        </rationale>
+        <rationale>
+          <name>Rationale for Option C</name>
+          <val><![CDATA[<p style="">If a student chooses C,</p>]]></val>
+        </rationale>
+        <rationale>
+          <name>Rationale for Option D</name>
+          <val><![CDATA[<p style="">If a student chooses D,</p>]]></val>
+        </rationale>
+      </rationaleoptlist>
+      <stem><![CDATA[<p style="">Una tienda tiene una venta especial. Cada cliente recibe un 15% de descuento en compras de menos de $100 o un 20% de descuento en compras de $100 o más. Kelly va a comprar ropa por $96.60 antes del descuento. Ella decide comprar el menor número de paquetes de chicles que incremente su compra a más de $100. El precio de cada paquete de chicles es de $0.79.</p><p style="">&#xA0;</p><p style="">Después del descuento, ¿cuánto menos va a pagar Kelly por comprar la ropa y los chicles en lugar de comprar únicamente la ropa? (Supón que no hay que considerar los impuestos de venta).</p><p class="languagedivider">&#xA0;</p><p style="">A store is having a <span id="item_1844_TAG_12" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="1"></span>sale<span class="its-tag" data-tag-ref="item_1844_TAG_12" data-tag-boundary="end"></span>. <span id="item_1844_TAG_13" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="2"></span>Each<span class="its-tag" data-tag-ref="item_1844_TAG_13" data-tag-boundary="end"></span> <span id="item_1844_TAG_14" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="3"></span>customer<span class="its-tag" data-tag-ref="item_1844_TAG_14" data-tag-boundary="end"></span> <span id="item_1844_TAG_15" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="4"></span>receives<span class="its-tag" data-tag-ref="item_1844_TAG_15" data-tag-boundary="end"></span> <span id="item_1844_TAG_16" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="5"></span>either<span class="its-tag" data-tag-ref="item_1844_TAG_16" data-tag-boundary="end"></span> a <span id="item_1844_TAG_1_BEGIN">15%</span> discount on purchases <span id="item_1844_TAG_17" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="6"></span>under<span class="its-tag" data-tag-ref="item_1844_TAG_17" data-tag-boundary="end"></span> <span id="item_1844_TAG_2_BEGIN">$100</span> or a <span id="item_1844_TAG_3_BEGIN">20%</span> discount on purchases of <span id="item_1844_TAG_5_BEGIN">$100</span> or <span id="item_1844_TAG_18" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="7"></span>more<span class="its-tag" data-tag-ref="item_1844_TAG_18" data-tag-boundary="end"></span>. Kelly is purchasing <span id="item_1844_TAG_19" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="8"></span>some<span class="its-tag" data-tag-ref="item_1844_TAG_19" data-tag-boundary="end"></span> clothes for <span id="item_1844_TAG_4_BEGIN">$96.60</span> <span id="item_1844_TAG_20" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="9"></span>before<span class="its-tag" data-tag-ref="item_1844_TAG_20" data-tag-boundary="end"></span> the discount. She <span id="item_1844_TAG_21" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="10"></span>decides<span class="its-tag" data-tag-ref="item_1844_TAG_21" data-tag-boundary="end"></span> to buy the <span id="item_1844_TAG_22" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="11"></span>fewest<span class="its-tag" data-tag-ref="item_1844_TAG_22" data-tag-boundary="end"></span> <span id="item_1844_TAG_23" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="12"></span>packs of gum<span class="its-tag" data-tag-ref="item_1844_TAG_23" data-tag-boundary="end"></span> that <span id="item_1844_TAG_24" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="13"></span>will increase<span class="its-tag" data-tag-ref="item_1844_TAG_24" data-tag-boundary="end"></span> her purchase to <span id="item_1844_TAG_25" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="14"></span>over<span class="its-tag" data-tag-ref="item_1844_TAG_25" data-tag-boundary="end"></span> <span id="item_1844_TAG_6_BEGIN">$100</span>. The price of <span id="item_1844_TAG_26" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="15"></span>each<span class="its-tag" data-tag-ref="item_1844_TAG_26" data-tag-boundary="end"></span> <span id="item_1844_TAG_27" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="16"></span>pack of gum<span class="its-tag" data-tag-ref="item_1844_TAG_27" data-tag-boundary="end"></span> is <span id="item_1844_TAG_7_BEGIN">$0.79</span>.</p><p style="">&#xA0;</p><p style=""><span id="item_1844_TAG_28" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="17"></span>After<span class="its-tag" data-tag-ref="item_1844_TAG_28" data-tag-boundary="end"></span> the discount, <span id="item_1844_TAG_29" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="18"></span>how much<span class="its-tag" data-tag-ref="item_1844_TAG_29" data-tag-boundary="end"></span> <span id="item_1844_TAG_30" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="19"></span>less<span class="its-tag" data-tag-ref="item_1844_TAG_30" data-tag-boundary="end"></span> will Kelly pay <span id="item_1844_TAG_31" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="20"></span>by purchasing<span class="its-tag" data-tag-ref="item_1844_TAG_31" data-tag-boundary="end"></span> the clothes and the <span id="item_1844_TAG_32" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="21"></span>gum<span class="its-tag" data-tag-ref="item_1844_TAG_32" data-tag-boundary="end"></span> instead of <span id="item_1844_TAG_33" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="23"></span>purchasing<span class="its-tag" data-tag-ref="item_1844_TAG_33" data-tag-boundary="end"></span> <span id="item_1844_TAG_34" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="24"></span>only<span class="its-tag" data-tag-ref="item_1844_TAG_34" data-tag-boundary="end"></span> the clothes? (Assume there is no <span id="item_1844_TAG_37" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="25"></span>sales<span class="its-tag" data-tag-ref="item_1844_TAG_37" data-tag-boundary="end"></span> tax <span id="item_1844_TAG_36" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="26"></span>to consider<span class="its-tag" data-tag-ref="item_1844_TAG_36" data-tag-boundary="end"></span>.)</p>]]></stem>
+      <optionlist>
+        <option>
+          <name>Option A</name>
+          <val><![CDATA[<p style=""><span id="item_1844_TAG_8_BEGIN">$1.05</span></p>]]></val>
+          <feedback><![CDATA[<p style="">&#xA0;</p>]]></feedback>
+        </option>
+        <option>
+          <name>Option B</name>
+          <val><![CDATA[<p style=""><span id="item_1844_TAG_9_BEGIN">$1.67</span></p>]]></val>
+          <feedback><![CDATA[<p style="">&#xA0;</p>]]></feedback>
+        </option>
+        <option>
+          <name>Option C</name>
+          <val><![CDATA[<p style=""><span id="item_1844_TAG_10_BEGIN">$3.69</span></p>]]></val>
+          <feedback><![CDATA[<p style="">&#xA0;</p>]]></feedback>
+        </option>
+        <option>
+          <name>Option D</name>
+          <val><![CDATA[<p style=""><span id="item_1844_TAG_11_BEGIN">$3.87</span></p>]]></val>
+          <feedback><![CDATA[<p style="">&#xA0;</p>]]></feedback>
+        </option>
+      </optionlist>
+      <attachmentlist />
+      <apipAccessibility>
+        <accessibilityInfo>
+          <accessElement identifier="ae6">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_1_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>15 percent</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>15%</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>15%</brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae8">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_2_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>1 hundred dollars</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$100</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae9">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_3_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>20 percent</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>20%</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>20%</brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae10">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_5_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>1 hundred dollars</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$100</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>$100</brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae13">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_4_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>96 dollars and 60 cents</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$96.60</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>$96.60</brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae20">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_6_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>1 hundred dollars</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$100</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae23">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_7_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>0 dollars and 79 cents</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$0.79</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>$0.79</brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae33">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_8_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>1 dollar and five cents</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$1.05</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>$1.05</brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae34">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_9_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>1 dollar and 67 cents</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$1.67</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>$1.67</brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae35">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_10_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>3 dollars and 69 cents</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$3.69</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae36">
+            <contentLinkInfo itsLinkIdentifierRef="item_1844_TAG_11_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>3 dollars and 87 cents</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>$3.87</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+        </accessibilityInfo>
+      </apipAccessibility>
+    </content>
+  </item>
+</itemrelease>

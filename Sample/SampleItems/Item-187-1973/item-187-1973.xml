@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<itemrelease version="2.0">
+  <item format="mc" id="1973" version="3" bankkey="187">
+    <attriblist>
+      <attrib attid="itm_item_id">
+        <name>Item: ITS ID</name>
+        <val>1973</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_item_subject">
+        <name>Item: Subject</name>
+        <val>MATH</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_item_desc">
+        <name>Item: Item Description</name>
+        <val>Clone of Practice Test 543</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_FTUse">
+        <name>Fieldtest Use</name>
+        <val>PracTest::MG3::S1::SP14 (18); PracTest::MG3::S1::SP14::Braille (18); PracTest::MG3::S1::SP14::ESN (18);</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_OPUse">
+        <name>Operational Use</name>
+        <val></val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Answer Key">
+        <name>Item: Answer Key</name>
+        <val>C</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Grade">
+        <name>Item: Grade</name>
+        <val>3</val>
+        <desc>3</desc>
+      </attrib>
+      <attrib attid="itm_att_Item Format">
+        <name>Item: Item Format</name>
+        <val>MC</val>
+        <desc>MC4 [1]</desc>
+      </attrib>
+      <attrib attid="itm_att_Page Layout">
+        <name>Item: Page Layout</name>
+        <val>8</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Response Type">
+        <name>Item: Response Type</name>
+        <val>Vertical</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Item Point">
+        <name>Item: Item Point</name>
+        <val>1 pt.</val>
+        <desc>1 Point</desc>
+      </attrib>
+    </attriblist>
+    <tutorial id="1072" bankkey="187" />
+    <resourceslist>
+      <resource type="wordList" id="2158" index="1" bankkey="187" />
+    </resourceslist>
+    <statistic />
+    <content language="ENU" version="2.0" approvedVersion="3">
+      <concept>
+        <name>What Knowledge Do Students Need to Understand This Concept?</name>
+        <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+      </concept>
+      <es>
+        <name>Explanation of Correct Answer</name>
+        <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+      </es>
+      <himi>
+        <name>Explanation of Correct Answer</name>
+        <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+      </himi>
+      <rationaleoptlist>
+        <rationale>
+          <name>Rationale for Option A</name>
+          <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+        </rationale>
+        <rationale>
+          <name>Rationale for Option B</name>
+          <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+        </rationale>
+        <rationale>
+          <name>Rationale for Option C</name>
+          <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+        </rationale>
+        <rationale>
+          <name>Rationale for Option D</name>
+          <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+        </rationale>
+      </rationaleoptlist>
+      <stem><![CDATA[<p style=""><span id="item_1973_TAG_14" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="1"></span>Each<span class="its-tag" data-tag-ref="item_1973_TAG_14" data-tag-boundary="end"></span> page in a <span id="item_1973_TAG_15" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="2"></span>picture album<span class="its-tag" data-tag-ref="item_1973_TAG_15" data-tag-boundary="end"></span> has 3 rows, and there are <span id="item_1973_TAG_16" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="4"></span>4 pictures<span class="its-tag" data-tag-ref="item_1973_TAG_16" data-tag-boundary="end"></span> in <span id="item_1973_TAG_17" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="5"></span>each<span class="its-tag" data-tag-ref="item_1973_TAG_17" data-tag-boundary="end"></span> row.</p><p style=""><br /><span id="item_1973_TAG_18" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="6"></span>How many<span class="its-tag" data-tag-ref="item_1973_TAG_18" data-tag-boundary="end"></span> <span id="item_1973_TAG_19" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="3"></span>pictures<span class="its-tag" data-tag-ref="item_1973_TAG_19" data-tag-boundary="end"></span> are on <span id="item_1973_TAG_20" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="5"></span>each<span class="its-tag" data-tag-ref="item_1973_TAG_20" data-tag-boundary="end"></span> page?</p>]]></stem>
+      <optionlist>
+        <option>
+          <name>Option A</name>
+          <val><![CDATA[<p style="">9</p>]]></val>
+          <feedback><![CDATA[<p style="">Student multiplied 3 x 3 instead of 3 x 4</p>]]></feedback>
+        </option>
+        <option>
+          <name>Option B</name>
+          <val><![CDATA[<p style="">11</p>]]></val>
+          <feedback><![CDATA[<p style="">Student multiplied incorrectly</p>]]></feedback>
+        </option>
+        <option>
+          <name>Option C</name>
+          <val><![CDATA[<p style="">12</p>]]></val>
+          <feedback><![CDATA[<p style="">Correct</p>]]></feedback>
+        </option>
+        <option>
+          <name>Option D</name>
+          <val><![CDATA[<p style="">15</p>]]></val>
+          <feedback><![CDATA[<p style="">Student multiplied 3 x 5 instead of 3 x 4</p>]]></feedback>
+        </option>
+      </optionlist>
+      <attachmentlist>
+        <attachment pass="true" id="aslfile1" type="ASL" subtype="STEM" file="item_1973_ASL_STEM.MP4" />
+      </attachmentlist>
+      <apipAccessibility>
+        <accessibilityInfo />
+      </apipAccessibility>
+    </content>
+    <content language="ESN" version="2.0" approvedVersion="3">
+      <concept>
+        <name>What Knowledge Do Students Need to Understand This Concept?</name>
+        <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+      </concept>
+      <es>
+        <name>Explanation of Correct Answer</name>
+        <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+      </es>
+      <himi>
+        <name>Explanation of Correct Answer</name>
+        <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+      </himi>
+      <rationaleoptlist>
+        <rationale>
+          <name>Rationale for Option A</name>
+          <val><![CDATA[<p style="">If a student chooses A,</p>]]></val>
+        </rationale>
+        <rationale>
+          <name>Rationale for Option B</name>
+          <val><![CDATA[<p style="">If a student chooses B,</p>]]></val>
+        </rationale>
+        <rationale>
+          <name>Rationale for Option C</name>
+          <val><![CDATA[<p style="">If a student chooses C,</p>]]></val>
+        </rationale>
+        <rationale>
+          <name>Rationale for Option D</name>
+          <val><![CDATA[<p style="">If a student chooses D,</p>]]></val>
+        </rationale>
+      </rationaleoptlist>
+      <stem><![CDATA[<p style="">Cada página de un álbum fotográfico tiene 3 hileras y en cada hilera hay 4 fotografías.</p><p style=""><br />¿Cuántas fotografías hay en cada página?</p><p class="languagedivider">&#xA0;</p><p style=""><span id="item_1973_TAG_14" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="1"></span>Each<span class="its-tag" data-tag-ref="item_1973_TAG_14" data-tag-boundary="end"></span> page in a <span id="item_1973_TAG_15" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="2"></span>picture album<span class="its-tag" data-tag-ref="item_1973_TAG_15" data-tag-boundary="end"></span> has 3 rows, and there are <span id="item_1973_TAG_16" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="4"></span>4 pictures<span class="its-tag" data-tag-ref="item_1973_TAG_16" data-tag-boundary="end"></span> in <span id="item_1973_TAG_17" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="5"></span>each<span class="its-tag" data-tag-ref="item_1973_TAG_17" data-tag-boundary="end"></span> row.</p><p style=""><br /><span id="item_1973_TAG_18" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="6"></span>How many<span class="its-tag" data-tag-ref="item_1973_TAG_18" data-tag-boundary="end"></span> <span id="item_1973_TAG_19" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="3"></span>pictures<span class="its-tag" data-tag-ref="item_1973_TAG_19" data-tag-boundary="end"></span> are on <span id="item_1973_TAG_20" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="5"></span>each<span class="its-tag" data-tag-ref="item_1973_TAG_20" data-tag-boundary="end"></span> page?</p>]]></stem>
+      <optionlist>
+        <option>
+          <name>Option A</name>
+          <val><![CDATA[<p style="">9</p>]]></val>
+          <feedback><![CDATA[<p style="">Student multiplied 3 x 3 instead of 3 x 4</p>]]></feedback>
+        </option>
+        <option>
+          <name>Option B</name>
+          <val><![CDATA[<p style="">11</p>]]></val>
+          <feedback><![CDATA[<p style="">Student multiplied incorrectly</p>]]></feedback>
+        </option>
+        <option>
+          <name>Option C</name>
+          <val><![CDATA[<p style="">12</p>]]></val>
+          <feedback><![CDATA[<p style="">Correct</p>]]></feedback>
+        </option>
+        <option>
+          <name>Option D</name>
+          <val><![CDATA[<p style="">15</p>]]></val>
+          <feedback><![CDATA[<p style="">Student multiplied 3 x 5 instead of 3 x 4</p>]]></feedback>
+        </option>
+      </optionlist>
+      <attachmentlist />
+      <apipAccessibility>
+        <accessibilityInfo />
+      </apipAccessibility>
+    </content>
+  </item>
+</itemrelease>

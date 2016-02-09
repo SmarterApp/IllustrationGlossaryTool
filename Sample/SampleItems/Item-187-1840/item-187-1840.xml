@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<itemrelease version="2.0">
+  <item format="eq" id="1840" version="9" bankkey="187">
+    <attriblist>
+      <attrib attid="itm_item_id">
+        <name>Item: ITS ID</name>
+        <val>1840</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_item_subject">
+        <name>Item: Subject</name>
+        <val>MATH</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_item_desc">
+        <name>Item: Item Description</name>
+        <val>7th Grade Practice Test Item #17</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_FTUse">
+        <name>Fieldtest Use</name>
+        <val>PracTest::MG7::S2::SP14 (12); PracTest::MG7::S2::SP14::Braille (12); PracTest::MG7::S2::SP14::ESN (12);</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_OPUse">
+        <name>Operational Use</name>
+        <val></val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Answer Key">
+        <name>Item: Answer Key</name>
+        <val>EQ</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Grade">
+        <name>Item: Grade</name>
+        <val>7</val>
+        <desc>7</desc>
+      </attrib>
+      <attrib attid="itm_att_Item Format">
+        <name>Item: Item Format</name>
+        <val>EQ</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Page Layout">
+        <name>Item: Page Layout</name>
+        <val>8</val>
+        <desc>8 [9.16]</desc>
+      </attrib>
+      <attrib attid="itm_att_Response Type">
+        <name>Item: Response Type</name>
+        <val>EquationEditor</val>
+        <desc></desc>
+      </attrib>
+      <attrib attid="itm_att_Item Point">
+        <name>Item: Item Point</name>
+        <val>1 pt.</val>
+        <desc></desc>
+      </attrib>
+    </attriblist>
+    <tutorial id="1074" bankkey="187" />
+    <resourceslist>
+      <resource type="wordList" id="2305" index="1" bankkey="187" />
+    </resourceslist>
+    <statistic />
+    <MachineRubric filename="Item_1840_v9.qrx" />
+    <RendererSpec filename="Item_1840_v9.eax" />
+    <content language="ENU" version="2.0" approvedVersion="9">
+      <rationaleoptlist />
+      <stem><![CDATA[<p style="">A <span id="item_1840_TAG_5" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="1"></span>corner<span class="its-tag" data-tag-ref="item_1840_TAG_5" data-tag-boundary="end"></span> <span id="item_1840_TAG_6" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="2"></span>shelf<span class="its-tag" data-tag-ref="item_1840_TAG_6" data-tag-boundary="end"></span> is <img id="item_1840_Object1" style="vertical-align:middle;" src="item_1840_v9_Object1_png16malpha.png" width="15" height="39" /> of a circle and has a radius of <span id="item_1840_TAG_2_BEGIN">10.5</span> inches.</p><p style="">&#xA0;</p><p style=""><img id="item_1840_Stem:(d=png16malpha)" src="item_1840_v9_Stem_png16malpha.png" width="180" height="140" style="vertical-align:baseline;" /></p><p style="">&#xA0;</p><p style=""><span id="item_1840_TAG_7" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="3"></span>Enter<span class="its-tag" data-tag-ref="item_1840_TAG_7" data-tag-boundary="end"></span> the area of the <span id="item_1840_TAG_10" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="5"></span>shelf<span class="its-tag" data-tag-ref="item_1840_TAG_10" data-tag-boundary="end"></span>, in square inches. Round your answer to the <span id="item_1840_TAG_11" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="4"></span>nearest<span class="its-tag" data-tag-ref="item_1840_TAG_11" data-tag-boundary="end"></span> <span id="item_1840_TAG_4_BEGIN">hundredth</span>.</p>]]></stem>
+      <rubriclist>
+        <rubric scorepoint="">
+          <name>
+        Rubric </name>
+          <val><![CDATA[<p style="color:#000000; ">Exemplar:</p><p style="color:#000000; ">&#xA0;</p><ul style="padding-left:1.5000em; "><li><p style="color:#000000; ">86.55-86.68</p></li></ul><p style="color:#000000; ">&#xA0;</p><p style="color:#000000; ">For this item, a full-credit response includes</p><p style="color:#000000; ">&#xA0;</p><ul style="padding-left:1.5000em; "><li><p style="color:#000000; ">Student enters correct area in a range of correct values. (1 point).</p></li></ul>]]></val>
+        </rubric>
+        <samplelist maxval="" minval="" />
+      </rubriclist>
+      <attachmentlist>
+        <attachment pass="true" id="aslfile1" type="ASL" subtype="STEM" file="item_1840_ASL_STEM.MP4" />
+      </attachmentlist>
+      <apipAccessibility>
+        <accessibilityInfo>
+          <accessElement identifier="ae3">
+            <contentLinkInfo itsLinkIdentifierRef="item_1840_Object1" type="Equation">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <audioShortDesc>1 fourth</audioShortDesc>
+                <audioLongDesc></audioLongDesc>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>the fraction 1 over 4,</brailleTextString>
+                <brailleCode type="Nemeth">?1/4#</brailleCode>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae4">
+            <contentLinkInfo itsLinkIdentifierRef="item_1840_TAG_2_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>10 point 5</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>10.5</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString></brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae5">
+            <contentLinkInfo itsLinkIdentifierRef="item_1840_Stem:(d=png16malpha)" type="Graphic" subtype="Generic">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <audioText>From top to bottom the figure is labeled, 10 point 5 inches, 10 point 5 inches;</audioText>
+              </readAloud>
+              <brailleText />
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae9">
+            <contentLinkInfo itsLinkIdentifierRef="item_1840_TAG_4_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>hundredth.   from left to right and top to bottom the equation tool reeds, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, point, negative.</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>hundredth</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>hundredth</brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+        </accessibilityInfo>
+      </apipAccessibility>
+    </content>
+    <content language="ESN" version="2.0" approvedVersion="9">
+      <stem><![CDATA[<p style="">Un estante para la esquina mide <img id="item_1840_Object2" style="vertical-align:middle;" src="item_1840_v9_Object2_png16malpha.png" width="15" height="39" /> de círculo y tiene un radio de 10.5 pulgadas.</p><p style="">&#xA0;</p><p style=""><img id="item_1840_graphics1" src="item_1840_v9_graphics1_png256.png" width="241" height="188" style="vertical-align:baseline;" /></p><p style="">&#xA0;</p><p style="">Escribe el área del estante, en pulgadas cuadradas. Redondea tu respuesta al centésimo más cercano.</p><p class="languagedivider">&#xA0;</p><p style="">A <span id="item_1840_TAG_5" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="1"></span>corner<span class="its-tag" data-tag-ref="item_1840_TAG_5" data-tag-boundary="end"></span> <span id="item_1840_TAG_6" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="2"></span>shelf<span class="its-tag" data-tag-ref="item_1840_TAG_6" data-tag-boundary="end"></span> is <img id="item_1840_Object1" style="vertical-align:middle;" src="item_1840_v9_Object1_png16malpha.png" width="15" height="39" /> of a circle and has a radius of <span id="item_1840_TAG_2_BEGIN">10.5</span> inches.</p><p style="">&#xA0;</p><p style=""><img id="item_1840_Stem:(d=png16malpha)" src="item_1840_v9_Stem_png16malpha.png" width="180" height="140" style="vertical-align:baseline;" /></p><p style="">&#xA0;</p><p style=""><span id="item_1840_TAG_7" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="3"></span>Enter<span class="its-tag" data-tag-ref="item_1840_TAG_7" data-tag-boundary="end"></span> the area of the <span id="item_1840_TAG_10" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="5"></span>shelf<span class="its-tag" data-tag-ref="item_1840_TAG_10" data-tag-boundary="end"></span>, in square inches. Round your answer to the <span id="item_1840_TAG_11" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="4"></span>nearest<span class="its-tag" data-tag-ref="item_1840_TAG_11" data-tag-boundary="end"></span> <span id="item_1840_TAG_4_BEGIN">hundredth</span>.</p>]]></stem>
+      <rubriclist>
+        <rubric scorepoint="_Spanish">
+          <name>
+        Rubric _Spanish</name>
+          <val><![CDATA[<p style="">&#xA0;</p>]]></val>
+        </rubric>
+        <samplelist maxval="_Spanish" minval="_Spanish" />
+      </rubriclist>
+      <attachmentlist />
+      <apipAccessibility>
+        <accessibilityInfo>
+          <accessElement identifier="ae3">
+            <contentLinkInfo itsLinkIdentifierRef="item_1840_Object1" type="Equation">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <audioShortDesc>1 fourth</audioShortDesc>
+                <audioLongDesc />
+              </readAloud>
+              <brailleText>
+                <brailleTextString>the fraction 1 over 4,</brailleTextString>
+                <brailleCode type="Nemeth">?1/4#</brailleCode>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae4">
+            <contentLinkInfo itsLinkIdentifierRef="item_1840_TAG_2_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>10 point 5</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>10.5</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString />
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae5">
+            <contentLinkInfo itsLinkIdentifierRef="item_1840_Stem:(d=png16malpha)" type="Graphic" subtype="Generic">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <audioText>From top to bottom the figure is labeled, 10 point 5 inches, 10 point 5 inches;</audioText>
+              </readAloud>
+              <brailleText />
+            </relatedElementInfo>
+          </accessElement>
+          <accessElement identifier="ae9">
+            <contentLinkInfo itsLinkIdentifierRef="item_1840_TAG_4_BEGIN" type="Text">
+              <objectLink />
+            </contentLinkInfo>
+            <relatedElementInfo>
+              <readAloud>
+                <textToSpeechPronunciation>hundredth.   from left to right and top to bottom the equation tool reeds, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, point, negative.</textToSpeechPronunciation>
+                <textToSpeechPronunciationAlternate>hundredth</textToSpeechPronunciationAlternate>
+              </readAloud>
+              <brailleText>
+                <brailleTextString>hundredth</brailleTextString>
+              </brailleText>
+            </relatedElementInfo>
+          </accessElement>
+        </accessibilityInfo>
+      </apipAccessibility>
+    </content>
+  </item>
+</itemrelease>

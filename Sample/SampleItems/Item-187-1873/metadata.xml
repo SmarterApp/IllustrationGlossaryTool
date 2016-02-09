@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<metadata>
+  <smarterAppMetadata xmlns="http://www.smarterapp.org/ns/1/assessment_item_metadata">
+    <Identifier>1873</Identifier>
+    <Version>17</Version>
+    <ItemAuthorIdentifier>Kelly_Bolton</ItemAuthorIdentifier>
+    <ItemSpecFormat>SmarterApp</ItemSpecFormat>
+    <LastModifiedBy>Kelly_Bolton</LastModifiedBy>
+    <SecurityStatus>Non-secure</SecurityStatus>
+    <SmarterAppItemDescriptor>cloned from 1057</SmarterAppItemDescriptor>
+    <Status>Ready for Field Test</Status>
+    <StimulusFormat>Standard</StimulusFormat>
+    <Subject>MATH</Subject>
+    <IntendedGrade>7</IntendedGrade>
+    <MinimumGrade>6</MinimumGrade>
+    <MaximumGrade>7</MaximumGrade>
+    <MathematicalPractice>4</MathematicalPractice>
+    <DepthOfKnowledge>1</DepthOfKnowledge>
+    <TargetAssessmentType>Not Applicable</TargetAssessmentType>
+    <InteractionType>MI</InteractionType>
+    <EducationalDifficulty>Low</EducationalDifficulty>
+    <MaximumNumberOfPoints>1</MaximumNumberOfPoints>
+    <AllowCalculator>Y</AllowCalculator>
+    <CopyrightAndOtherRestrictions>Commissioned</CopyrightAndOtherRestrictions>
+    <BrailleType>BRF</BrailleType>
+    <ScorePoints>"0,1"</ScorePoints>
+    <StandardPublication>
+      <Publication>SBAC-MA-v1</Publication>
+      <PrimaryStandard>SBAC-MA-v1:1|EE|D-7|m|7.EE.3</PrimaryStandard>
+    </StandardPublication>
+    <StandardPublication>
+      <Publication>SBAC-MA-v3</Publication>
+      <PrimaryStandard>SBAC-MA-v3:MA-Undesignated</PrimaryStandard>
+    </StandardPublication>
+    <AssociatedTutorial>1073</AssociatedTutorial>
+    <AssociatedWordlist>2301</AssociatedWordlist>
+    <Language>eng</Language>
+    <Language>spa</Language>
+  </smarterAppMetadata>
+</metadata>
