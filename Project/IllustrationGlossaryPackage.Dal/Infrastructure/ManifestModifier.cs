@@ -1,11 +1,9 @@
 ﻿using IllustrationGlossaryPackage.Dal.Interfaces;
 using IllustrationGlossaryPackage.Dal.Models;
 using System.Collections.Generic;
-using System.Xml.Linq;
-using System.IO;
 using System.IO.Compression;
-using System.Text.RegularExpressions;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace IllustrationGlossaryPackage.Dal.Infrastructure
 {
@@ -26,6 +24,7 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update);
             ZipArchiveEntry manifestEntry = testPackageArchive.Entries.SingleOrDefault(t => t.FullName.ToLower().Contains("manifest"));
             XDocument manifestXml = XDocument.Load(manifestEntry.Open());
+            testPackageArchive.Dispose();
             return manifestXml;
         }
     }

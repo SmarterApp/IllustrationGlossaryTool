@@ -29,6 +29,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         {
             IEnumerable<Illustration> illustrations = glossaryParser.GetIllustrationsFromSpreadsheet(itemsFilePath);
             XDocument manifest = manifestModifier.GetManifestXml(testPackageFilePath);
+            IEnumerable<XDocument> itemsXml = itemsModifier.GetItemsXml(testPackageFilePath);
 
             itemsModifier.AddIllustrationsToItems(illustrations, testPackageFilePath);
             manifestModifier.AddIllustrationsToManifest(illustrations, testPackageFilePath);
