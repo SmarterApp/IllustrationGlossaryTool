@@ -10105,11 +10105,11 @@
     <resource identifier="item-187-1840_metadata" type="resourcemetadata/apipv1p0">
       <file href="Items/Item-187-1840/metadata.xml" />
     </resource>
-    <resource identifier="item_1844_shelf_svg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
-      <file href="Items/Item-187-1840/item_1844_shelf_svg.svg" />
+    <resource identifier="shelf" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1840/shelf.svg" />
     </resource>
-    <resource identifier="item_1844_enter_svg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
-      <file href="Items/Item-187-1840/item_1844_enter_svg.svg" />
+    <resource identifier="enter" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1840/enter.svg" />
     </resource>
     <resource identifier="item_1840_v9_Stem_png16malpha_png" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
       <file href="Items/Item-187-1840/item_1840_v9_Stem_png16malpha.png" />
