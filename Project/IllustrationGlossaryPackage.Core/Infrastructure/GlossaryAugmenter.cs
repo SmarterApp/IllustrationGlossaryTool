@@ -32,18 +32,43 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             XDocument manifest = manifestModifier.GetManifestXml(testPackageFilePath);
             IEnumerable<XDocument> itemXmls = itemsModifier.GetItemsXml(testPackageFilePath);
 
-            UpdateItemXmls(itemXmls, illustrations);
+            AddIllustrationInfoToItemXml(itemXmls, illustrations.First());
 
             itemsModifier.AddIllustrationsToItems(illustrations, testPackageFilePath);
             manifestModifier.AddIllustrationsToManifest(illustrations, testPackageFilePath);
         }
 
-        private void UpdateItemXmls(IEnumerable<XDocument> itemXmls, IEnumerable<Illustration> illustrations)
+        private void AddIllustrationInfoToItemXml(IEnumerable<XDocument> itemXmls, Illustration illustration)
         {
-            foreach(Illustration illustration in illustrations)
-            {
-                XDocument itemXml = GetXDocumentForIllustration(illustration, itemXmls);
-            }
+            XDocument itemXml = GetXDocumentForIllustration(illustration, itemXmls);
+
+            // Assume the item element exists, then work from there to add illustration resource list if necessary
+            XElement rootElement = itemXml
+                .Element("itemrelease")
+                .Element("item");
+            XElement resourceslistElement = rootElement.ElementOrCreate("resourceslist");
+            XElement resourceElement = resourceslistElement.ElementOrCreate("resource");
+            XElement itemElement = resourceElement.ElementOrCreate("item");
+            XElement keywordListElement = itemElement.ElementOrCreate("keywordList");
+
+            XElement keyword = NewIllustrationElementFromIllustrationClass(illustration);
+
+            //if(itemXml.Element("itemrelease"))
+        }
+
+        static XElement NewIllustrationElementFromIllustrationClass(Illustration illustration)
+        {
+            XElement keyword = 
+                new XElement("keyword",
+                    new XAttribute("text", illustration.Term),
+                    new XAttribute("index", "1"),
+                        new XElement("html",
+                            new XAttribute("listType", "illustration"),
+                            new XAttribute("listCode", "TDS_WL_Illustration")
+                        )
+                );
+            //keyword.Element("html").Value = "<![CDATA[<p style="">spun<a href="item_1881_spun_svg.svg" type="illustration / svg" visible="True"></a></p>]]>"
+            return keyword;
         }
 
         static XDocument GetXDocumentForIllustration(Illustration illustration, IEnumerable<XDocument> documents)
