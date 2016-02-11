@@ -76,7 +76,8 @@
         <html listType="punjabiGlossary" listCode="TDS_WL_PunjabiGloss"><![CDATA[<p style="">ਕਿਹੜਾ , کی</p>]]></html>
         <html listType="ukrainianGlossary" listCode="TDS_WL_UkrainianGloss"><![CDATA[<p style="">Яка</p>]]></html>
       </keyword>
-      <keyword text="spinner" index="7"><html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">spinner<a href="spinner.svg" type="image/svg+xml" visible="True"></a></p>]]></html>
+      <keyword text="spinner" index="7">
+        <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">spinner<a href="spinner.svg" type="image/svg+xml" visible="True"></a></p>]]></html>
         <html listType="esnGlossary" listCode="TDS_WL_ESNGlossary"><![CDATA[<p style="">ruleta</p>]]></html>
         <html listType="arabicGlossary" listCode="TDS_WL_ArabicGloss"><![CDATA[<p style=""><span style="">غزال</span> </p>]]></html>
         <html listType="vietnameseGlossary" listCode="TDS_WL_VietnameseGloss"><![CDATA[<p style="">mỗi phần</p>]]></html>
