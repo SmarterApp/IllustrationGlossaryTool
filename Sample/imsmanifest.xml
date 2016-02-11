@@ -10284,9 +10284,9 @@
     </resource>
     <resource identifier="item-187-1881" type="imsqti_apipitem_xmlv2p2">
       <file href="Items/Item-187-1881/item-187-1881.xml" />
-      <dependency identifierref="item_1881_spinner_svg" />
-      <dependency identifierref="item_1881_arrow_svg" />
-      <dependency identifierref="item_1881_spun_svsg" />
+      <dependency identifierref="spinner" />
+      <dependency identifierref="arrow" />
+      <dependency identifierref="spun" />
       <dependency identifierref="item_1881_ASL_STEM_MP4" />
       <dependency identifierref="item_1881_v14_graphics2_png256_png" />
       <dependency identifierref="item_1881_v14_graphics1_png256_png" />
@@ -10305,14 +10305,14 @@
     <resource identifier="item-187-1881_metadata" type="resourcemetadata/apipv1p0">
       <file href="Items/Item-187-1881/metadata.xml" />
     </resource>
-    <resource identifier="item_1881_spinner_svg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
-      <file href="Items/Item-187-1881/item_1881_spinner_svg.svg" />
+    <resource identifier="spinner" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1881/spinner.svg" />
     </resource>  
-    <resource identifier="item_1881_arrow_svg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
-      <file href="Items/Item-187-1881/item_1881_arrow_svg.svg" />
+    <resource identifier="arrow" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1881/arrow.svg" />
     </resource>
-    <resource identifier="item_1881_spun_svsg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
-      <file href="Items/Item-187-1881/item_1881_spun_svg.svg" />
+    <resource identifier="spun" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1881/spun.svg" />
     </resource>
     <resource identifier="item_1881_v14_Object4_png16malpha_png" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
       <file href="Items/Item-187-1881/item_1881_v14_Object4_png16malpha.png" />
