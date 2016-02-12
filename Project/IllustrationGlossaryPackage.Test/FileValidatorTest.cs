@@ -15,7 +15,8 @@ namespace IllustrationGlossaryPackage.Test
         {
             string currentDirectory = Directory.GetCurrentDirectory();
             string fileName = "testFile";
-            string filePath = currentDirectory + "/" + fileName;
+            string filePath = currentDirectory + "\\" + fileName;
+
             IFileValidator fileValidator = new FileValidator();
             try
             {
@@ -24,13 +25,24 @@ namespace IllustrationGlossaryPackage.Test
             }
             catch(FileNotFoundException e) { }
 
-            File.Create(filePath);
+            File.Create(filePath).Close();
             try
             {
                 fileValidator.ValidateTestPackage(filePath);
                 Assert.Fail();
             }
             catch (InvalidFileException e) { }
+
+            File.Delete(filePath);
+
+            fileName = "testFile.zip";
+            filePath = currentDirectory + "\\" + fileName;
+            File.Create(filePath).Close();
+            fileValidator.ValidateTestPackage(filePath);
+            File.Delete(filePath);
         }
+
+        /* TODO: Test method for illustration csv file vaildator:
+                Note: Want to validate headers of csv */
     }
 }
