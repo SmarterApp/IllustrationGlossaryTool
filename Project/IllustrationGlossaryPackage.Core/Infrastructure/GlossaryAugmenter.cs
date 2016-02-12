@@ -51,12 +51,10 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             XElement itemElement = resourceElement.ElementOrCreate("item");
             XElement keywordListElement = itemElement.ElementOrCreate("keywordList");
 
-            XElement keyword = NewIllustrationElementFromIllustrationClass(illustration);
-
-            //if(itemXml.Element("itemrelease"))
+            XElement keyword = NewIllustrationXmlElementFromIllustrationClass(illustration);
         }
 
-        static XElement NewIllustrationElementFromIllustrationClass(Illustration illustration)
+        static XElement NewIllustrationXmlElementFromIllustrationClass(Illustration illustration)
         {
             XElement keyword = 
                 new XElement("keyword",
