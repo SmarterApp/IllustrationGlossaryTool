@@ -11,6 +11,26 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
     public class ItemsModifier : IItemsModifier
     {
         /// <summary>
+        /// Returns an IEnumerable of XDocuments that are Smarter Balance Content Items
+        /// </summary>
+        /// <param name="testPackageFilePath"></param>
+        /// <returns>IEnumerable of XDocuments that are Smarter Balance Content Items</returns>
+        public IEnumerable<XDocument> GetContentItems(string testPackageFilePath)
+        {
+            return GetItemsXml(testPackageFilePath).Where(x => x.IsContentItem());
+        }
+
+        /// <summary>
+        /// Returns an IEnumerable of XDocuments that are Smarter Balance Keyword List Items
+        /// </summary>
+        /// <param name="testPackageFilePath"></param>
+        /// <returns>IEnumerable of XDocuments that are Smarter Balance Keyword List Items</returns>
+        public IEnumerable<XDocument> GetKeywordListItems(string testPackageFilePath)
+        {
+            return GetItemsXml(testPackageFilePath).Where(x => x.IsKeywordListItem());
+        }
+
+        /// <summary>
         /// Adds each illustration to the corresponding item in the test package
         /// </summary>
         /// <param name="illustrations"></param>
@@ -20,7 +40,9 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
 
         }
 
-        public IEnumerable<XDocument> GetItemsXml(string testPackageFilePath)
+        // MARK: Internal methods
+
+        private static IEnumerable<XDocument> GetItemsXml(string testPackageFilePath)
         {
             // Get list of all archive entries, select XML files w/ regex, load each XML file into XDocument
             ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update);

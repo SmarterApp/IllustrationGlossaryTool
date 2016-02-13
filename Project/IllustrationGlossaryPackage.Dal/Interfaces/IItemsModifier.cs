@@ -7,6 +7,7 @@ namespace IllustrationGlossaryPackage.Dal.Interfaces
     public interface IItemsModifier
     {
         void AddIllustrationsToItems(IEnumerable<Illustration> illustrations, string testPackageFilePath);
-        IEnumerable<XDocument> GetItemsXml(string testPackageFilePath);
+        IEnumerable<XDocument> GetContentItems(string testPackageFilePath);
+        IEnumerable<XDocument> GetKeywordListItems(string testPackageFilePath);
     }
 }
