@@ -15,7 +15,7 @@
         <html listType="ukrainianGlossary" listCode="TDS_WL_UkrainianGloss"><![CDATA[<p style="">Кожна </p>]]></html>
       </keyword>
       <keyword text="picture album" index="2">
-        <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">picture album<a href="picture_album.svg" type="image/svg+xml" visible="True"></a></p>]]></html>
+        <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style=""><img src="picture_album.svg" width="100" height="200" /></p>]]></html>
         <html listType="glossary" listCode="TDS_WL_Glossary"><![CDATA[<p style="">a book of photos</p>]]></html>
         <html listType="esnGlossary" listCode="TDS_WL_ESNGlossary"><![CDATA[<p style="">álbum fotográfico </p>]]></html>
         <html listType="arabicGlossary" listCode="TDS_WL_ArabicGloss"><![CDATA[<p style="">ألبوم صور </p>]]></html>
@@ -41,7 +41,7 @@
         <html listType="ukrainianGlossary" listCode="TDS_WL_UkrainianGloss"><![CDATA[<p style="">Фотографії, <span style="language:uk; country:UA; font-size:1.0000em; font-family:'Times New Roman', serif; ">фотографій</span> </p>]]></html>
       </keyword>
       <keyword text="4 pictures" index="4">
-        <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">4 pictures<a href="4_pictures.svg" type="image/svg+xml" visible="True"></a></p>]]></html>
+        <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style=""><img src="4_pictures.svg" width="100" height="200" /></p>]]></html>
         <html listType="esnGlossary" listCode="TDS_WL_ESNGlossary"><![CDATA[<p style="">fotografías </p>]]></html>
         <html listType="arabicGlossary" listCode="TDS_WL_ArabicGloss"><![CDATA[<p style="">الصور </p>]]></html>
         <html listType="vietnameseGlossary" listCode="TDS_WL_VietnameseGloss"><![CDATA[<p style="">bức ảnh, ảnh </p>]]></html>
@@ -90,7 +90,7 @@
         <html listType="ukrainianGlossary" listCode="TDS_WL_UkrainianGloss"><![CDATA[<p style=""><span style="language:uk; country:UA; font-size:1.0000em; font-family:'Times New Roman', serif; ">кожній</span> </p>]]></html>
       </keyword>
       <keyword text="page" index="8">
-        <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">page<a href="page.svg" type="image/svg+xml" visible="True"></a></p>]]></html>
+        <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style=""><img src="page.svg" width="100" height="200" /></p>]]></html>  
       </keyword>
     </keywordList>
   </item>

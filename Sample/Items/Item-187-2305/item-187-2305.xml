@@ -15,7 +15,7 @@
         <html listType="ukrainianGlossary" listCode="TDS_WL_UkrainianGloss"><![CDATA[<p style="">кутня</p>]]></html>
       </keyword>
       <keyword text="shelf" index="2">
-        <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">shelf<a href="shelf.svg" type="image/svg+xml" visible="True"></a></p>]]></html>
+        <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style=""><img src="shelf.svg" width="100" height="200" /></p>]]></html>
         <html listType="glossary" listCode="TDS_WL_Glossary"><![CDATA[<p style="">a flat surface to line up objects</p>]]></html>
         <html listType="esnGlossary" listCode="TDS_WL_ESNGlossary"><![CDATA[<p style="">tablilla, repisa, estante</p>]]></html>
         <html listType="arabicGlossary" listCode="TDS_WL_ArabicGloss"><![CDATA[<p style="">الرف</p>]]></html>
@@ -29,7 +29,7 @@
         <html listType="ukrainianGlossary" listCode="TDS_WL_UkrainianGloss"><![CDATA[<p style="">полиця</p>]]></html>
       </keyword>
       <keyword text="Enter" index="3">
-        <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">enter<a href="enter.svg" type="image/svg+xml" visible="True"></a></p>]]></html>
+        <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style=""><img src="enter.svg" width="100" height="200" /></p>]]></html>
         <html listType="esnGlossary" listCode="TDS_WL_ESNGlossary"><![CDATA[<p style="">Escribe</p>]]></html>
         <html listType="arabicGlossary" listCode="TDS_WL_ArabicGloss"><![CDATA[<p style=""><span style="">ادخل</span> </p>]]></html>
         <html listType="vietnameseGlossary" listCode="TDS_WL_VietnameseGloss"><![CDATA[<p style="">gần nhất</p>]]></html>
