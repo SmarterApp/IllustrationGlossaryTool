@@ -5,6 +5,10 @@ using IllustrationGlossaryPackage.Dal.Models;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using System.Linq;
+using System;
+using System.IO;
+using System.IO.Compression;
+using System.Xml;
 
 namespace IllustrationGlossaryPackage.Core.Infrastructure
 {
@@ -28,55 +32,84 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// <param name="itemsFilePath"></param>
         public void AddItemsToGlossary(string testPackageFilePath, string itemsFilePath)
         {
-            IEnumerable<Illustration> illustrations = glossaryParser.GetIllustrationsFromSpreadsheet(itemsFilePath);
             XDocument manifest = manifestModifier.GetManifestXml(testPackageFilePath);
-            IEnumerable<XDocument> contentItems = itemsModifier.GetContentItems(testPackageFilePath);
-            IEnumerable<XDocument> keywordListItems = itemsModifier.GetKeywordListItems(testPackageFilePath);
-
-            AddIllustrationInfoToItemXml(contentItems, illustrations.First());
-
-            itemsModifier.AddIllustrationsToItems(illustrations, testPackageFilePath);
-            manifestModifier.AddIllustrationsToManifest(illustrations, testPackageFilePath);
+            IList<KeywordListItem> keywordListItems = itemsModifier.GetKeywordListItems(testPackageFilePath, itemsFilePath).ToList();
+            // TODO: replace all of these with using statements
+            ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update);
+            UpdateKeywordListItems(keywordListItems, testPackageArchive);
+            testPackageArchive.Dispose();
+            //manifestModifier.AddIllustrationsToManifest(illustrations, testPackageFilePath);*/
         }
 
-        private void AddIllustrationInfoToItemXml(IEnumerable<XDocument> itemXmls, Illustration illustration)
+        private void UpdateKeywordListItems(IList<KeywordListItem> keywordListItems, ZipArchive testPackageArchive)
         {
-            XDocument itemXml = GetXDocumentForIllustration(illustration, itemXmls);
+            // TODO: Asyncronously
+            foreach(KeywordListItem keywordListItem in keywordListItems)
+            {
+                AddIllustrationInfoToKeywordListItemXml(keywordListItem, testPackageArchive);
+            }
+        }
 
-            // Assume the item element exists, then work from there to add illustration resource list if necessary
+        private void AddIllustrationInfoToKeywordListItemXml(KeywordListItem keywordListItem, ZipArchive testPackageArchive)
+        {
+            XDocument itemXml = keywordListItem.Document;
             XElement rootElement = itemXml
                 .Element("itemrelease")
                 .Element("item");
-            XElement resourceslistElement = rootElement.ElementOrCreate("resourceslist");
-            XElement resourceElement = resourceslistElement.ElementOrCreate("resource");
-            XElement itemElement = resourceElement.ElementOrCreate("item");
-            XElement keywordListElement = itemElement.ElementOrCreate("keywordList");
+            XElement keywordListElt = rootElement.ElementOrCreate("keywordList");
+            IEnumerable<XElement> keywords = keywordListElt.Elements("keyword");
+            foreach(AssessmentItem assessmentItem in keywordListItem.AssessmentItems)
+            {
+                foreach(Illustration illustration in assessmentItem.Illustrations)
+                {
+                    XElement keyword = keywords.FirstOrDefault(
+                        x => itemsModifier.GetAttribute(x, "text") == illustration.Term);
+                    if(keyword == null)
+                    {
+                        int maxIndex = keywords.Select(x => int.Parse(itemsModifier.GetAttribute(x, "index"))).Max();
+                        keywordListElt.Add(GetKeywordXElementForFile(illustration, maxIndex));
+                    }
+                    else
+                    {
+                        keyword.Elements("html").Where(x => itemsModifier.GetAttribute(x, "listType") == "illustration"
+                                                    && itemsModifier.GetAttribute(x, "listCode") == "TDS_WL_Illustration")
+                                                    .Remove();
+                        keyword.Add(GetHtmlXElementForFile(illustration.FileName));
+                    }
+                }
+            }
 
-            XElement keyword = NewIllustrationXmlElementFromIllustrationClass(illustration);
+            ZipArchiveEntry itemXmlEntry = testPackageArchive.Entries.FirstOrDefault(x => x.FullName == keywordListItem.FullPath);
+            StreamWriter writer = new StreamWriter(itemXmlEntry.Open());
+            writer.BaseStream.Seek(0, SeekOrigin.Begin);
+            itemXml.Save(writer);
         }
 
-        static XElement NewIllustrationXmlElementFromIllustrationClass(Illustration illustration)
+        private XElement GetKeywordXElementForFile(Illustration illustration, int maxIndex)
         {
-            XElement keyword = 
-                new XElement("keyword",
-                    new XAttribute("text", illustration.Term),
-                    new XAttribute("index", "1"),
-                        new XElement("html",
-                            new XAttribute("listType", "illustration"),
-                            new XAttribute("listCode", "TDS_WL_Illustration")
-                        )
-                );
-            //keyword.Element("html").Value = "<![CDATA[<p style="">spun<a href="item_1881_spun_svg.svg" type="illustration / svg" visible="True"></a></p>]]>"
-            return keyword;
+            return new XElement("keyword",
+                        new XAttribute("text", illustration.Term),
+                        new XAttribute("index", (maxIndex + 1).ToString()),
+                            GetHtmlXElementForFile(illustration.FileName));
         }
 
-        static XDocument GetXDocumentForIllustration(Illustration illustration, IEnumerable<XDocument> documents)
+        private XElement GetHtmlXElementForFile(string fileName)
         {
-            return documents.First(
-                    x => x.Element("itemrelease")
-                    .Element("item")
-                    .Attribute("id")
-                    .Value == illustration.ItemId);
+            return new XElement("html",
+                        new XAttribute("listType", "illustration"),
+                        new XAttribute("listCode", "TDS_WL_Illustration"),
+                        new XRaw(string.Format("<![CDATA[<p style=\"\"><img src=\"{0}\" width=\"100\" height=\"200\" /></p>]]>", fileName)));
+        }
+
+        private class XRaw : XText
+        {
+            public XRaw(string text) : base(text) { }
+            public XRaw(XText text) : base(text) { }
+
+            public override void WriteTo(System.Xml.XmlWriter writer)
+            {
+                writer.WriteRaw(this.Value);
+            }
         }
     }
 }

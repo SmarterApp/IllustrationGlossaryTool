@@ -43,7 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\AssessmentItem.cs" />
     <Compile Include="Infrastructure\ItemsModifier.cs" />
+    <Compile Include="Models\ItemDocument.cs" />
+    <Compile Include="Models\KeywordListItem.cs" />
     <Compile Include="Infrastructure\ManifestModifier.cs" />
     <Compile Include="Infrastructure\XDocumentExtensions.cs" />
     <Compile Include="Interfaces\IIllustrationGlossaryParser.cs" />
