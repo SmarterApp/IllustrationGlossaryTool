@@ -48,6 +48,7 @@
     <Compile Include="Infrastructure\CustomExtensions.cs" />
     <Compile Include="Infrastructure\FileValidator.cs" />
     <Compile Include="Infrastructure\GlossaryAugmenter.cs" />
+    <Compile Include="Infrastructure\XRaw.cs" />
     <Compile Include="Interfaces\IArchiver.cs" />
     <Compile Include="Interfaces\IFileValidator.cs" />
     <Compile Include="Interfaces\IGlossaryAugmenter.cs" />

@@ -22,13 +22,12 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
         public IEnumerable<KeywordListItem> GetKeywordListItems(string testPackageFilePath, string itemsFilePath)
         {
             IEnumerable<AssessmentItem> assessmentItems = GetAssessmentItems(testPackageFilePath, itemsFilePath);
-            IEnumerable<ItemDocument> keywordListDocuments = GetKeywordListItems(testPackageFilePath);
+            IEnumerable<string> keywordListItemIds = assessmentItems.Select(i => i.KeywordListItemId);
+            IEnumerable<ItemDocument> keywordListDocuments = GetItemsXml(testPackageFilePath, keywordListItemIds);
             IList<KeywordListItem> keywordListItems = new List<KeywordListItem>();
             foreach (AssessmentItem assessmentItem in assessmentItems.ToList())
             {
-                IEnumerable<XElement> resources = assessmentItem.Document.Element("itemrelease").Element("item").Element("resourceslist").Elements("resource");
-                XElement wordlist = resources.First(y => GetAttribute(y, "type") == "wordList");
-                string keywordListId = wordlist.Attribute("id").Value;
+                string keywordListId = assessmentItem.KeywordListItemId;
                 if (!keywordListItems.Any(x => x.ItemId.Equals(keywordListId)))
                 {
                     keywordListItems.Add(new KeywordListItem { ItemId = keywordListId,
@@ -46,16 +45,26 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
         private IEnumerable<AssessmentItem> GetAssessmentItems(string testPackageFilePath, string itemsFilePath)
         {
             IEnumerable<Illustration> illustrations = glossaryParser.GetIllustrationsFromSpreadsheet(itemsFilePath);
-            IEnumerable<ItemDocument> contentItems = GetContentItems(testPackageFilePath);
+            IEnumerable<string> assessmentItemIds = illustrations.Select(i => i.ItemId);
+            IEnumerable<ItemDocument> contentItems = GetItemsXml(testPackageFilePath, assessmentItemIds);
             IEnumerable<AssessmentItem> assessmentItems =
                 illustrations.GroupBy(x => x.ItemId, (key, g) => new AssessmentItem
                 {
                     ItemId = key,
                     Illustrations = g.ToList(),
                     Document = SelectByID(contentItems, key).Document,
-                    FullPath = SelectByID(contentItems, key).FullPath
+                    FullPath = SelectByID(contentItems, key).FullPath,
+                    KeywordListItemId = GetKeywordListItemId(SelectByID(contentItems, key).Document)
                 });
             return assessmentItems;
+        }
+
+        private string GetKeywordListItemId(XDocument d)
+        {
+            IEnumerable<XElement> resources = d.Element("itemrelease").Element("item").Element("resourceslist").Elements("resource");
+            XElement wordlist = resources.First(y => GetAttribute(y, "type") == "wordList");
+            string keywordListId = wordlist.Attribute("id").Value;
+            return keywordListId;
         }
 
         private ItemDocument SelectByID(IEnumerable<ItemDocument> items, string id)
@@ -63,26 +72,6 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             return items.FirstOrDefault(x => x.Document.Element("itemrelease")
                         .Element("item").Attribute("id").ToString()
                         .Contains(id));
-        }
-
-        /// <summary>
-        /// Returns an IEnumerable of XDocuments that are Smarter Balance Content Items
-        /// </summary>
-        /// <param name="testPackageFilePath"></param>
-        /// <returns>IEnumerable of XDocuments that are Smarter Balance Content Items</returns>
-        private IEnumerable<ItemDocument> GetContentItems(string testPackageFilePath)
-        {
-            return GetItemsXml(testPackageFilePath).Where(x => x.Document.IsContentItem());
-        }
-
-        /// <summary>
-        /// Returns an IEnumerable of XDocuments that are Smarter Balance Keyword List Items
-        /// </summary>
-        /// <param name="testPackageFilePath"></param>
-        /// <returns>IEnumerable of XDocuments that are Smarter Balance Keyword List Items</returns>
-        private IEnumerable<ItemDocument> GetKeywordListItems(string testPackageFilePath)
-        {
-            return GetItemsXml(testPackageFilePath).Where(x => x.Document.IsKeywordListItem());
         }
 
         /// <summary>
@@ -97,20 +86,24 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
 
         // MARK: Internal methods
 
-        private static IEnumerable<ItemDocument> GetItemsXml(string testPackageFilePath)
+        private static IEnumerable<ItemDocument> GetItemsXml(string testPackageFilePath, IEnumerable<string> itemsIds)
         {
             // Get list of all archive entries, select XML files w/ regex, load each XML file into XDocument
-            ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update);
-            Regex xmlFileRegex = new Regex("(item)-([0-9])*-([0-9])*(.xml)", RegexOptions.IgnoreCase);
-            IEnumerable<ZipArchiveEntry> itemXmlEntries = testPackageArchive.Entries.Where(i => xmlFileRegex.IsMatch(i.Name));
             IList<ItemDocument> itemXmls = new List<ItemDocument>();
-            foreach (ZipArchiveEntry itemXmlEntry in itemXmlEntries)
+            using (ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update))
             {
-                XDocument itemXml = XDocument.Load(itemXmlEntry.Open());
-                //itemXmls.Add(new ItemDocument { FullPath = (new FileInfo(testPackageFilePath)).Directory.FullName + "\\" + itemXmlEntry.Name, Document = itemXml });
-                itemXmls.Add(new ItemDocument { FullPath = itemXmlEntry.FullName, Document = itemXml });
+                Regex xmlFileRegex = new Regex("(item)-([0-9])*-([0-9])*(.xml)", RegexOptions.IgnoreCase);
+                IEnumerable<ZipArchiveEntry> itemXmlEntries = testPackageArchive.Entries
+                    .Where(i => itemsIds.Any(s => i.Name.Contains(s)))
+                    .Where(i => xmlFileRegex.IsMatch(i.Name));
+       
+                foreach (ZipArchiveEntry itemXmlEntry in itemXmlEntries)
+                {
+                    XDocument itemXml = XDocument.Load(itemXmlEntry.Open());
+                    //itemXmls.Add(new ItemDocument { FullPath = (new FileInfo(testPackageFilePath)).Directory.FullName + "\\" + itemXmlEntry.Name, Document = itemXml });
+                    itemXmls.Add(new ItemDocument { FullPath = itemXmlEntry.FullName, Document = itemXml });
+                }
             }
-            testPackageArchive.Dispose();
             return itemXmls;
         }
 

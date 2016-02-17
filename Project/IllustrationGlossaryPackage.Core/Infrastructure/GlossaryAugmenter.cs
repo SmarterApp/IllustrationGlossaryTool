@@ -34,10 +34,10 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         {
             XDocument manifest = manifestModifier.GetManifestXml(testPackageFilePath);
             IList<KeywordListItem> keywordListItems = itemsModifier.GetKeywordListItems(testPackageFilePath, itemsFilePath).ToList();
-            // TODO: replace all of these with using statements
-            ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update);
-            UpdateKeywordListItems(keywordListItems, testPackageArchive);
-            testPackageArchive.Dispose();
+            using (ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update))
+            {
+                UpdateKeywordListItems(keywordListItems, testPackageArchive);
+            }
             //manifestModifier.AddIllustrationsToManifest(illustrations, testPackageFilePath);*/
         }
 
@@ -101,15 +101,6 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                         new XRaw(string.Format("<![CDATA[<p style=\"\"><img src=\"{0}\" width=\"100\" height=\"200\" /></p>]]>", fileName)));
         }
 
-        private class XRaw : XText
-        {
-            public XRaw(string text) : base(text) { }
-            public XRaw(XText text) : base(text) { }
-
-            public override void WriteTo(System.Xml.XmlWriter writer)
-            {
-                writer.WriteRaw(this.Value);
-            }
-        }
+        
     }
 }

@@ -11,6 +11,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
     public class AssessmentItem
     {
         public string ItemId;
+        public string KeywordListItemId;
         public string FullPath;
         public XDocument Document;
         public IEnumerable<Illustration> Illustrations;

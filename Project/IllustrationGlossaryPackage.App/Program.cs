@@ -89,14 +89,14 @@ namespace IllustrationGlossaryPackage.App
         static void AddIllustrationToTestPackage(string testPackageFilePath, string csvFilePath)
         {
             IGlossaryAugmenter augmenter = new GlossaryAugmenter();
-           // try
-           // {
+            try
+            {
                 augmenter.AddItemsToGlossary(testPackageFilePath, csvFilePath);
-           // }
-           // catch (Exception e)  // TODO only catch certain exceptions
-           // {
-            //    ExitWithErrorString("Error: Failed while adding items to glossary: " + e.Message);
-            //}
+            }
+            catch (IOException e) 
+            {
+                ExitWithErrorString("Error: Could not open the file. Please close all files: " + e.Message);
+            }
         }
 
 
