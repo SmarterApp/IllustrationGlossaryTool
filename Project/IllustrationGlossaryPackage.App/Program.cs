@@ -95,7 +95,7 @@ namespace IllustrationGlossaryPackage.App
             }
             catch (IOException e) 
             {
-                ExitWithErrorString("Error: Could not open the file. Please close all files: " + e.Message);
+                ExitWithErrorString("Error: IOException: " + e.Message);
             }
         }
 

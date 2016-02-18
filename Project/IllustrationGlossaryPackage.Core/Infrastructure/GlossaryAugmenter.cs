@@ -76,13 +76,10 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                                                     .Remove();
                         keyword.Add(GetHtmlXElementForFile(illustration.FileName));
                     }
+                    itemsModifier.MoveMediaFileForIllustration(illustration, keywordListItem, testPackageArchive);
                 }
             }
-
-            ZipArchiveEntry itemXmlEntry = testPackageArchive.Entries.FirstOrDefault(x => x.FullName == keywordListItem.FullPath);
-            StreamWriter writer = new StreamWriter(itemXmlEntry.Open());
-            writer.BaseStream.Seek(0, SeekOrigin.Begin);
-            itemXml.Save(writer);
+            itemsModifier.SaveItem(keywordListItem, testPackageArchive);
         }
 
         private XElement GetKeywordXElementForFile(Illustration illustration, int maxIndex)
@@ -100,7 +97,5 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                         new XAttribute("listCode", "TDS_WL_Illustration"),
                         new XRaw(string.Format("<![CDATA[<p style=\"\"><img src=\"{0}\" width=\"100\" height=\"200\" /></p>]]>", fileName)));
         }
-
-        
     }
 }

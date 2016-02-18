@@ -74,21 +74,8 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                         .Contains(id));
         }
 
-        /// <summary>
-        /// Adds each illustration to the corresponding item in the test package
-        /// </summary>
-        /// <param name="illustrations"></param>
-        /// <param name="testPackageFilePath"></param>
-        public void AddIllustrationsToItems(IEnumerable<Illustration> illustrations, string testPackageFilePath)
-        {
-
-        }
-
-        // MARK: Internal methods
-
         private static IEnumerable<ItemDocument> GetItemsXml(string testPackageFilePath, IEnumerable<string> itemsIds)
         {
-            // Get list of all archive entries, select XML files w/ regex, load each XML file into XDocument
             IList<ItemDocument> itemXmls = new List<ItemDocument>();
             using (ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update))
             {
@@ -100,21 +87,33 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                 foreach (ZipArchiveEntry itemXmlEntry in itemXmlEntries)
                 {
                     XDocument itemXml = XDocument.Load(itemXmlEntry.Open());
-                    //itemXmls.Add(new ItemDocument { FullPath = (new FileInfo(testPackageFilePath)).Directory.FullName + "\\" + itemXmlEntry.Name, Document = itemXml });
                     itemXmls.Add(new ItemDocument { FullPath = itemXmlEntry.FullName, Document = itemXml });
                 }
             }
             return itemXmls;
         }
 
-        private static void MoveMediaFileForIllustrationToPath(Illustration illustration, string path)
+        public void SaveItem(KeywordListItem keywordListItem, ZipArchive testPackageArchive)
         {
-
+            ZipArchiveEntry itemXmlEntry = SelectItemZipEntry(keywordListItem.FullPath, testPackageArchive);
+            StreamWriter writer = new StreamWriter(itemXmlEntry.Open());
+            writer.BaseStream.Seek(0, SeekOrigin.Begin);
+            keywordListItem.Document.Save(writer);
         }
 
-        private static void UpdateXmlForIllustration(Illustration illustration)
+        public void MoveMediaFileForIllustration(Illustration illustration, KeywordListItem keywordListItem, ZipArchive testPackageArchive)
         {
-
+            ZipArchiveEntry entry = SelectItemZipEntry(keywordListItem.FullPath, testPackageArchive);
+            string fullpath = entry.FullName;
+            string filename = entry.Name;
+            string directory = fullpath.Remove(fullpath.Length - filename.Length);
+            string illustrationFileName = (new FileInfo(illustration.FileName)).Name;
+            testPackageArchive.CreateEntryFromFile(illustration.FileName, directory + illustrationFileName);
+        }
+        
+        private ZipArchiveEntry SelectItemZipEntry(string filePath, ZipArchive testPackageArchive)
+        {
+            return testPackageArchive.Entries.FirstOrDefault(x => x.FullName == filePath);
         }
 
         public string GetAttribute(XElement e, string attributeName)

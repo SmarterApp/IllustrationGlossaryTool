@@ -37,8 +37,10 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                             FileName = lineItems[2],
                             FileExists = File.Exists(lineItems[2])
                         };
-
-                        illustrations.Add(illustration);
+                        if (illustration.FileExists)
+                        {
+                            illustrations.Add(illustration);
+                        }
                     }
                 }
             }
