@@ -19,80 +19,12 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             this.glossaryParser = glossaryParser;
         }
 
-        public IEnumerable<KeywordListItem> GetKeywordListItems(string testPackageFilePath, string itemsFilePath)
-        {
-            IEnumerable<AssessmentItem> assessmentItems = GetAssessmentItems(testPackageFilePath, itemsFilePath);
-            IEnumerable<string> keywordListItemIds = assessmentItems.Select(i => i.KeywordListItemId);
-            IEnumerable<ItemDocument> keywordListDocuments = GetItemsXml(testPackageFilePath, keywordListItemIds);
-            IList<KeywordListItem> keywordListItems = new List<KeywordListItem>();
-            foreach (AssessmentItem assessmentItem in assessmentItems.ToList())
-            {
-                string keywordListId = assessmentItem.KeywordListItemId;
-                if (!keywordListItems.Any(x => x.ItemId.Equals(keywordListId)))
-                {
-                    keywordListItems.Add(new KeywordListItem { ItemId = keywordListId,
-                        AssessmentItems = new List<AssessmentItem>(),
-                        Document = SelectByID(keywordListDocuments, keywordListId).Document,
-                        FullPath = SelectByID(keywordListDocuments, keywordListId).FullPath
-                    });
-                }
-                keywordListItems.First(x => x.ItemId.Equals(keywordListId))
-                    .AssessmentItems.Add(assessmentItem);
-            }
-            return keywordListItems;
-        }
 
-        private IEnumerable<AssessmentItem> GetAssessmentItems(string testPackageFilePath, string itemsFilePath)
-        {
-            IEnumerable<Illustration> illustrations = glossaryParser.GetIllustrationsFromSpreadsheet(itemsFilePath);
-            IEnumerable<string> assessmentItemIds = illustrations.Select(i => i.ItemId);
-            IEnumerable<ItemDocument> contentItems = GetItemsXml(testPackageFilePath, assessmentItemIds);
-            IEnumerable<AssessmentItem> assessmentItems =
-                illustrations.GroupBy(x => x.ItemId, (key, g) => new AssessmentItem
-                {
-                    ItemId = key,
-                    Illustrations = g.ToList(),
-                    Document = SelectByID(contentItems, key).Document,
-                    FullPath = SelectByID(contentItems, key).FullPath,
-                    KeywordListItemId = GetKeywordListItemId(SelectByID(contentItems, key).Document)
-                });
-            return assessmentItems;
-        }
-
-        private string GetKeywordListItemId(XDocument d)
-        {
-            IEnumerable<XElement> resources = d.Element("itemrelease").Element("item").Element("resourceslist").Elements("resource");
-            XElement wordlist = resources.First(y => GetAttribute(y, "type") == "wordList");
-            string keywordListId = wordlist.Attribute("id").Value;
-            return keywordListId;
-        }
-
-        private ItemDocument SelectByID(IEnumerable<ItemDocument> items, string id)
-        {
-            return items.FirstOrDefault(x => x.Document.Element("itemrelease")
-                        .Element("item").Attribute("id").ToString()
-                        .Contains(id));
-        }
-
-        private static IEnumerable<ItemDocument> GetItemsXml(string testPackageFilePath, IEnumerable<string> itemsIds)
-        {
-            IList<ItemDocument> itemXmls = new List<ItemDocument>();
-            using (ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update))
-            {
-                Regex xmlFileRegex = new Regex("(item)-([0-9])*-([0-9])*(.xml)", RegexOptions.IgnoreCase);
-                IEnumerable<ZipArchiveEntry> itemXmlEntries = testPackageArchive.Entries
-                    .Where(i => itemsIds.Any(s => i.Name.Contains(s)))
-                    .Where(i => xmlFileRegex.IsMatch(i.Name));
-       
-                foreach (ZipArchiveEntry itemXmlEntry in itemXmlEntries)
-                {
-                    XDocument itemXml = XDocument.Load(itemXmlEntry.Open());
-                    itemXmls.Add(new ItemDocument { FullPath = itemXmlEntry.FullName, Document = itemXml });
-                }
-            }
-            return itemXmls;
-        }
-
+        /// <summary>
+        /// Saves a keywordlist item to a zip archive
+        /// </summary>
+        /// <param name="keywordListItem"></param>
+        /// <param name="testPackageArchive"></param>
         public void SaveItem(KeywordListItem keywordListItem, ZipArchive testPackageArchive)
         {
             ZipArchiveEntry itemXmlEntry = SelectItemZipEntry(keywordListItem.FullPath, testPackageArchive);
@@ -101,6 +33,12 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             keywordListItem.Document.Save(writer);
         }
 
+        /// <summary>
+        /// Moves an illustration to the appropreate keywordlist item in the archive
+        /// </summary>
+        /// <param name="illustration"></param>
+        /// <param name="keywordListItem"></param>
+        /// <param name="testPackageArchive"></param>
         public void MoveMediaFileForIllustration(Illustration illustration, KeywordListItem keywordListItem, ZipArchive testPackageArchive)
         {
             ZipArchiveEntry entry = SelectItemZipEntry(keywordListItem.FullPath, testPackageArchive);
@@ -111,11 +49,23 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             testPackageArchive.CreateEntryFromFile(illustration.FileName, directory + illustrationFileName);
         }
         
+        /// <summary>
+        /// selects and archive entry from an archive
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="testPackageArchive"></param>
+        /// <returns></returns>
         private ZipArchiveEntry SelectItemZipEntry(string filePath, ZipArchive testPackageArchive)
         {
             return testPackageArchive.Entries.FirstOrDefault(x => x.FullName == filePath);
         }
 
+        /// <summary>
+        /// null safe way to get an attributes value from an xml element
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="attributeName"></param>
+        /// <returns></returns>
         public string GetAttribute(XElement e, string attributeName)
         {
             XAttribute attribute = e.Attribute(attributeName);

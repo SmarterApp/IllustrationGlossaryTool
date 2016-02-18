@@ -20,23 +20,25 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         private IIllustrationGlossaryParser glossaryParser;
         private IItemsModifier itemsModifier;
         private IManifestModifier manifestModifier;
-        public GlossaryAugmenter() : this(new IllustrationGlossaryParser(), new ItemsModifier(), new ManifestModifier()) { }
-        public GlossaryAugmenter(IllustrationGlossaryParser glossaryParser, ItemsModifier itemsModifier, ManifestModifier manifestModifier)
+        private IItemsProcessor itemsProcessor;
+        public GlossaryAugmenter() : this(new IllustrationGlossaryParser(), new ItemsModifier(), new ManifestModifier(), new ItemsProcessor()) { }
+        public GlossaryAugmenter(IllustrationGlossaryParser glossaryParser, ItemsModifier itemsModifier, ManifestModifier manifestModifier, ItemsProcessor itemsProcessor)
         {
             this.glossaryParser = glossaryParser;
             this.itemsModifier = itemsModifier;
             this.manifestModifier = manifestModifier;
+            this.itemsProcessor = itemsProcessor;
         }
 
         /// <summary>
-        /// Add items in csv file to glossary
+        /// Adds items in csv file to glossary
         /// </summary>
         /// <param name="testPackageFilePath"></param>
         /// <param name="itemsFilePath"></param>
         public void AddItemsToGlossary(string testPackageFilePath, string itemsFilePath)
         {
             XDocument manifest = manifestModifier.GetManifestXml(testPackageFilePath);
-            IList<KeywordListItem> keywordListItems = itemsModifier.GetKeywordListItems(testPackageFilePath, itemsFilePath).ToList();
+            IList<KeywordListItem> keywordListItems = itemsProcessor.GetKeywordListItems(testPackageFilePath, itemsFilePath).ToList();
             using (ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update))
             {
                 UpdateKeywordListItems(keywordListItems, testPackageArchive);
@@ -44,6 +46,12 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             //manifestModifier.AddIllustrationsToManifest(illustrations, testPackageFilePath);*/
         }
 
+        /// <summary>
+        /// Asyncronously updates the keywordlist items with keywords
+        /// </summary>
+        /// <param name="keywordListItems"></param>
+        /// <param name="testPackageArchive"></param>
+        /// <returns></returns>
         private async Task UpdateKeywordListItems(IList<KeywordListItem> keywordListItems, ZipArchive testPackageArchive)
         {
             IList<Task<int>> tasks = new List<Task<int>>();
@@ -55,6 +63,13 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             Task.WaitAll(tasks.ToArray());
         }
 
+        /// <summary>
+        /// Adds a keyword to a keywordlist item xml and saves and xml and 
+        ///     copies the illustration to the zip archive
+        /// </summary>
+        /// <param name="keywordListItem"></param>
+        /// <param name="testPackageArchive"></param>
+        /// <returns></returns>
         private async Task<int> AddIllustrationInfoToKeywordListItemXml(KeywordListItem keywordListItem, ZipArchive testPackageArchive)
         {
             XDocument itemXml = keywordListItem.Document;
@@ -88,6 +103,12 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             return 0;
         }
 
+        /// <summary>
+        /// Gets the full keyword xml if the keyword is not already in the keywordlist
+        /// </summary>
+        /// <param name="illustration"></param>
+        /// <param name="maxIndex"></param>
+        /// <returns></returns>
         private XElement GetKeywordXElementForFile(Illustration illustration, int maxIndex)
         {
             return new XElement("keyword",
@@ -96,6 +117,11 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                             GetHtmlXElementForFile(illustration.FileName));
         }
 
+        /// <summary>
+        /// Gets the <html> element to be added to the keywordlist xml
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         private XElement GetHtmlXElementForFile(string fileName)
         {
             return new XElement("html",

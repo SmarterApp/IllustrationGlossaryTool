@@ -48,7 +48,6 @@
     <Compile Include="Models\ItemDocument.cs" />
     <Compile Include="Models\KeywordListItem.cs" />
     <Compile Include="Infrastructure\ManifestModifier.cs" />
-    <Compile Include="Infrastructure\XDocumentExtensions.cs" />
     <Compile Include="Interfaces\IIllustrationGlossaryParser.cs" />
     <Compile Include="Interfaces\IItemsModifier.cs" />
     <Compile Include="Interfaces\IManifestModifier.cs" />
