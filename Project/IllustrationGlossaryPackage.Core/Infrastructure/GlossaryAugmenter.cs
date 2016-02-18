@@ -9,9 +9,12 @@ using System;
 using System.IO;
 using System.IO.Compression;
 using System.Xml;
+using System.Threading.Tasks;
 
 namespace IllustrationGlossaryPackage.Core.Infrastructure
 {
+#pragma warning disable CS1998
+#pragma warning disable CS4014
     public class GlossaryAugmenter : IGlossaryAugmenter
     {
         private IIllustrationGlossaryParser glossaryParser;
@@ -41,16 +44,18 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             //manifestModifier.AddIllustrationsToManifest(illustrations, testPackageFilePath);*/
         }
 
-        private void UpdateKeywordListItems(IList<KeywordListItem> keywordListItems, ZipArchive testPackageArchive)
+        private async Task UpdateKeywordListItems(IList<KeywordListItem> keywordListItems, ZipArchive testPackageArchive)
         {
-            // TODO: Asyncronously
-            foreach(KeywordListItem keywordListItem in keywordListItems)
+            IList<Task<int>> tasks = new List<Task<int>>();
+            foreach (KeywordListItem keywordListItem in keywordListItems)
             {
-                AddIllustrationInfoToKeywordListItemXml(keywordListItem, testPackageArchive);
+                Task<int> task = Task.Run(() => AddIllustrationInfoToKeywordListItemXml(keywordListItem, testPackageArchive));
+                tasks.Add(task);
             }
+            Task.WaitAll(tasks.ToArray());
         }
 
-        private void AddIllustrationInfoToKeywordListItemXml(KeywordListItem keywordListItem, ZipArchive testPackageArchive)
+        private async Task<int> AddIllustrationInfoToKeywordListItemXml(KeywordListItem keywordListItem, ZipArchive testPackageArchive)
         {
             XDocument itemXml = keywordListItem.Document;
             XElement rootElement = itemXml
@@ -80,6 +85,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 }
             }
             itemsModifier.SaveItem(keywordListItem, testPackageArchive);
+            return 0;
         }
 
         private XElement GetKeywordXElementForFile(Illustration illustration, int maxIndex)
@@ -98,4 +104,6 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                         new XRaw(string.Format("<![CDATA[<p style=\"\"><img src=\"{0}\" width=\"100\" height=\"200\" /></p>]]>", fileName)));
         }
     }
+#pragma warning restore CS4014
+#pragma warning restore CS1998
 }
