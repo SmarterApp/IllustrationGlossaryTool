@@ -12,13 +12,13 @@ using IllustrationGlossaryPackage.Core.Exceptions;
 
 namespace IllustrationGlossaryPackage.App
 {
-    class Program
+    public class Program
     {
         /// <summary>
         /// Add illustrations to a test package from a csv of items to add
         /// </summary>
         /// <param name="args"></param>
-        static void Main(string[] args)
+        static public void Main(string[] args)
         {
             if (args.Length != 2)
             {
@@ -102,6 +102,7 @@ namespace IllustrationGlossaryPackage.App
 
         static void ExitWithErrorString(string errorString)
         {
+            //raise an exception of some sort
             Console.WriteLine(errorString);
             Console.Read();
             Environment.Exit(1);

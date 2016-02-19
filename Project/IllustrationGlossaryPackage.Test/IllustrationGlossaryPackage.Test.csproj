@@ -54,6 +54,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ValidationTests.cs" />
     <Compile Include="ArchiverTest.cs" />
     <Compile Include="FileValidatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +68,10 @@
       <Project>{ba5e271f-db7d-4e26-b635-5679f36daf12}</Project>
       <Name>IllustrationGlossaryPackage.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="TestData\illustrations-test-1.csv" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
