@@ -52,6 +52,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 .Element("resources")
                 ;//.Element("resources");
             //IEnumerable<XElement> resources = resourcesElt.Elements("resource");
+
             foreach (KeywordListItem keywordListItem in keywordListItems)
             {
                 foreach(AssessmentItem assessmentItem in keywordListItem.AssessmentItems)
@@ -60,7 +61,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                     {
                         //resources.FirstOrDefault(x =>
                          //   itemsModifier.GetAttribute(x, "identifier").ToLower().Contains(illustration.ItemId));
-                    }
+                     }
                 }
             }
         }
