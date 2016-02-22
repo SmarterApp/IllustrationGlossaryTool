@@ -41,6 +41,14 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                         {
                             illustrations.Add(illustration);
                         }
+                        else
+                        {
+                            // TODO: Errors
+                        }
+                    }
+                    else
+                    {
+                        // TODO: Errors
                     }
                 }
             }
