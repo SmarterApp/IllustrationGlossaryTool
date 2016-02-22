@@ -104,7 +104,7 @@ namespace IllustrationGlossaryPackage.App
         {
             Console.WriteLine(errorString);
             Console.Read();
-            Environment.Exit(1);
+            Environment.Exit(0);
         }
     }
 }

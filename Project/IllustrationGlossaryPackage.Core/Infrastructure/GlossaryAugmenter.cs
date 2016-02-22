@@ -42,8 +42,27 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             using (ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update))
             {
                 UpdateKeywordListItems(keywordListItems, testPackageArchive);
+                AddKeywordListItemsToManifest(keywordListItems, testPackageArchive, manifest);
             }
-            //manifestModifier.AddIllustrationsToManifest(illustrations, testPackageFilePath);*/
+        }
+
+        private void AddKeywordListItemsToManifest(IList<KeywordListItem> keywordListItems, ZipArchive testPackageArchive, XDocument manifest)
+        {
+            XElement resourcesElt = manifest
+                .Element("resources")
+                ;//.Element("resources");
+            //IEnumerable<XElement> resources = resourcesElt.Elements("resource");
+            foreach (KeywordListItem keywordListItem in keywordListItems)
+            {
+                foreach(AssessmentItem assessmentItem in keywordListItem.AssessmentItems)
+                {
+                    foreach(Illustration illustration in assessmentItem.Illustrations)
+                    {
+                        //resources.FirstOrDefault(x =>
+                         //   itemsModifier.GetAttribute(x, "identifier").ToLower().Contains(illustration.ItemId));
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -77,30 +96,36 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 .Element("itemrelease")
                 .Element("item");
             XElement keywordListElt = rootElement.ElementOrCreate("keywordList");
-            IEnumerable<XElement> keywords = keywordListElt.Elements("keyword");
-            foreach(AssessmentItem assessmentItem in keywordListItem.AssessmentItems)
+            foreach (AssessmentItem assessmentItem in keywordListItem.AssessmentItems)
             {
                 foreach(Illustration illustration in assessmentItem.Illustrations)
                 {
-                    XElement keyword = keywords.FirstOrDefault(
-                        x => itemsModifier.GetAttribute(x, "text") == illustration.Term);
-                    if(keyword == null)
-                    {
-                        int maxIndex = keywords.Select(x => int.Parse(itemsModifier.GetAttribute(x, "index"))).Max();
-                        keywordListElt.Add(GetKeywordXElementForFile(illustration, maxIndex));
-                    }
-                    else
-                    {
-                        keyword.Elements("html").Where(x => itemsModifier.GetAttribute(x, "listType") == "illustration"
-                                                    && itemsModifier.GetAttribute(x, "listCode") == "TDS_WL_Illustration")
-                                                    .Remove();
-                        keyword.Add(GetHtmlXElementForFile(illustration.FileName));
-                    }
+                    AddIllustrationToKeywordListItem(keywordListElt, illustration);
                     itemsModifier.MoveMediaFileForIllustration(illustration, keywordListItem, testPackageArchive);
                 }
             }
+
             itemsModifier.SaveItem(keywordListItem, testPackageArchive);
             return 0;
+        }
+
+        private void AddIllustrationToKeywordListItem(XElement keywordListElt, Illustration illustration)
+        {
+            IEnumerable<XElement> keywords = keywordListElt.Elements("keyword");
+            XElement keyword = keywords.FirstOrDefault(
+                        x => itemsModifier.GetAttribute(x, "text") == illustration.Term);
+            if (keyword == null)
+            {
+                int maxIndex = keywords.Select(x => int.Parse(itemsModifier.GetAttribute(x, "index"))).Max();
+                keywordListElt.Add(GetKeywordXElementForFile(illustration, maxIndex));
+            }
+            else
+            {
+                keyword.Elements("html").Where(x => itemsModifier.GetAttribute(x, "listType") == "illustration"
+                                            && itemsModifier.GetAttribute(x, "listCode") == "TDS_WL_Illustration")
+                                            .Remove();
+                keyword.Add(GetHtmlXElementForFile(illustration.FileName));
+            }
         }
 
         /// <summary>
