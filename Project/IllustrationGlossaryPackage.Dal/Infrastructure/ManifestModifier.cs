@@ -1,6 +1,7 @@
 ﻿using IllustrationGlossaryPackage.Dal.Interfaces;
 using IllustrationGlossaryPackage.Dal.Models;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Xml.Linq;
@@ -9,14 +10,12 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
 {
     public class ManifestModifier : IManifestModifier
     {
-        /// <summary>
-        /// Add illustrations to the imsmanifest.xml file
-        /// </summary>
-        /// <param name="illustrations"></param>
-        /// <param name="testPackageFilePath"></param>
-        public void AddIllustrationsToManifest(IEnumerable<Illustration> illustrations, string testPackageFilePath)
+        public void SaveManifest(XDocument manifest, ZipArchive testPackageArchive)
         {
-
+            // TODO: Avoid hardcoded file name
+            ZipArchiveEntry manifestXml = testPackageArchive.Entries.FirstOrDefault(x => x.Name == "imsmanifest.xml");
+            StreamWriter writer = new StreamWriter(manifestXml.Open());
+            manifest.Save(writer);
         }
 
         public XDocument GetManifestXml(string testPackageFilePath)

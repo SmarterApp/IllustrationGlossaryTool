@@ -10,6 +10,7 @@ namespace IllustrationGlossaryPackage.Dal.Models
     public class ItemDocument
     {
         public string FullPath;
+        public string Name;
         public XDocument Document;
     }
 }

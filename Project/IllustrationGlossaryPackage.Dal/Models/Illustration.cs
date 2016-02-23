@@ -12,5 +12,7 @@ namespace IllustrationGlossaryPackage.Dal.Models
         public string Term { get; set; }
         public string FileName { get; set; }
         public bool FileExists { get; set; }
+        public string CopiedToPath { get; set; }
+        public string Identifier { get; set; }
     }
 }

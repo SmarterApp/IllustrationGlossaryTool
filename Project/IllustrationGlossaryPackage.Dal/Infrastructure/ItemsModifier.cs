@@ -29,8 +29,19 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
         {
             ZipArchiveEntry itemXmlEntry = SelectItemZipEntry(keywordListItem.FullPath, testPackageArchive);
             StreamWriter writer = new StreamWriter(itemXmlEntry.Open());
-            writer.BaseStream.Seek(0, SeekOrigin.Begin);
+            //writer.BaseStream.Seek(0, SeekOrigin.Begin);
             keywordListItem.Document.Save(writer);
+        }
+
+        public string GetIllustrationCopyToLocation(Illustration illustration, AssessmentItem assessmentItem, ZipArchive testPackageArchive)
+        {
+            ZipArchiveEntry entry = SelectItemZipEntry(assessmentItem.FullPath, testPackageArchive);
+            string fullpath = entry.FullName;
+            string filename = entry.Name;
+            string directory = fullpath.Remove(fullpath.Length - filename.Length);
+            string illustrationFileName = (new FileInfo(illustration.FileName)).Name;
+            string illPath = directory + illustrationFileName;
+            return illPath;
         }
 
         /// <summary>
@@ -39,14 +50,15 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
         /// <param name="illustration"></param>
         /// <param name="keywordListItem"></param>
         /// <param name="testPackageArchive"></param>
-        public void MoveMediaFileForIllustration(Illustration illustration, KeywordListItem keywordListItem, ZipArchive testPackageArchive)
+        public void MoveMediaFileForIllustration(Illustration illustration, AssessmentItem assessmentItem, ZipArchive testPackageArchive)
         {
-            ZipArchiveEntry entry = SelectItemZipEntry(keywordListItem.FullPath, testPackageArchive);
-            string fullpath = entry.FullName;
-            string filename = entry.Name;
-            string directory = fullpath.Remove(fullpath.Length - filename.Length);
-            string illustrationFileName = (new FileInfo(illustration.FileName)).Name;
-            testPackageArchive.CreateEntryFromFile(illustration.FileName, directory + illustrationFileName);
+            ZipArchiveEntry existingIll = testPackageArchive.Entries.FirstOrDefault(x => x.FullName == illustration.CopiedToPath);
+            if(existingIll != null)
+            {
+                existingIll.Delete();
+            }
+
+            testPackageArchive.CreateEntryFromFile(illustration.FileName, illustration.CopiedToPath);
         }
         
         /// <summary>
@@ -69,6 +81,17 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
         public string GetAttribute(XElement e, string attributeName)
         {
             XAttribute attribute = e.Attribute(attributeName);
+            return NullSaveValue(attribute);
+        }
+
+        public string GetAttribute(XElement e, XName attributeName)
+        {
+            XAttribute attribute = e.Attribute(attributeName);
+            return NullSaveValue(attribute);
+        }
+
+        private string NullSaveValue(XAttribute attribute)
+        {
             return attribute == null ? string.Empty : attribute.Value;
         }
     }

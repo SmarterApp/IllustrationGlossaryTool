@@ -3,6 +3,7 @@ using IllustrationGlossaryPackage.Dal.Interfaces;
 using IllustrationGlossaryPackage.Dal.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
@@ -75,7 +76,9 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                     Illustrations = g.ToList(),
                     Document = SelectByID(contentItems, key).Document,
                     FullPath = SelectByID(contentItems, key).FullPath,
-                    KeywordListItemId = GetKeywordListItemId(SelectByID(contentItems, key).Document)
+                    KeywordListItemId = GetKeywordListItemId(SelectByID(contentItems, key).Document),
+                    Name = SelectByID(contentItems, key).Name,
+                    Identifier = Path.GetFileNameWithoutExtension(SelectByID(contentItems, key).FullPath)
                 });
             return assessmentItems;
         }
@@ -125,7 +128,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 foreach (ZipArchiveEntry itemXmlEntry in itemXmlEntries)
                 {
                     XDocument itemXml = XDocument.Load(itemXmlEntry.Open());
-                    itemXmls.Add(new ItemDocument { FullPath = itemXmlEntry.FullName, Document = itemXml });
+                    itemXmls.Add(new ItemDocument { FullPath = itemXmlEntry.FullName, Document = itemXml, Name = itemXmlEntry.Name });
                 }
             }
             return itemXmls;

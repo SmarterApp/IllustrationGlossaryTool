@@ -35,7 +35,8 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                             ItemId = lineItems[0],
                             Term = lineItems[1],
                             FileName = lineItems[2],
-                            FileExists = File.Exists(lineItems[2])
+                            FileExists = File.Exists(lineItems[2]),
+                            Identifier = Path.GetFileNameWithoutExtension(lineItems[2])
                         };
                         if (illustration.FileExists)
                         {

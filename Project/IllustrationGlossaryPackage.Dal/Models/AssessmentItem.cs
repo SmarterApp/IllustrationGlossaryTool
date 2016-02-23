@@ -13,6 +13,8 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         public string ItemId;
         public string KeywordListItemId;
         public string FullPath;
+        public string Name;
+        public string Identifier;
         public XDocument Document;
         public IEnumerable<Illustration> Illustrations;
     }

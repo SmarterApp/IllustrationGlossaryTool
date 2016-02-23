@@ -9,7 +9,9 @@ namespace IllustrationGlossaryPackage.Dal.Interfaces
     public interface IItemsModifier
     {
         string GetAttribute(XElement e, string attributeName);
+        string GetAttribute(XElement e, XName attributeName);
         void SaveItem(KeywordListItem keywordListItem, ZipArchive testPackageArchive);
-        void MoveMediaFileForIllustration(Illustration illustration, KeywordListItem keywordListItem, ZipArchive testPackageArchive);
+        void MoveMediaFileForIllustration(Illustration illustration, AssessmentItem assessmentItem, ZipArchive testPackageArchive);
+        string GetIllustrationCopyToLocation(Illustration illustration, AssessmentItem assessmentItem, ZipArchive testPackageArchive);
     }
 }

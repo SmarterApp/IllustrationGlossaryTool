@@ -39,31 +39,52 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         {
             XDocument manifest = manifestModifier.GetManifestXml(testPackageFilePath);
             IList<KeywordListItem> keywordListItems = itemsProcessor.GetKeywordListItems(testPackageFilePath, itemsFilePath).ToList();
-            using (ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update))
-            {
+            //using (ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update))
+            //{
+            ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update);
                 UpdateKeywordListItems(keywordListItems, testPackageArchive);
                 AddKeywordListItemsToManifest(keywordListItems, testPackageArchive, manifest);
-            }
+            testPackageArchive.Dispose();
+            //}
         }
 
         private void AddKeywordListItemsToManifest(IList<KeywordListItem> keywordListItems, ZipArchive testPackageArchive, XDocument manifest)
         {
-            XElement resourcesElt = manifest
-                .Element("resources")
-                ;//.Element("resources");
-            //IEnumerable<XElement> resources = resourcesElt.Elements("resource");
-
+            XNamespace ns = "http://www.imsglobal.org/xsd/apip/apipv1p0/imscp_v1p1";
+            IList<XElement> resources = manifest
+                .Element(ns + "manifest")
+                .Element(ns + "resources")
+                .Elements(ns + "resource").ToList();
             foreach (KeywordListItem keywordListItem in keywordListItems)
             {
                 foreach(AssessmentItem assessmentItem in keywordListItem.AssessmentItems)
                 {
                     foreach(Illustration illustration in assessmentItem.Illustrations)
                     {
-                        //resources.FirstOrDefault(x =>
-                         //   itemsModifier.GetAttribute(x, "identifier").ToLower().Contains(illustration.ItemId));
-                     }
+                        XElement assessmentItemResource = resources.FirstOrDefault(x =>
+                             itemsModifier.GetAttribute(x, "identifier") == assessmentItem.Identifier);
+                        XElement existingIllResource = resources.FirstOrDefault(x =>
+                            itemsModifier.GetAttribute(x, "identifier") == illustration.Identifier);
+                        XElement existingIllDependency = assessmentItemResource.Descendants().FirstOrDefault(x => 
+                            itemsModifier.GetAttribute(x, "identifierref") == illustration.Identifier);
+
+                        if (existingIllResource != null)
+                        {
+                            existingIllResource.Remove();
+                        }
+
+                        if (existingIllDependency != null)
+                        {
+                            existingIllDependency.Remove();
+                        }
+
+                        assessmentItemResource.AddAfterSelf(GetManifestResourceElement(illustration, ns));
+                        assessmentItemResource.Add(GetManifestDependencyElement(illustration, ns));
+                    }
                 }
             }
+
+            manifestModifier.SaveManifest(manifest, testPackageArchive);
         }
 
         /// <summary>
@@ -101,8 +122,10 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             {
                 foreach(Illustration illustration in assessmentItem.Illustrations)
                 {
+                    illustration.CopiedToPath = 
+                        itemsModifier.GetIllustrationCopyToLocation(illustration, assessmentItem, testPackageArchive);
                     AddIllustrationToKeywordListItem(keywordListElt, illustration);
-                    itemsModifier.MoveMediaFileForIllustration(illustration, keywordListItem, testPackageArchive);
+                    itemsModifier.MoveMediaFileForIllustration(illustration, assessmentItem, testPackageArchive);
                 }
             }
 
@@ -125,7 +148,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 keyword.Elements("html").Where(x => itemsModifier.GetAttribute(x, "listType") == "illustration"
                                             && itemsModifier.GetAttribute(x, "listCode") == "TDS_WL_Illustration")
                                             .Remove();
-                keyword.Add(GetHtmlXElementForFile(illustration.FileName));
+                keyword.Add(GetHtmlXElementForFile(illustration.CopiedToPath));
             }
         }
 
@@ -140,7 +163,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             return new XElement("keyword",
                         new XAttribute("text", illustration.Term),
                         new XAttribute("index", (maxIndex + 1).ToString()),
-                            GetHtmlXElementForFile(illustration.FileName));
+                            GetHtmlXElementForFile(illustration.CopiedToPath));
         }
 
         /// <summary>
@@ -154,6 +177,21 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                         new XAttribute("listType", "illustration"),
                         new XAttribute("listCode", "TDS_WL_Illustration"),
                         new XRaw(string.Format("<![CDATA[<p style=\"\"><img src=\"{0}\" width=\"100\" height=\"200\" /></p>]]>", fileName)));
+        }
+
+        private XElement GetManifestResourceElement(Illustration illustration, XNamespace ns)
+        {
+            return new XElement(ns + "resource",
+                        new XAttribute("identifier", illustration.Identifier),
+                        new XAttribute("type", "associatedcontent/apip_xmlv1p0/learning-application-resource"),
+                        new XElement(ns + "file",
+                            new XAttribute("href", illustration.CopiedToPath)));
+        }
+
+        private XElement GetManifestDependencyElement(Illustration illustration, XNamespace ns)
+        {
+            return new XElement(ns + "dependency",
+                        new XAttribute("identifierref", illustration.Identifier));
         }
     }
 #pragma warning restore CS4014
