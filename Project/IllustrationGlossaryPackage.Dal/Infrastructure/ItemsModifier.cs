@@ -28,9 +28,14 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
         public void SaveItem(KeywordListItem keywordListItem, ZipArchive testPackageArchive)
         {
             ZipArchiveEntry itemXmlEntry = SelectItemZipEntry(keywordListItem.FullPath, testPackageArchive);
-            StreamWriter writer = new StreamWriter(itemXmlEntry.Open());
+            SaveItem(keywordListItem.Document, itemXmlEntry);
+        }
+
+        public void SaveItem(XDocument document, ZipArchiveEntry zipEntry)
+        {
+            StreamWriter writer = new StreamWriter(zipEntry.Open());
             //writer.BaseStream.Seek(0, SeekOrigin.Begin);
-            keywordListItem.Document.Save(writer);
+            document.Document.Save(writer);
         }
 
         public string GetIllustrationCopyToLocation(Illustration illustration, AssessmentItem assessmentItem, ZipArchive testPackageArchive)
