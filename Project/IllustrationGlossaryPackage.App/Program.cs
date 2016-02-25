@@ -9,16 +9,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO.Compression;
 using IllustrationGlossaryPackage.Core.Exceptions;
+using IllustrationGlossaryPackage.Dal.Models;
+using IllustrationGlossaryPackage.Dal.Infrastructure;
+using IllustrationGlossaryPackage.Dal.Interfaces;
 
 namespace IllustrationGlossaryPackage.App
 {
-    class Program
+    public class Program
     {
         /// <summary>
         /// Add illustrations to a test package from a csv of items to add
         /// </summary>
         /// <param name="args"></param>
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             if (args.Length != 2)
             {
@@ -35,7 +38,10 @@ namespace IllustrationGlossaryPackage.App
             CreateArchive(testPackageFilePath);
 
             Console.WriteLine("Adding illustrations to test package..." + Environment.NewLine);
-            AddIllustrationToTestPackage(testPackageFilePath, csvFilePath);
+            IEnumerable<Error> errors = AddIllustrationToTestPackage(testPackageFilePath, csvFilePath);
+
+            Console.WriteLine("Recording Errors..." + Environment.NewLine);
+            RecordErrors(errors, Path.GetDirectoryName(testPackageFilePath));
 
             Console.WriteLine("Finished!");
             Console.Read();
@@ -86,7 +92,7 @@ namespace IllustrationGlossaryPackage.App
             }
         }
 
-        static void AddIllustrationToTestPackage(string testPackageFilePath, string csvFilePath)
+        static IEnumerable<Error> AddIllustrationToTestPackage(string testPackageFilePath, string csvFilePath)
         {
             IGlossaryAugmenter augmenter = new GlossaryAugmenter();
             try
@@ -97,6 +103,13 @@ namespace IllustrationGlossaryPackage.App
             {
                 ExitWithErrorString("Error: IOException: " + e.Message);
             }
+            return augmenter.GetErrors();
+        }
+
+        static void RecordErrors(IEnumerable<Error> errors, string directory)
+        {
+            IErrorRecorder errorRecorder = new ErrorRecorder();
+            errorRecorder.RecordErrors(errors, directory);
         }
 
 

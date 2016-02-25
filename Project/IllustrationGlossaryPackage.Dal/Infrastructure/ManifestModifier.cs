@@ -25,10 +25,13 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
 
         public XDocument GetManifestXml(string testPackageFilePath)
         {
-            ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update);
-            ZipArchiveEntry manifestEntry = testPackageArchive.Entries.SingleOrDefault(t => t.FullName.ToLower().Contains("manifest"));
-            XDocument manifestXml = XDocument.Load(manifestEntry.Open());
-            testPackageArchive.Dispose();
+            XDocument manifestXml;
+            using (ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update))
+            {
+                ZipArchiveEntry manifestEntry = testPackageArchive.Entries.SingleOrDefault(t => t.FullName.ToLower().Contains("manifest"));
+                manifestXml = XDocument.Load(manifestEntry.Open());
+            }
+
             return manifestXml;
         }
     }

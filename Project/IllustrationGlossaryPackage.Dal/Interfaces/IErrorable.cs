@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IllustrationGlossaryPackage.Core.Interfaces
+namespace IllustrationGlossaryPackage.Dal.Interfaces
 {
-    public interface IGlossaryAugmenter
+    public interface IErrorable
     {
-        void AddItemsToGlossary(string testPackageFilePath, string itemsFilePath);
         IEnumerable<Error> GetErrors();
     }
 }

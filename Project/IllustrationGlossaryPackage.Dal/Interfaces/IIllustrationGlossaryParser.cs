@@ -6,5 +6,6 @@ namespace IllustrationGlossaryPackage.Dal.Interfaces
     public interface IIllustrationGlossaryParser
     {
         IEnumerable<Illustration> GetIllustrationsFromSpreadsheet(string csvFilePath);
+        IEnumerable<Error> GetErrors();
     }
 }

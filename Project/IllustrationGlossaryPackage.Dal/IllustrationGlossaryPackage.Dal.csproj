@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\Errorable.cs" />
+    <Compile Include="Interfaces\IErrorable.cs" />
     <Compile Include="Models\AssessmentItem.cs" />
     <Compile Include="Infrastructure\ItemsModifier.cs" />
+    <Compile Include="Models\Error.cs" />
     <Compile Include="Models\ItemDocument.cs" />
     <Compile Include="Models\KeywordListItem.cs" />
     <Compile Include="Infrastructure\ManifestModifier.cs" />

@@ -14,5 +14,6 @@ namespace IllustrationGlossaryPackage.Dal.Models
         public bool FileExists { get; set; }
         public string CopiedToPath { get; set; }
         public string Identifier { get; set; }
+        public int LineNumber { get; set; }
     }
 }

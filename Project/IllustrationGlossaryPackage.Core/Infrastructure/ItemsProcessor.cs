@@ -13,7 +13,7 @@ using System.Xml.Linq;
 
 namespace IllustrationGlossaryPackage.Core.Infrastructure
 {
-    public class ItemsProcessor : IItemsProcessor
+    public class ItemsProcessor : Errorable, IErrorable, IItemsProcessor
     {
         private IIllustrationGlossaryParser glossaryParser;
         private IItemsModifier itemsModifier;
@@ -67,20 +67,47 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         private IEnumerable<AssessmentItem> GetAssessmentItems(string testPackageFilePath, string itemsFilePath)
         {
             IEnumerable<Illustration> illustrations = glossaryParser.GetIllustrationsFromSpreadsheet(itemsFilePath);
+            errors.AddRange(glossaryParser.GetErrors());
             IEnumerable<string> assessmentItemIds = illustrations.Select(i => i.ItemId);
             IEnumerable<ItemDocument> contentItems = GetItemsXml(testPackageFilePath, assessmentItemIds);
             IEnumerable<AssessmentItem> assessmentItems =
-                illustrations.GroupBy(x => x.ItemId, (key, g) => new AssessmentItem
+                illustrations.GroupBy(x => x.ItemId, (key, g) => CreateAssessmentItem(contentItems, key, g));
+            IEnumerable<AssessmentItem> nonExistingAssessmentItems = 
+                    assessmentItems.Where(x => x.Document == null);
+            IEnumerable<Error> nonExistingItemIdErrors = nonExistingAssessmentItems
+                    .Select(x => x.Illustrations)
+                    .SelectMany(x => x).ToList()
+                    .Select(x => new Error(Error.Type.ItemDNE, "No item exists with id " + x.ItemId, x.LineNumber));
+            errors.AddRange(nonExistingItemIdErrors);
+            assessmentItems = assessmentItems.Where(x => x.Document != null);
+            return assessmentItems;
+        }
+
+        private AssessmentItem CreateAssessmentItem(IEnumerable<ItemDocument> contentItems, string key, IEnumerable<Illustration> illustrations)
+        {
+            ItemDocument document = SelectByID(contentItems, key);
+            if(document != null)
+            {
+                return new AssessmentItem
                 {
                     ItemId = key,
-                    Illustrations = g.ToList(),
-                    Document = SelectByID(contentItems, key).Document,
-                    FullPath = SelectByID(contentItems, key).FullPath,
-                    KeywordListItemId = GetKeywordListItemId(SelectByID(contentItems, key).Document),
-                    Name = SelectByID(contentItems, key).Name,
-                    Identifier = Path.GetFileNameWithoutExtension(SelectByID(contentItems, key).FullPath)
-                });
-            return assessmentItems;
+                    Illustrations = illustrations.ToList(),
+                    Document = document.Document,
+                    FullPath = document.FullPath,
+                    KeywordListItemId = GetKeywordListItemId(document.Document),
+                    Name = document.Name,
+                    Identifier = Path.GetFileNameWithoutExtension(document.FullPath)
+                };
+            }
+            else
+            {
+                return new AssessmentItem
+                {
+                    ItemId = key,
+                    Illustrations = illustrations.ToList(),
+                };
+            }
+            
         }
 
         /// <summary>
@@ -131,6 +158,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                     itemXmls.Add(new ItemDocument { FullPath = itemXmlEntry.FullName, Document = itemXml, Name = itemXmlEntry.Name });
                 }
             }
+
             return itemXmls;
         }
     }

@@ -33,9 +33,10 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
 
         public void SaveItem(XDocument document, ZipArchiveEntry zipEntry)
         {
-            StreamWriter writer = new StreamWriter(zipEntry.Open());
-            //writer.BaseStream.Seek(0, SeekOrigin.Begin);
-            document.Document.Save(writer);
+            using (StreamWriter writer = new StreamWriter(zipEntry.Open()))
+            {
+                document.Document.Save(writer);
+            }
         }
 
         public string GetIllustrationCopyToLocation(Illustration illustration, AssessmentItem assessmentItem, ZipArchive testPackageArchive)

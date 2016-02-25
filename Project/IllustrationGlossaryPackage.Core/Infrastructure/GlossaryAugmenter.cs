@@ -15,7 +15,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
 {
 #pragma warning disable CS1998
 #pragma warning disable CS4014
-    public class GlossaryAugmenter : IGlossaryAugmenter
+    public class GlossaryAugmenter : Errorable, IErrorable, IGlossaryAugmenter
     {
         private IIllustrationGlossaryParser glossaryParser;
         private IItemsModifier itemsModifier;
@@ -39,13 +39,12 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         {
             XDocument manifest = manifestModifier.GetManifestXml(testPackageFilePath);
             IList<KeywordListItem> keywordListItems = itemsProcessor.GetKeywordListItems(testPackageFilePath, itemsFilePath).ToList();
-            //using (ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update))
-            //{
-            ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update);
+            errors.AddRange(itemsProcessor.GetErrors());
+            using (ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update))
+            {
                 UpdateKeywordListItems(keywordListItems, testPackageArchive);
                 AddKeywordListItemsToManifest(keywordListItems, testPackageArchive, manifest);
-            testPackageArchive.Dispose();
-            //}
+            }
         }
 
         private void AddKeywordListItemsToManifest(IList<KeywordListItem> keywordListItems, ZipArchive testPackageArchive, XDocument manifest)

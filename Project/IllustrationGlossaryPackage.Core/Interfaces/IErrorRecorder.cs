@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace IllustrationGlossaryPackage.Core.Interfaces
 {
-    public interface IGlossaryAugmenter
+    public interface IErrorRecorder
     {
-        void AddItemsToGlossary(string testPackageFilePath, string itemsFilePath);
-        IEnumerable<Error> GetErrors();
+        void RecordErrors(IEnumerable<Error> errors, string directory);
     }
 }

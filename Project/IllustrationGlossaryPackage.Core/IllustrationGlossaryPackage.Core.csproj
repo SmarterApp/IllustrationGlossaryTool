@@ -46,8 +46,10 @@
     <Compile Include="Exceptions\InvalidFileException.cs" />
     <Compile Include="Infrastructure\Archiver.cs" />
     <Compile Include="Extensions\CustomExtensions.cs" />
+    <Compile Include="Infrastructure\ErrorRecorder.cs" />
     <Compile Include="Infrastructure\FileValidator.cs" />
     <Compile Include="Infrastructure\GlossaryAugmenter.cs" />
+    <Compile Include="Interfaces\IErrorRecorder.cs" />
     <Compile Include="Interfaces\IItemsProcessor.cs" />
     <Compile Include="Infrastructure\ItemsProcessor.cs" />
     <Compile Include="Extensions\XRaw.cs" />
