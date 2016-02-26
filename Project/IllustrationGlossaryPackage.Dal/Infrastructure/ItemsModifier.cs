@@ -40,18 +40,10 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             }
         }
 
-        public string GetIllustrationCopyToLocation(Illustration illustration, AssessmentItem assessmentItem, ZipArchive testPackageArchive)
+        public string GetIllustrationCopyToLocation(Illustration illustration, KeywordListItem keywordListItem, ZipArchive testPackageArchive)
         {
-            ZipArchiveEntry entry = SelectItemZipEntry(assessmentItem.FullPath, testPackageArchive);
-            string fullpath = entry.FullName;
-            string filename = entry.Name;
-            string directory = fullpath.Remove(fullpath.Length - filename.Length);
-            string illustrationFileName = (new FileInfo(illustration.FileName)).Name;
-            string illPath = directory + illustrationFileName;
-            if(illPath == null)
-            {
-                throw new NotImplementedException();
-            }
+            string directory = Path.GetDirectoryName(keywordListItem.FullPath);
+            string illPath = directory + "\\" + illustration.FileName;
             return illPath;
         }
 
@@ -69,7 +61,7 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                 existingIll.Delete();
             }
 
-            testPackageArchive.CreateEntryFromFile(illustration.FileName, illustration.CopiedToPath);
+            testPackageArchive.CreateEntryFromFile(illustration.OriginalFilePath, illustration.CopiedToPath);
         }
         
         /// <summary>

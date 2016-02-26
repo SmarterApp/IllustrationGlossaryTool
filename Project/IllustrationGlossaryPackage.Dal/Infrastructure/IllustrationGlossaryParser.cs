@@ -35,7 +35,7 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                         {
                             ItemId = lineItems[0],
                             Term = lineItems[1],
-                            FileName = lineItems[2],
+                            OriginalFilePath = lineItems[2],
                             FileExists = File.Exists(lineItems[2]),
                             Identifier = Path.GetFileNameWithoutExtension(lineItems[2]),
                             LineNumber = count
@@ -46,7 +46,7 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                         }
                         else
                         {
-                            errors.Add(new Error(Error.Type.FileDNE, illustration.FileName + " does not exist", count));
+                            errors.Add(new Error(Error.Type.FileDNE, illustration.OriginalFilePath + " does not exist", count));
                         }
                     }
                     else

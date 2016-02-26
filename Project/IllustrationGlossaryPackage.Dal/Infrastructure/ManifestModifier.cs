@@ -20,6 +20,7 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
         {
             // TODO: Avoid hardcoded file name
             ZipArchiveEntry manifestXml = testPackageArchive.Entries.FirstOrDefault(x => x.Name == "imsmanifest.xml");
+            // TODO: ManifestModifier should extend items modifier
             itemsModifier.SaveItem(manifest, manifestXml);
         }
 

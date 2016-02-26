@@ -103,6 +103,7 @@ namespace IllustrationGlossaryPackage.App
             {
                 ExitWithErrorString("Error: IOException: " + e.Message);
             }
+
             return augmenter.GetErrors();
         }
 
@@ -117,7 +118,6 @@ namespace IllustrationGlossaryPackage.App
             {
                 ExitWithErrorString("Error: IOException: " + e.Message);
             }
-            
         }
 
 

@@ -128,7 +128,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 foreach(Illustration illustration in assessmentItem.Illustrations)
                 {
                     illustration.CopiedToPath = 
-                        itemsModifier.GetIllustrationCopyToLocation(illustration, assessmentItem, testPackageArchive);
+                        itemsModifier.GetIllustrationCopyToLocation(illustration, keywordListItem, testPackageArchive);
                     AddIllustrationToKeywordListItem(keywordListElt, illustration);
                     itemsModifier.MoveMediaFileForIllustration(illustration, assessmentItem, testPackageArchive);
                 }
@@ -153,7 +153,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 keyword.Elements("html").Where(x => itemsModifier.GetAttribute(x, "listType") == "illustration"
                                             && itemsModifier.GetAttribute(x, "listCode") == "TDS_WL_Illustration")
                                             .Remove();
-                keyword.Add(GetHtmlXElementForFile(illustration.CopiedToPath));
+                keyword.Add(GetHtmlXElementForFile(illustration.FileName));
             }
         }
 
@@ -168,7 +168,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             return new XElement("keyword",
                         new XAttribute("text", illustration.Term),
                         new XAttribute("index", (maxIndex + 1).ToString()),
-                            GetHtmlXElementForFile(illustration.CopiedToPath));
+                            GetHtmlXElementForFile(illustration.FileName));
         }
 
         /// <summary>
