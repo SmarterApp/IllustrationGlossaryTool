@@ -13,7 +13,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
     {
         public void RecordErrors(IEnumerable<Error> errors, string directory)
         {
-            string fileName = directory + "\\Errors.csv";
+            string fileName = directory + "\\GlossaryUtilityErrors.csv";
             errors = errors.OrderBy(x => x.CsvLine);
             List<string> errorText = new List<string>();
             errorText.Add("Line, Type, Message");

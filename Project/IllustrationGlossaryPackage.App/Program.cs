@@ -109,7 +109,15 @@ namespace IllustrationGlossaryPackage.App
         static void RecordErrors(IEnumerable<Error> errors, string directory)
         {
             IErrorRecorder errorRecorder = new ErrorRecorder();
-            errorRecorder.RecordErrors(errors, directory);
+            try
+            {
+                errorRecorder.RecordErrors(errors, directory);
+            }
+            catch (IOException e)
+            {
+                ExitWithErrorString("Error: IOException: " + e.Message);
+            }
+            
         }
 
 
