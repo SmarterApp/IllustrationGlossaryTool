@@ -1,6 +1,7 @@
 ﻿using IllustrationGlossaryPackage.Core.Infrastructure;
 using IllustrationGlossaryPackage.Dal.Interfaces;
 using IllustrationGlossaryPackage.Dal.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -47,6 +48,10 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             string directory = fullpath.Remove(fullpath.Length - filename.Length);
             string illustrationFileName = (new FileInfo(illustration.FileName)).Name;
             string illPath = directory + illustrationFileName;
+            if(illPath == null)
+            {
+                throw new NotImplementedException();
+            }
             return illPath;
         }
 

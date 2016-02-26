@@ -62,21 +62,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                     {
                         XElement assessmentItemResource = resources.FirstOrDefault(x =>
                              itemsModifier.GetAttribute(x, "identifier") == assessmentItem.Identifier);
-                        XElement existingIllResource = resources.FirstOrDefault(x =>
-                            itemsModifier.GetAttribute(x, "identifier") == illustration.Identifier);
-                        XElement existingIllDependency = assessmentItemResource.Descendants().FirstOrDefault(x => 
-                            itemsModifier.GetAttribute(x, "identifierref") == illustration.Identifier);
-
-                        if (existingIllResource != null)
-                        {
-                            existingIllResource.Remove();
-                        }
-
-                        if (existingIllDependency != null)
-                        {
-                            existingIllDependency.Remove();
-                        }
-
+                        ClearElements(resources, illustration, assessmentItemResource);
                         assessmentItemResource.AddAfterSelf(GetManifestResourceElement(illustration, ns));
                         assessmentItemResource.Add(GetManifestDependencyElement(illustration, ns));
                     }
@@ -84,6 +70,25 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             }
 
             manifestModifier.SaveManifest(manifest, testPackageArchive);
+        }
+
+        private void ClearElements(IList<XElement> resources, Illustration illustration, XElement assessmentItemResource)
+        {
+            XElement existingIllResource = resources.FirstOrDefault(x =>
+                            itemsModifier.GetAttribute(x, "identifier") == illustration.Identifier);
+            XElement existingIllDependency = assessmentItemResource.Descendants().FirstOrDefault(x =>
+                itemsModifier.GetAttribute(x, "identifierref") == illustration.Identifier);
+
+            if (existingIllResource != null)
+            {
+                existingIllResource.Remove();
+            }
+
+            if (existingIllDependency != null)
+            {
+                existingIllDependency.Remove();
+            }
+
         }
 
         /// <summary>
@@ -94,13 +99,14 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// <returns></returns>
         private async Task UpdateKeywordListItems(IList<KeywordListItem> keywordListItems, ZipArchive testPackageArchive)
         {
-            IList<Task<int>> tasks = new List<Task<int>>();
+            //IList<Task<int>> tasks = new List<Task<int>>();
             foreach (KeywordListItem keywordListItem in keywordListItems)
             {
-                Task<int> task = Task.Run(() => AddIllustrationInfoToKeywordListItemXml(keywordListItem, testPackageArchive));
-                tasks.Add(task);
+                //Task<int> task = Task.Run(() => AddIllustrationInfoToKeywordListItemXml(keywordListItem, testPackageArchive));
+                //tasks.Add(task);
+                AddIllustrationInfoToKeywordListItemXml(keywordListItem, testPackageArchive);
             }
-            Task.WaitAll(tasks.ToArray());
+            //Task.WaitAll(tasks.ToArray());
         }
 
         /// <summary>
@@ -184,7 +190,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                         new XAttribute("identifier", illustration.Identifier),
                         new XAttribute("type", "associatedcontent/apip_xmlv1p0/learning-application-resource"),
                         new XElement(ns + "file",
-                            new XAttribute("href", illustration.CopiedToPath)));
+                            new XAttribute("href", illustration.CopiedToPath))); 
         }
 
         private XElement GetManifestDependencyElement(Illustration illustration, XNamespace ns)
