@@ -46,12 +46,12 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                         }
                         else
                         {
-                            errors.Add(new Error(Error.Type.FileDNE, illustration.OriginalFilePath + " does not exist", count));
+                            errors.Add(new Error(Error.Exception.FileDNE, illustration.OriginalFilePath + " does not exist", count));
                         }
                     }
                     else
                     {
-                        errors.Add(new Error(Error.Type.InvalidCsvLine, "Illustration must have 3 non-empty columns", count));
+                        errors.Add(new Error(Error.Exception.InvalidCsvLine, "Illustration must have 3 non-empty columns", count));
                     }
 
                     count++;

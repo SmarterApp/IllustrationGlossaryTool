@@ -1,4 +1,5 @@
 ﻿using IllustrationGlossaryPackage.Core.Infrastructure;
+using IllustrationGlossaryPackage.Dal.Infrastructure;
 using IllustrationGlossaryPackage.Dal.Models;
 using System.Collections.Generic;
 using System.IO.Compression;
@@ -6,7 +7,7 @@ using System.Xml.Linq;
 
 namespace IllustrationGlossaryPackage.Dal.Interfaces
 {
-    public interface IItemsModifier
+    public interface IItemsModifier : IErrorable
     {
         string GetAttribute(XElement e, string attributeName);
         string GetAttribute(XElement e, XName attributeName);

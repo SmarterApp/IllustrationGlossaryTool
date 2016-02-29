@@ -8,20 +8,24 @@ namespace IllustrationGlossaryPackage.Dal.Models
 {
     public class Error
     {
-        public enum Type { FileDNE, InvalidCsvLine, ItemDNE };
+        public enum Exception { FileDNE, InvalidCsvLine, ItemDNE, OverwriteWarning };
+        public enum Type { Error, Warning };
+        public Exception exception;
         public Type type;
         public string Message;
         public int CsvLine;
 
         public Error() { }
 
-        public Error(Type t, string m) : this(t, m, 0) { }
-
-        public Error(Type t, string m, int i)
+        public Error(Exception e, string m) : this(e, m, 0, Type.Error) { }
+        public Error(Exception e, string m, Type t) : this(e, m, 0, t) { }
+        public Error(Exception e, string m, int i) : this(e, m, i, Type.Error) { }
+        public Error(Exception e, string m, int i, Type t)
         {
             this.CsvLine = i;
-            this.type = t;
+            this.exception = e;
             this.Message = m;
+            this.type = t;
         }
 
     }

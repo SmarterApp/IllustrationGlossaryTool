@@ -11,7 +11,7 @@ using System.Xml.Linq;
 
 namespace IllustrationGlossaryPackage.Dal.Infrastructure
 {
-    public class ItemsModifier : IItemsModifier
+    public class ItemsModifier : Errorable, IErrorable, IItemsModifier
     {
         private IIllustrationGlossaryParser glossaryParser;
         public ItemsModifier() : this(new IllustrationGlossaryParser()) { }
@@ -58,6 +58,7 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             ZipArchiveEntry existingIll = testPackageArchive.Entries.FirstOrDefault(x => x.FullName == illustration.CopiedToPath);
             if(existingIll != null)
             {
+                errors.Add(new Error(Error.Exception.OverwriteWarning, "Overwriting image file: " + illustration.CopiedToPath, Error.Type.Warning));
                 existingIll.Delete();
             }
 

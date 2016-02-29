@@ -45,6 +45,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 UpdateKeywordListItems(keywordListItems, testPackageArchive);
                 AddKeywordListItemsToManifest(keywordListItems, testPackageArchive, manifest);
             }
+            errors.AddRange(itemsModifier.GetErrors());
         }
 
         private void AddKeywordListItemsToManifest(IList<KeywordListItem> keywordListItems, ZipArchive testPackageArchive, XDocument manifest)

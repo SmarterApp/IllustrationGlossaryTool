@@ -77,7 +77,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             IEnumerable<Error> nonExistingItemIdErrors = nonExistingAssessmentItems
                     .Select(x => x.Illustrations)
                     .SelectMany(x => x).ToList()
-                    .Select(x => new Error(Error.Type.ItemDNE, "No item exists with id " + x.ItemId, x.LineNumber));
+                    .Select(x => new Error(Error.Exception.ItemDNE, "No item exists with id " + x.ItemId, x.LineNumber));
             errors.AddRange(nonExistingItemIdErrors);
             assessmentItems = assessmentItems.Where(x => x.Document != null);
             return assessmentItems;
