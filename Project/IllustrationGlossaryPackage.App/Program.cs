@@ -17,15 +17,28 @@ namespace IllustrationGlossaryPackage.App
 {
     public class Program
     {
+
+        public static IList<string> noArchiveArgs = new List<string> { "-n" };
+        public static IList<string> helpPageArgs = new List<string> { "-h", "/?", "-?", "--help", "?" };
+
         /// <summary>
         /// Add illustrations to a test package from a csv of items to add
         /// </summary>
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
+            if (helpPageArgs.Any(s => args.Contains(s)))
+            {
+                ShowHelpPageAndExit();
+                return;
+            }
+
+            bool noArchive = noArchiveArgs.Any(s => args.Contains(s));
+            args = args.Where(s => !noArchiveArgs.Contains(s)).ToArray();
+
             if (args.Length != 2)
             {
-                ExitWithErrorString("Error: Two command line arguments are required. Format: ");
+                ExitWithErrorString("Error: Command line arguments are required for test package and illustrations csv");
             }
 
             string testPackageFilePath = args[0];
@@ -34,9 +47,12 @@ namespace IllustrationGlossaryPackage.App
             Console.WriteLine("Validating test package..." + Environment.NewLine);
             ValidateFiles(testPackageFilePath, csvFilePath);
 
-            Console.WriteLine("Creating archive of test package..." + Environment.NewLine);
-            CreateArchive(testPackageFilePath);
-
+            if (!noArchive)
+            {
+                Console.WriteLine("Creating archive of test package..." + Environment.NewLine);
+                CreateArchive(testPackageFilePath);
+            }
+           
             Console.WriteLine("Adding illustrations to test package..." + Environment.NewLine);
             IEnumerable<Error> errors = AddIllustrationToTestPackage(testPackageFilePath, csvFilePath);
 
@@ -125,6 +141,12 @@ namespace IllustrationGlossaryPackage.App
         {
             Console.WriteLine(errorString);
             Console.Read();
+            Environment.Exit(0);
+        }
+
+        static void ShowHelpPageAndExit()
+        {
+            Console.WriteLine("TODO: This is my help page");
             Environment.Exit(0);
         }
     }
