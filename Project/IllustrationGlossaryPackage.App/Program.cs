@@ -146,8 +146,26 @@ namespace IllustrationGlossaryPackage.App
 
         static void ShowHelpPageAndExit()
         {
-            Console.WriteLine("TODO: This is my help page");
+            Console.WriteLine(getHelpPage(noArchiveArgs, helpPageArgs));
+            Console.Read();
             Environment.Exit(0);
+        }
+
+        public static string getHelpPage(IEnumerable<string> noArchiveArgs, IEnumerable<string> helpPageArgs)
+        {
+            return @"Help Page for Illustration Glossary Package
+Required Arguments:
+    1. Test Package
+    2. Illustrations csv
+Optional Arguments
+    1. " + string.Join(" ", noArchiveArgs) + @": Does not create an archive of the current test package
+    2. " + string.Join(" ", helpPageArgs) + @": Show the help page
+Requirements for Illustrations csv:
+    Must have 3 columns: ItemId, Term, IllustrationFilename
+    The first row in the csv is a header row
+Example:
+    IllustrationGlossaryPackage -n MyTestPackes/IrpContentPackage.zip MyIllustrations/Illustrations.csv
+";
         }
     }
 }
