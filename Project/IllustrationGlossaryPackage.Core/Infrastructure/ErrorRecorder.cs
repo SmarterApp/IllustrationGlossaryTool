@@ -16,22 +16,19 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             string errorsFileName = directory + "\\GlossaryUtilityErrors.csv";
             string warningsFileName = directory + "\\GlossaryUtilityWarnings.csv";
 
-            IEnumerable<Error> errors = errorsAndWarnings
-                .Where(x => x.type == Error.Type.Error)
-                .OrderBy(x => x.CsvLine);
-            IEnumerable<Error> warnings = errorsAndWarnings
-                .Where(x => x.type == Error.Type.Warning);
+            WriteErrorsToFile(errorsAndWarnings.Where(x => x.type == Error.Type.Error), errorsFileName);
+            WriteErrorsToFile(errorsAndWarnings.Where(x => x.type == Error.Type.Warning), warningsFileName);
+        }
+
+        private void WriteErrorsToFile(IEnumerable<Error> errors, string file)
+        {
+            errors = errors.OrderBy(x => x.CsvLine);
 
             List<string> errorText = new List<string>();
             errorText.Add("Line, Type, Message");
             errorText.AddRange(errors.Select(e => e.CsvLine + "," + e.exception.ToString() + "," + e.Message));
 
-            List<string> warningText = new List<string>();
-            warningText.Add("Type, Message");
-            warningText.AddRange(warnings.Select(e => e.exception.ToString() + "," + e.Message));
-
-            File.WriteAllLines(errorsFileName, errorText);
-            File.WriteAllLines(warningsFileName, warningText);
+            File.WriteAllLines(file, errorText);
         }
     }
 }

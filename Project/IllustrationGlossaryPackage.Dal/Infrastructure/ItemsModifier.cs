@@ -58,7 +58,7 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             ZipArchiveEntry existingIll = testPackageArchive.Entries.FirstOrDefault(x => x.FullName == illustration.CopiedToPath);
             if(existingIll != null)
             {
-                errors.Add(new Error(Error.Exception.OverwriteWarning, "Overwriting image file: " + illustration.CopiedToPath, Error.Type.Warning));
+                errors.Add(new Error(Error.Exception.OverwriteWarning, "Overwriting image file: " + illustration.CopiedToPath, illustration.LineNumber, Error.Type.Warning));
                 existingIll.Delete();
             }
 
