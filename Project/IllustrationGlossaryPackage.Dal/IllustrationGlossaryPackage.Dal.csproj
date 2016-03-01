@@ -43,7 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\Errorable.cs" />
+    <Compile Include="Interfaces\IErrorable.cs" />
+    <Compile Include="Models\AssessmentItem.cs" />
     <Compile Include="Infrastructure\ItemsModifier.cs" />
+    <Compile Include="Models\Error.cs" />
+    <Compile Include="Models\ItemDocument.cs" />
+    <Compile Include="Models\KeywordListItem.cs" />
     <Compile Include="Infrastructure\ManifestModifier.cs" />
     <Compile Include="Interfaces\IIllustrationGlossaryParser.cs" />
     <Compile Include="Interfaces\IItemsModifier.cs" />
@@ -51,6 +57,9 @@
     <Compile Include="Models\Illustration.cs" />
     <Compile Include="Infrastructure\IllustrationGlossaryParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

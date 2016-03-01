@@ -10105,11 +10105,11 @@
     <resource identifier="item-187-1840_metadata" type="resourcemetadata/apipv1p0">
       <file href="Items/Item-187-1840/metadata.xml" />
     </resource>
-    <resource identifier="item_1844_shelf_svg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
-      <file href="Items/Item-187-1840/item_1844_shelf_svg.svg" />
+    <resource identifier="shelf" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1840/shelf.svg" />
     </resource>
-    <resource identifier="item_1844_enter_svg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
-      <file href="Items/Item-187-1840/item_1844_enter_svg.svg" />
+    <resource identifier="enter" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1840/enter.svg" />
     </resource>
     <resource identifier="item_1840_v9_Stem_png16malpha_png" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
       <file href="Items/Item-187-1840/item_1840_v9_Stem_png16malpha.png" />
@@ -10158,11 +10158,11 @@
     <resource identifier="item-187-1844" type="imsqti_apipitem_xmlv2p2">
       <file href="Items/Item-187-1844/item-187-1844.xml" />
       <dependency identifierref="item_1844_ASL_STEM_MP4" />
-      <dependency identifierref="item_1844_store_svg" />
-      <dependency identifierref="item_1844_purchasing_svg" />
-      <dependency identifierref="item_1844_clothes_svg" />
-      <dependency identifierref="item_1844_packs_of_gum_svg" />
-      <dependency identifierref="item_1844_pack_of_gum_svg" />
+      <dependency identifierref="store" />
+      <dependency identifierref="purchasing" />
+      <dependency identifierref="clothes" />
+      <dependency identifierref="packs_of_gum" />
+      <dependency identifierref="pack_of_gum" />
       <dependency identifierref="item-187-1072" />
       <dependency identifierref="item-187-2316" />
       <dependency identifierref="item-187-1844_metadata" />
@@ -10173,23 +10173,27 @@
     <resource identifier="item_1844_ASL_STEM_MP4" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
       <file href="Items/Item-187-1844/item_1844_ASL_STEM.MP4" />
     </resource>
-    <resource identifier="item_1844_store_svg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
-      <file href="Items/Item-187-1844/item_1844_store_svg.svg" />
+    <resource identifier="store" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1844/store.svg" />
     </resource>
-    <resource identifier="item_1844_purchasing_svg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
-      <file href="Items/Item-187-1844/item_1844_purchasing_svg.svg" />
+    <resource identifier="purchasing" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1844/purchasing.svg" />
     </resource>
-    <resource identifier="item_1844_clothes_svg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
-      <file href="Items/Item-187-1844/item_1844_clothes_svg.svg" />
+    <resource identifier="clothes" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1844/clothes.svg" />
     </resource>
-    <resource identifier="item_1844_packs_of_gum_svg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
-      <file href="Items/Item-187-1844/item_1844_packs_of_gum_svg.svg" />
+    <resource identifier="packs_of_gum" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1844/packs_of_gum.svg" />
     </resource>
-    <resource identifier="item_1844_pack_of_gum_svg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
-      <file href="Items/Item-187-1844/item_1844_pack_of_gum_svg.svg" />
+    <resource identifier="pack_of_gum" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1844/pack_of_gum.svg" />
     </resource>
     <resource identifier="item-187-1873" type="imsqti_apipitem_xmlv2p2">
       <file href="Items/Item-187-1873/item-187-1873.xml" />
+      <dependency identifierref="spend" />
+      <dependency identifierref="school_supplies" />
+      <dependency identifierref="price" />
+      <dependency identifierref="buy" />
       <dependency identifierref="Item_1873_v17_qrx" />
       <dependency identifierref="item_1873_ASL_STEM_MP4" />
       <dependency identifierref="item-187-1073" />
@@ -10198,6 +10202,18 @@
     </resource>
     <resource identifier="item-187-1873_metadata" type="resourcemetadata/apipv1p0">
       <file href="Items/Item-187-1873/metadata.xml" />
+    </resource>
+    <resource identifier="spend" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1873/spend.svg" />
+    </resource>
+    <resource identifier="school_supplies" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1873/school_supplies.svg" />
+    </resource>
+    <resource identifier="price" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1873/price.svg" />
+    </resource>
+    <resource identifier="buy" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1873/buy.svg" />
     </resource>
     <resource identifier="item_1873_ASL_STEM_MP4" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
       <file href="Items/Item-187-1873/item_1873_ASL_STEM.MP4" />
@@ -10284,9 +10300,9 @@
     </resource>
     <resource identifier="item-187-1881" type="imsqti_apipitem_xmlv2p2">
       <file href="Items/Item-187-1881/item-187-1881.xml" />
-      <dependency identifierref="item_1881_spinner_svg" />
-      <dependency identifierref="item_1881_arrow_svg" />
-      <dependency identifierref="item_1881_spun_svsg" />
+      <dependency identifierref="spinner" />
+      <dependency identifierref="arrow" />
+      <dependency identifierref="spun" />
       <dependency identifierref="item_1881_ASL_STEM_MP4" />
       <dependency identifierref="item_1881_v14_graphics2_png256_png" />
       <dependency identifierref="item_1881_v14_graphics1_png256_png" />
@@ -10305,14 +10321,14 @@
     <resource identifier="item-187-1881_metadata" type="resourcemetadata/apipv1p0">
       <file href="Items/Item-187-1881/metadata.xml" />
     </resource>
-    <resource identifier="item_1881_spinner_svg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
-      <file href="Items/Item-187-1881/item_1881_spinner_svg.svg" />
+    <resource identifier="spinner" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1881/spinner.svg" />
     </resource>  
-    <resource identifier="item_1881_arrow_svg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
-      <file href="Items/Item-187-1881/item_1881_arrow_svg.svg" />
+    <resource identifier="arrow" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1881/arrow.svg" />
     </resource>
-    <resource identifier="item_1881_spun_svsg" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
-      <file href="Items/Item-187-1881/item_1881_spun_svg.svg" />
+    <resource identifier="spun" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1881/spun.svg" />
     </resource>
     <resource identifier="item_1881_v14_Object4_png16malpha_png" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
       <file href="Items/Item-187-1881/item_1881_v14_Object4_png16malpha.png" />
@@ -11385,6 +11401,9 @@
     </resource>
     <resource identifier="item-187-1973" type="imsqti_apipitem_xmlv2p2">
       <file href="Items/Item-187-1973/item-187-1973.xml" />
+      <dependency identifierref="picture_album" />
+      <dependency identifierref="4_pictures" />
+      <dependency identifierref="page" />
       <dependency identifierref="item_1973_ASL_STEM_MP4" />
       <dependency identifierref="item-187-1072" />
       <dependency identifierref="item-187-2158" />
@@ -11392,6 +11411,15 @@
     </resource>
     <resource identifier="item-187-1973_metadata" type="resourcemetadata/apipv1p0">
       <file href="Items/Item-187-1973/metadata.xml" />
+    </resource>
+    <resource identifier="picture_album" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1973/picture_album.svg" />
+    </resource>
+    <resource identifier="4_pictures" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1973/4_pictures.svg" />
+    </resource>
+    <resource identifier="page" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
+      <file href="Items/Item-187-1973/page.svg" />
     </resource>
     <resource identifier="item_1973_ASL_STEM_MP4" type="associatedcontent/apip_xmlv1p0/learning-application-resource">
       <file href="Items/Item-187-1973/item_1973_ASL_STEM.MP4" />

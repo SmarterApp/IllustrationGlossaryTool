@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IllustrationGlossaryPackage.Dal.Infrastructure
 {
-    public class IllustrationGlossaryParser : IIllustrationGlossaryParser
+    public class IllustrationGlossaryParser : Errorable, IErrorable, IIllustrationGlossaryParser
     {
         /// <summary>
         /// Parses the csv of illustrations to be added to the test package
@@ -24,27 +24,41 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             using (StreamReader file = new StreamReader(csvFilePath))
             {
                 string line;
+                int count = 2;
                 line = file.ReadLine(); //ignore header line of csv
                 while ((line = file.ReadLine()) != null)
                 {
-                    IList<string> lineItems = line.Split(',');
+                    IList<string> lineItems = line.Split(',').Where(s => !string.IsNullOrWhiteSpace(s)).ToList();
                     if (lineItems.Count() == 3)
                     {
                         Illustration illustration = new Illustration
                         {
                             ItemId = lineItems[0],
                             Term = lineItems[1],
-                            FileName = lineItems[2],
-                            FileExists = File.Exists(lineItems[2])
+                            OriginalFilePath = lineItems[2],
+                            FileExists = File.Exists(lineItems[2]),
+                            Identifier = Path.GetFileNameWithoutExtension(lineItems[2]),
+                            LineNumber = count
                         };
-
-                        illustrations.Add(illustration);
+                        if (illustration.FileExists)
+                        {
+                            illustrations.Add(illustration);
+                        }
+                        else
+                        {
+                            errors.Add(new Error(Error.Exception.FileDNE, illustration.OriginalFilePath + " does not exist", count));
+                        }
                     }
+                    else
+                    {
+                        errors.Add(new Error(Error.Exception.InvalidCsvLine, "Illustration must have 3 non-empty columns", count));
+                    }
+
+                    count++;
                 }
             }
 
             return illustrations;
         }
-
     }
 }

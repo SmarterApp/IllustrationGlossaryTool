@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,8 +45,14 @@
     <Compile Include="Exceptions\ArchiveAlreadyExistsException.cs" />
     <Compile Include="Exceptions\InvalidFileException.cs" />
     <Compile Include="Infrastructure\Archiver.cs" />
+    <Compile Include="Extensions\CustomExtensions.cs" />
+    <Compile Include="Infrastructure\ErrorRecorder.cs" />
     <Compile Include="Infrastructure\FileValidator.cs" />
     <Compile Include="Infrastructure\GlossaryAugmenter.cs" />
+    <Compile Include="Interfaces\IErrorRecorder.cs" />
+    <Compile Include="Interfaces\IItemsProcessor.cs" />
+    <Compile Include="Infrastructure\ItemsProcessor.cs" />
+    <Compile Include="Extensions\XRaw.cs" />
     <Compile Include="Interfaces\IArchiver.cs" />
     <Compile Include="Interfaces\IFileValidator.cs" />
     <Compile Include="Interfaces\IGlossaryAugmenter.cs" />

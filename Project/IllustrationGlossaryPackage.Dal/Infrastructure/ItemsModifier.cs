@@ -1,29 +1,102 @@
-﻿using IllustrationGlossaryPackage.Dal.Interfaces;
+﻿using IllustrationGlossaryPackage.Core.Infrastructure;
+using IllustrationGlossaryPackage.Dal.Interfaces;
 using IllustrationGlossaryPackage.Dal.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace IllustrationGlossaryPackage.Dal.Infrastructure
 {
-    public class ItemsModifier : IItemsModifier
+    public class ItemsModifier : Errorable, IErrorable, IItemsModifier
     {
+        private IIllustrationGlossaryParser glossaryParser;
+        public ItemsModifier() : this(new IllustrationGlossaryParser()) { }
+        public ItemsModifier(IllustrationGlossaryParser glossaryParser)
+        {
+            this.glossaryParser = glossaryParser;
+        }
+
+
         /// <summary>
-        /// Adds each illustration to the corresponding item in the test package
+        /// Saves a keywordlist item to a zip archive
         /// </summary>
-        /// <param name="illustrations"></param>
-        /// <param name="testPackageFilePath"></param>
-        public void AddIllustrationsToItems(IEnumerable<Illustration> illustrations, string testPackageFilePath)
+        /// <param name="keywordListItem"></param>
+        /// <param name="testPackageArchive"></param>
+        public void SaveItem(KeywordListItem keywordListItem, ZipArchive testPackageArchive)
         {
-
+            ZipArchiveEntry itemXmlEntry = SelectItemZipEntry(keywordListItem.FullPath, testPackageArchive);
+            SaveItem(keywordListItem.Document, itemXmlEntry);
         }
 
-        private static void MoveMediaFileForIllustrationToPath(Illustration illustration, string path)
+        public void SaveItem(XDocument document, ZipArchiveEntry zipEntry)
         {
-
+            using (StreamWriter writer = new StreamWriter(zipEntry.Open()))
+            {
+                document.Document.Save(writer);
+            }
         }
 
-        private static void UpdateXmlForIllustration(Illustration illustration)
+        public string GetIllustrationCopyToLocation(Illustration illustration, KeywordListItem keywordListItem, ZipArchive testPackageArchive)
         {
+            string directory = Path.GetDirectoryName(keywordListItem.FullPath);
+            string illPath = directory + "\\" + illustration.FileName;
+            return illPath;
+        }
 
+        /// <summary>
+        /// Moves an illustration to the appropreate keywordlist item in the archive
+        /// </summary>
+        /// <param name="illustration"></param>
+        /// <param name="keywordListItem"></param>
+        /// <param name="testPackageArchive"></param>
+        public void MoveMediaFileForIllustration(Illustration illustration, AssessmentItem assessmentItem, ZipArchive testPackageArchive)
+        {
+            ZipArchiveEntry existingIll = testPackageArchive.Entries.FirstOrDefault(x => x.FullName == illustration.CopiedToPath);
+            if(existingIll != null)
+            {
+                errors.Add(new Error(Error.Exception.OverwriteWarning, "Overwriting image file: " + illustration.CopiedToPath, Error.Type.Warning));
+                existingIll.Delete();
+            }
+
+            testPackageArchive.CreateEntryFromFile(illustration.OriginalFilePath, illustration.CopiedToPath);
+        }
+        
+        /// <summary>
+        /// selects and archive entry from an archive
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="testPackageArchive"></param>
+        /// <returns></returns>
+        private ZipArchiveEntry SelectItemZipEntry(string filePath, ZipArchive testPackageArchive)
+        {
+            return testPackageArchive.Entries.FirstOrDefault(x => x.FullName == filePath);
+        }
+
+        /// <summary>
+        /// null safe way to get an attributes value from an xml element
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="attributeName"></param>
+        /// <returns></returns>
+        public string GetAttribute(XElement e, string attributeName)
+        {
+            XAttribute attribute = e.Attribute(attributeName);
+            return NullSaveValue(attribute);
+        }
+
+        public string GetAttribute(XElement e, XName attributeName)
+        {
+            XAttribute attribute = e.Attribute(attributeName);
+            return NullSaveValue(attribute);
+        }
+
+        private string NullSaveValue(XAttribute attribute)
+        {
+            return attribute == null ? string.Empty : attribute.Value;
         }
     }
 }

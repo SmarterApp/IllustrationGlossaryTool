@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<metadata>
+  <smarterAppMetadata xmlns="http://www.smarterapp.org/ns/1/assessment_item_metadata">
+    <Identifier>2158</Identifier>
+    <ItemAuthorIdentifier>Kerry_Dillard</ItemAuthorIdentifier>
+    <ItemSpecFormat>SmarterApp</ItemSpecFormat>
+    <LastModifiedBy>Kerry_Dillard</LastModifiedBy>
+    <SecurityStatus>Non-secure</SecurityStatus>
+    <SmarterAppItemDescriptor>1973</SmarterAppItemDescriptor>
+    <Status>Ready for Field Test</Status>
+    <StimulusFormat>Standard</StimulusFormat>
+    <Subject>Student Help</Subject>
+    <Version>12</Version>
+    <MaximumGrade>NA</MaximumGrade>
+    <MinimumGrade>NA</MinimumGrade>
+    <IntendedGrade>NA</IntendedGrade>
+    <InteractionType>WIT</InteractionType>
+    <StandardPublication>
+      <Publication>SBAC-SH-v1</Publication>
+      <PrimaryStandard>SBAC-SH-v1:SH-Undesignated</PrimaryStandard>
+    </StandardPublication>
+  </smarterAppMetadata>
+</metadata>

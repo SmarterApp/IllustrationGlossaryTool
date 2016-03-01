@@ -54,6 +54,10 @@
       <Project>{ba5e271f-db7d-4e26-b635-5679f36daf12}</Project>
       <Name>IllustrationGlossaryPackage.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IllustrationGlossaryPackage.Dal\IllustrationGlossaryPackage.Dal.csproj">
+      <Project>{a4491e55-cd42-4785-bd14-d5736f51cc6f}</Project>
+      <Name>IllustrationGlossaryPackage.Dal</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

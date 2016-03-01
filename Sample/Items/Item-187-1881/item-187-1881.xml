@@ -60,21 +60,7 @@
     </attriblist>
     <tutorial id="1073" bankkey="187" />
     <resourceslist>
-      <resource type="wordList" id="2308" index="1" bankkey="187" >
-        <item type="wordList" id="1881" bankkey="187">
-          <keywordList>
-            <keyword text="spinner" index="1">
-              <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">spinner<a href="item_1881_spinner_svg.svg" type="illustration/svg" visible="True"></a></p>]]></html>
-            </keyword>
-            <keyword text="arrow" index="1">
-              <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">arrow<a href="item_1881_arrow_svg.svg" type="illustration/svg" visible="True"></a></p>]]></html>
-            </keyword>
-            <keyword text="spun" index="1">
-              <html listType="illustration" listCode="TDS_WL_Illustration"><![CDATA[<p style="">spun<a href="item_1881_spun_svg.svg" type="illustration/svg" visible="True"></a></p>]]></html>
-            </keyword>
-          </keywordList>
-        </item>
-      </resource>
+      <resource type="wordList" id="2308" index="1" bankkey="187" />
     </resourceslist>
     <statistic />
     <content language="ENU" version="2.0" approvedVersion="14">
