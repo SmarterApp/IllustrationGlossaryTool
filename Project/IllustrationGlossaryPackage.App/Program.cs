@@ -133,6 +133,10 @@ namespace IllustrationGlossaryPackage.App
             {
                 ExitWithErrorString("Error: IOException: " + e.Message);
             }
+            catch(ElementDoesNotExistException e)
+            {
+                ExitWithErrorString("Error: InvalidXmlFile: " + e.Message);
+            }
 
             return augmenter.GetErrors();
         }

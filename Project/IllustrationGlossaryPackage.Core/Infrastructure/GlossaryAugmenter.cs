@@ -52,9 +52,9 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         {
             XNamespace ns = "http://www.imsglobal.org/xsd/apip/apipv1p0/imscp_v1p1";
             IList<XElement> resources = manifest
-                .Element(ns + "manifest")
-                .Element(ns + "resources")
-                .Elements(ns + "resource").ToList();
+                .ElementOrException(ns + "manifest")
+                .ElementOrException(ns + "resources")
+                .ElementsOrException(ns + "resource").ToList();
             foreach (KeywordListItem keywordListItem in keywordListItems)
             {
                 foreach(AssessmentItem assessmentItem in keywordListItem.AssessmentItems)
@@ -124,8 +124,8 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         {
             XDocument itemXml = keywordListItem.Document;
             XElement rootElement = itemXml
-                .Element("itemrelease")
-                .Element("item");
+                .ElementOrException("itemrelease")
+                .ElementOrException("item");
             XElement keywordListElt = rootElement.ElementOrCreate("keywordList");
             foreach (AssessmentItem assessmentItem in keywordListItem.AssessmentItems)
             {
@@ -144,7 +144,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
 
         private void AddIllustrationToKeywordListItem(Illustration illustration, XElement keywordListElt, string KeywordListItemId)
         {
-            IEnumerable<XElement> keywords = keywordListElt.Elements("keyword");
+            IEnumerable<XElement> keywords = keywordListElt.ElementsOrException("keyword");
             XElement keyword = keywords.FirstOrDefault(
                         x => itemsModifier.GetAttribute(x, "text") == illustration.Term);
             if (keyword == null)
@@ -154,7 +154,8 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             }
             else
             {
-                IEnumerable<XElement> existingHtmlElt = keyword.Elements("html").Where(x => itemsModifier.GetAttribute(x, "listType") == "illustration"
+                IEnumerable<XElement> existingHtmlElt = keyword.ElementsOrException("html")
+                                        .Where(x => itemsModifier.GetAttribute(x, "listType") == "illustration"
                                            && itemsModifier.GetAttribute(x, "listCode") == "TDS_WL_Illustration");
                 if(existingHtmlElt != null && existingHtmlElt.Count() > 0)
                 {

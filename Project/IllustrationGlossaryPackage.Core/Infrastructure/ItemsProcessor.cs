@@ -117,7 +117,10 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// <returns></returns>
         private string GetKeywordListItemId(XDocument d)
         {
-            IEnumerable<XElement> resources = d.Element("itemrelease").Element("item").Element("resourceslist").Elements("resource");
+            IEnumerable<XElement> resources = d.ElementOrException("itemrelease")
+                .ElementOrException("item")
+                .ElementOrException("resourceslist")
+                .ElementsOrException("resource");
             XElement wordlist = resources.First(y => itemsModifier.GetAttribute(y, "type") == "wordList");
             string keywordListId = wordlist.Attribute("id").Value;
             return keywordListId;
@@ -131,8 +134,8 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// <returns></returns>
         private ItemDocument SelectByID(IEnumerable<ItemDocument> items, string id)
         {
-            return items.FirstOrDefault(x => x.Document.Element("itemrelease")
-                        .Element("item").Attribute("id").ToString()
+            return items.FirstOrDefault(x => x.Document.ElementOrException("itemrelease")
+                        .ElementOrException("item").Attribute("id").ToString()
                         .Contains(id));
         }
 
