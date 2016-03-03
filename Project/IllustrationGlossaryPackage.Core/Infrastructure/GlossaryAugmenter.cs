@@ -80,16 +80,19 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             XElement existingIllDependency = assessmentItemResource.Descendants().FirstOrDefault(x =>
                 itemsModifier.GetAttribute(x, "identifierref") == illustration.Identifier);
 
-            if (existingIllResource != null)
-            {
-                existingIllResource.Remove();
-            }
+            RemoveTag(existingIllResource, "identifier", illustration);
+            RemoveTag(existingIllDependency, "identifierref", illustration);
+        }
 
-            if (existingIllDependency != null)
+        private void RemoveTag(XElement existingElt, string idAttribute, Illustration illustration)
+        {
+            if (existingElt != null)
             {
-                existingIllDependency.Remove();
+                string msg = string.Format("In manifest file: Overwriting <{0}> tag with identifier {1}",
+                                existingElt.Name.LocalName, itemsModifier.GetAttribute(existingElt, idAttribute));
+                errors.Add(new Error(Error.Exception.OverwriteWarning, msg, illustration.LineNumber, Error.Type.Warning));
+                existingElt.Remove();
             }
-
         }
 
         /// <summary>
@@ -130,7 +133,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 {
                     illustration.CopiedToPath = 
                         itemsModifier.GetIllustrationCopyToLocation(illustration, keywordListItem, testPackageArchive);
-                    AddIllustrationToKeywordListItem(keywordListElt, illustration);
+                    AddIllustrationToKeywordListItem(illustration, keywordListElt, keywordListItem.ItemId);
                     itemsModifier.MoveMediaFileForIllustration(illustration, assessmentItem, testPackageArchive);
                 }
             }
@@ -139,7 +142,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             return 0;
         }
 
-        private void AddIllustrationToKeywordListItem(XElement keywordListElt, Illustration illustration)
+        private void AddIllustrationToKeywordListItem(Illustration illustration, XElement keywordListElt, string KeywordListItemId)
         {
             IEnumerable<XElement> keywords = keywordListElt.Elements("keyword");
             XElement keyword = keywords.FirstOrDefault(
@@ -151,9 +154,15 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             }
             else
             {
-                keyword.Elements("html").Where(x => itemsModifier.GetAttribute(x, "listType") == "illustration"
-                                            && itemsModifier.GetAttribute(x, "listCode") == "TDS_WL_Illustration")
-                                            .Remove();
+                IEnumerable<XElement> existingHtmlElt = keyword.Elements("html").Where(x => itemsModifier.GetAttribute(x, "listType") == "illustration"
+                                           && itemsModifier.GetAttribute(x, "listCode") == "TDS_WL_Illustration");
+                if(existingHtmlElt != null && existingHtmlElt.Count() > 0)
+                {
+                    string msg = string.Format("In item {0}: Overwriting illustration <html> tag under keyword {1}",
+                                                KeywordListItemId, illustration.Term);
+                    errors.Add(new Error(Error.Exception.OverwriteWarning, msg, illustration.LineNumber, Error.Type.Warning));
+                    existingHtmlElt.Remove();
+                }
                 keyword.Add(GetHtmlXElementForFile(illustration.FileName));
             }
         }
