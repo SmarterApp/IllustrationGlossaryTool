@@ -11,13 +11,13 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
 {
     public class ErrorRecorder : IErrorRecorder
     {
+        static string errorsFileName = "\\GlossaryUtilityErrors.csv";
+        static string warningsFileName = "\\GlossaryUtilityWarnings.csv";
+
         public void RecordErrors(IEnumerable<Error> errorsAndWarnings, string directory)
         {
-            string errorsFileName = directory + "\\GlossaryUtilityErrors.csv";
-            string warningsFileName = directory + "\\GlossaryUtilityWarnings.csv";
-
-            WriteErrorsToFile(errorsAndWarnings.Where(x => x.type == Error.Type.Error), errorsFileName);
-            WriteErrorsToFile(errorsAndWarnings.Where(x => x.type == Error.Type.Warning), warningsFileName);
+            WriteErrorsToFile(errorsAndWarnings.Where(x => x.type == Error.Type.Error), directory + errorsFileName);
+            WriteErrorsToFile(errorsAndWarnings.Where(x => x.type == Error.Type.Warning), directory + warningsFileName);
         }
 
         private void WriteErrorsToFile(IEnumerable<Error> errors, string file)
@@ -29,6 +29,12 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             errorText.AddRange(errors.Select(e => e.CsvLine + "," + e.exception.ToString() + "," + e.Message));
 
             File.WriteAllLines(file, errorText);
+        }
+
+        public void RemoveExistingErrors(string errorsDirectory)
+        {
+            File.Delete(errorsDirectory + errorsFileName);
+            File.Delete(errorsDirectory + warningsFileName);
         }
     }
 }

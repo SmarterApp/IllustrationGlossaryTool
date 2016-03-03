@@ -10,5 +10,6 @@ namespace IllustrationGlossaryPackage.Core.Interfaces
     public interface IErrorRecorder
     {
         void RecordErrors(IEnumerable<Error> errors, string directory);
+        void RemoveExistingErrors(string errorsDirectory);
     }
 }
