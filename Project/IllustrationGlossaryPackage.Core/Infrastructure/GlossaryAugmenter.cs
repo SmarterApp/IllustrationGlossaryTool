@@ -142,12 +142,22 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
 
         private void AddIllustrationToKeywordListItem(Illustration illustration, XElement keywordListElt, string KeywordListItemId)
         {
-            IEnumerable<XElement> keywords = keywordListElt.ElementsOrException("keyword");
-            XElement keyword = keywords.FirstOrDefault(
+            // TODO REFACTOR THIS METHOD
+            IEnumerable<XElement> keywords = keywordListElt.Elements("keyword");
+            XElement keyword = null;
+            if (keywords != null && keywords.Count() > 0)
+            {
+                keyword = keywords.FirstOrDefault(
                         x => itemsModifier.GetAttribute(x, "text") == illustration.Term);
+            }
             if (keyword == null)
             {
-                int maxIndex = keywords.Select(x => int.Parse(itemsModifier.GetAttribute(x, "index"))).Max();
+                IEnumerable<int> indicies = keywords.Select(x =>
+                {
+                    string index = itemsModifier.GetAttribute(x, "index");
+                    return index == string.Empty ? 0 : int.Parse(index);
+                });
+                int maxIndex = indicies == null || indicies.Count() < 1 ? 0 : indicies.Max();
                 keywordListElt.Add(GetKeywordXElementForFile(illustration, maxIndex));
             }
             else

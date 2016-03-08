@@ -241,7 +241,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                                 new XAttribute("id", id),
                                 new XAttribute("version", "10"),
                                 new XAttribute("bankkey", "187"),
-                                new XElement("keywordList"))));
+                                new XElement("keywordList", string.Empty))));
         }
     }
 }

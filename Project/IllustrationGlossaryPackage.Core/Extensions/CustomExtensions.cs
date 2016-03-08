@@ -1,4 +1,5 @@
 ﻿using IllustrationGlossaryPackage.Core.Exceptions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,10 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
 
         public static IEnumerable<XElement> ElementsOrException(this XElement parent, XName eltName)
         {
+            if(parent == null)
+            {
+                throw new NullReferenceException();
+            }
             IEnumerable<XElement> elts = parent.Elements(eltName);
             return ElementsOrException(parent, elts, eltName.LocalName);
         }
