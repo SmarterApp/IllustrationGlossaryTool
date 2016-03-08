@@ -86,6 +86,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                         assessmentItem.KeywordListItemId = keywordlistId;
                         itemsModifier.SaveItem(d, assessmentItem.GetZipArchiveEntry(testPackageArchive));
                         CreateNonexistantKeywordlistItem(assessmentItem, testPackageArchive);
+                        CreateMetaData(assessmentItem, testPackageArchive);
                     }
                 }
             }
@@ -96,6 +97,14 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             string wordlistFilePath = string.Format("Items/Item-{0}-{1}/item-{0}-{1}.xml", "187", assessmentItem.KeywordListItemId);
             ZipArchiveEntry entry = testPackageArchive.CreateEntry(wordlistFilePath);
             XDocument document = new XDocument(CreateEmptyKeywordlistXml(assessmentItem.KeywordListItemId));
+            itemsModifier.SaveItem(document, entry);
+        }
+
+        private void CreateMetaData(AssessmentItem assessmentItem, ZipArchive testPackageArchive)
+        {
+            string wordlistFilePath = string.Format("Items/Item-{0}-{1}/metadata.xml", "187", assessmentItem.KeywordListItemId);
+            ZipArchiveEntry entry = testPackageArchive.CreateEntry(wordlistFilePath);
+            XDocument document = new XDocument(CreateEmptyMetaData(assessmentItem.KeywordListItemId, assessmentItem.ItemId));
             itemsModifier.SaveItem(document, entry);
         }
 
@@ -242,6 +251,18 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                                 new XAttribute("version", "10"),
                                 new XAttribute("bankkey", "187"),
                                 new XElement("keywordList", string.Empty))));
+        }
+
+        private XDocument CreateEmptyMetaData(string id, string assessmentItemId)
+        {
+            XNamespace ns = "http://www.smarterapp.org/ns/1/assessment_item_metadata";
+            return new XDocument(new XDeclaration("1.0", "iso-8859-1", "yes"),
+                        new XElement("metadata",
+                            new XElement(ns + "smarterAppMetadata",
+                                new XElement(ns + "Identifier", id),
+                                new XElement(ns + "SmarterAppItemDescriptor", assessmentItemId),
+                                new XElement(ns + "ItemAuthorIdentifier", "IllustrationGlossaryPackage"),
+                                new XElement(ns + "LastModifiedBy", "IllustrationGlossaryPackage"))));
         }
     }
 }
