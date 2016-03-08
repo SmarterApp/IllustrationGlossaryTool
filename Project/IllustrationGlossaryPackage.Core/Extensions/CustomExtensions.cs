@@ -10,13 +10,24 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
     {
         public static XElement ElementOrCreate(this XElement parent, XName name)
         {
+            AddIfNotExists(parent, name);
+            return parent.Element(name);
+        }
+
+        public static IEnumerable<XElement> ElementsOrCreate(this XElement parent, XName name)
+        {
+            AddIfNotExists(parent, name);
+            return parent.Elements(name);
+        }
+
+        private static void AddIfNotExists(this XElement parent, XName name)
+        {
             bool elementExists = parent.Elements(name).Any();
             if (!elementExists)
             {
                 XElement element = new XElement(name);
                 parent.Add(element);
             }
-            return parent.Element(name);
         }
 
         public static XElement ElementOrException(this XElement parent, string eltName)

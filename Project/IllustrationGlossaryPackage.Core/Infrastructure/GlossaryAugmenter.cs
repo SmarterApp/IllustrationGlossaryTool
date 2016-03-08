@@ -131,8 +131,6 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             {
                 foreach(Illustration illustration in assessmentItem.Illustrations)
                 {
-                    illustration.CopiedToPath = 
-                        itemsModifier.GetIllustrationCopyToLocation(illustration, keywordListItem, testPackageArchive);
                     AddIllustrationToKeywordListItem(illustration, keywordListElt, keywordListItem.ItemId);
                     itemsModifier.MoveMediaFileForIllustration(illustration, assessmentItem, testPackageArchive);
                 }

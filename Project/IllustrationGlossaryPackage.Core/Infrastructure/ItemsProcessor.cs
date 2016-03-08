@@ -34,28 +34,69 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         public IEnumerable<KeywordListItem> GetKeywordListItems(string testPackageFilePath, string itemsFilePath)
         {
             IEnumerable<AssessmentItem> assessmentItems = GetAssessmentItems(testPackageFilePath, itemsFilePath);
+            AddNonexistantWordlistResource(assessmentItems, testPackageFilePath);
             IEnumerable<string> keywordListItemIds = assessmentItems.Select(i => i.KeywordListItemId);
             IEnumerable<ItemDocument> keywordListDocuments = GetItemsXml(testPackageFilePath, keywordListItemIds);
             IList<KeywordListItem> keywordListItems = new List<KeywordListItem>();
             foreach (AssessmentItem assessmentItem in assessmentItems.ToList())
             {
                 string keywordListId = assessmentItem.KeywordListItemId;
+                ItemDocument itDoc = SelectByID(keywordListDocuments, keywordListId);
                 if (!keywordListItems.Any(x => x.ItemId.Equals(keywordListId)))
                 {
+                    
                     keywordListItems.Add(new KeywordListItem
                     {
                         ItemId = keywordListId,
                         AssessmentItems = new List<AssessmentItem>(),
-                        Document = SelectByID(keywordListDocuments, keywordListId).Document,
-                        FullPath = SelectByID(keywordListDocuments, keywordListId).FullPath
+                        Document = itDoc.Document,
+                        FullPath = itDoc.FullPath
                     });
                 }
-
+                assessmentItem.Illustrations.ToList().ForEach(x => 
+                    x.CopiedToPath = GetCopyToLocation(x, itDoc.FullPath));
                 keywordListItems.First(x => x.ItemId.Equals(keywordListId))
                     .AssessmentItems.Add(assessmentItem);
             }
 
             return keywordListItems;
+        }
+
+        private string GetCopyToLocation(Illustration illustration, string path)
+        {
+            string directory = Path.GetDirectoryName(path);
+            string illPath = directory + "\\" + illustration.FileName;
+            return illPath;
+        }
+
+
+        private void AddNonexistantWordlistResource(IEnumerable<AssessmentItem> assessmentItems, string testPackageFilePath)
+        {
+            using (ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update))
+            {
+                foreach (AssessmentItem assessmentItem in assessmentItems)
+                {
+                    XDocument d = assessmentItem.Document;
+                    XElement resourcesList = GetResourcesListElement(d);
+                    if (!resourcesList.Descendants().Any(y => itemsModifier.GetAttribute(y, "type") == "wordList"))
+                    {
+                        string keywordlistId = Convert.ToString(Convert.ToInt32(assessmentItem.ItemId) + 1000000);
+                        XElement e = CreateNewWordlistResource(keywordlistId);
+                        resourcesList.Add(e);
+                        assessmentItem.KeywordListItemId = keywordlistId;
+                        itemsModifier.SaveItem(d, assessmentItem.GetZipArchiveEntry(testPackageArchive));
+                        CreateNonexistantKeywordlistItem(assessmentItem, testPackageArchive);
+                    }
+                }
+            }
+        }
+
+        private void CreateNonexistantKeywordlistItem(AssessmentItem assessmentItem, ZipArchive testPackageArchive)
+        {
+            string wordlistFilePath = string.Format("Items/Item-{0}-{1}/item-{0}-{1}.xml", "187", assessmentItem.KeywordListItemId);
+            ZipArchiveEntry entry = testPackageArchive.CreateEntry(wordlistFilePath);
+            XDocument document = new XDocument(CreateEmptyKeywordlistXml(assessmentItem.KeywordListItemId));
+            itemsModifier.SaveItem(document, entry);
         }
 
         /// <summary>
@@ -117,13 +158,28 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// <returns></returns>
         private string GetKeywordListItemId(XDocument d)
         {
-            IEnumerable<XElement> resources = d.ElementOrException("itemrelease")
-                .ElementOrException("item")
-                .ElementOrException("resourceslist")
-                .ElementsOrException("resource");
-            XElement wordlist = resources.First(y => itemsModifier.GetAttribute(y, "type") == "wordList");
-            string keywordListId = wordlist.Attribute("id").Value;
+            IEnumerable<XElement> resourceElements = GetResourceElements(d);
+            XElement wordlist = resourceElements.FirstOrDefault(y => itemsModifier.GetAttribute(y, "type") == "wordList");
+            string keywordListId = null;
+            if (wordlist != null)
+            {
+                keywordListId = itemsModifier.GetAttribute(wordlist, "id");
+            }
+             
             return keywordListId;
+        }
+
+        private IEnumerable<XElement> GetResourceElements(XDocument d)
+        {
+            return GetResourcesListElement(d).Elements("resource");
+        }
+
+        private XElement GetResourcesListElement(XDocument d)
+        {
+            XElement resourcesList = d.ElementOrException("itemrelease")
+                .ElementOrCreate("item")
+                .ElementOrCreate("resourceslist");
+            return resourcesList;
         }
 
         /// <summary>
@@ -163,6 +219,29 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             }
 
             return itemXmls;
+        }
+
+        private XElement CreateNewWordlistResource(string keywordlistItemId)
+        {
+            return new XElement("resource",
+                        new XAttribute("type", "wordList"),
+                        new XAttribute("id", keywordlistItemId),
+                        // TODO: Make index actually do stufff
+                        new XAttribute("index", 1),
+                        new XAttribute("bankkey", "187"));
+        }
+
+        private XDocument CreateEmptyKeywordlistXml(string id)
+        {
+            return new XDocument(new XDeclaration("1.0", "utf-8", "yes"),
+                        new XElement("itemrelease",
+                            new XAttribute("version", "2.0"),
+                            new XElement("item",
+                                new XAttribute("type", "wordList"),
+                                new XAttribute("id", id),
+                                new XAttribute("version", "10"),
+                                new XAttribute("bankkey", "187"),
+                                new XElement("keywordList"))));
         }
     }
 }

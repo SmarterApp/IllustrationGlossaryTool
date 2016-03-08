@@ -40,13 +40,6 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             }
         }
 
-        public string GetIllustrationCopyToLocation(Illustration illustration, KeywordListItem keywordListItem, ZipArchive testPackageArchive)
-        {
-            string directory = Path.GetDirectoryName(keywordListItem.FullPath);
-            string illPath = directory + "\\" + illustration.FileName;
-            return illPath;
-        }
-
         /// <summary>
         /// Moves an illustration to the appropreate keywordlist item in the archive
         /// </summary>
@@ -55,7 +48,7 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
         /// <param name="testPackageArchive"></param>
         public void MoveMediaFileForIllustration(Illustration illustration, AssessmentItem assessmentItem, ZipArchive testPackageArchive)
         {
-            ZipArchiveEntry existingIll = testPackageArchive.Entries.FirstOrDefault(x => x.FullName == illustration.CopiedToPath);
+            ZipArchiveEntry existingIll = illustration.GetZipArchiveEntry(testPackageArchive);
             if(existingIll != null)
             {
                 errors.Add(new Error(Error.Exception.OverwriteWarning, "Overwriting image file: " + illustration.CopiedToPath, illustration.LineNumber, Error.Type.Warning));

@@ -1,6 +1,7 @@
 ﻿using IllustrationGlossaryPackage.Dal.Models;
 using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,5 +18,11 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         public string Identifier;
         public XDocument Document;
         public IEnumerable<Illustration> Illustrations;
+
+        public ZipArchiveEntry GetZipArchiveEntry(ZipArchive z)
+        {
+            return z.Entries.FirstOrDefault(x => x.FullName == this.FullPath);
+        }
     }
+
 }
