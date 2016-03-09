@@ -69,27 +69,5 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             return testPackageArchive.Entries.FirstOrDefault(x => x.FullName == filePath);
         }
 
-        /// <summary>
-        /// null safe way to get an attributes value from an xml element
-        /// </summary>
-        /// <param name="e"></param>
-        /// <param name="attributeName"></param>
-        /// <returns></returns>
-        public string GetAttribute(XElement e, string attributeName)
-        {
-            XAttribute attribute = e.Attribute(attributeName);
-            return NullSaveValue(attribute);
-        }
-
-        public string GetAttribute(XElement e, XName attributeName)
-        {
-            XAttribute attribute = e.Attribute(attributeName);
-            return NullSaveValue(attribute);
-        }
-
-        private string NullSaveValue(XAttribute attribute)
-        {
-            return attribute == null ? string.Empty : attribute.Value;
-        }
     }
 }

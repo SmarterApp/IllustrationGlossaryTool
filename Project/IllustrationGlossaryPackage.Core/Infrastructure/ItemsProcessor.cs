@@ -44,14 +44,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 ItemDocument itDoc = SelectByID(keywordListDocuments, keywordListId);
                 if (!keywordListItems.Any(x => x.ItemId.Equals(keywordListId)))
                 {
-                    
-                    keywordListItems.Add(new KeywordListItem
-                    {
-                        ItemId = keywordListId,
-                        AssessmentItems = new List<AssessmentItem>(),
-                        Document = itDoc.Document,
-                        FullPath = itDoc.FullPath
-                    });
+                    keywordListItems.Add(new KeywordListItem(keywordListId, itDoc));
                 }
                 assessmentItem.Illustrations.ToList().ForEach(x => 
                     x.CopiedToPath = GetCopyToLocation(x, itDoc.FullPath));
@@ -78,7 +71,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 {
                     XDocument d = assessmentItem.Document;
                     XElement resourcesList = GetResourcesListElement(d);
-                    if (!resourcesList.Descendants().Any(y => itemsModifier.GetAttribute(y, "type") == "wordList"))
+                    if (!resourcesList.Descendants().Any(y => y.GetAttribute("type") == "wordList"))
                     {
                         string keywordlistId = Convert.ToString(Convert.ToInt32(assessmentItem.ItemId) + 1000000);
                         XElement e = CreateNewWordlistResource(keywordlistId);
@@ -94,16 +87,14 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
 
         private void CreateNonexistantKeywordlistItem(AssessmentItem assessmentItem, ZipArchive testPackageArchive)
         {
-            string wordlistFilePath = string.Format("Items/Item-{0}-{1}/item-{0}-{1}.xml", "187", assessmentItem.KeywordListItemId);
-            ZipArchiveEntry entry = testPackageArchive.CreateEntry(wordlistFilePath);
+            ZipArchiveEntry entry = testPackageArchive.CreateEntry(assessmentItem.KeywordListFullPath);
             XDocument document = new XDocument(CreateEmptyKeywordlistXml(assessmentItem.KeywordListItemId));
             itemsModifier.SaveItem(document, entry);
         }
 
         private void CreateMetaData(AssessmentItem assessmentItem, ZipArchive testPackageArchive)
         {
-            string wordlistFilePath = string.Format("Items/Item-{0}-{1}/metadata.xml", "187", assessmentItem.KeywordListItemId);
-            ZipArchiveEntry entry = testPackageArchive.CreateEntry(wordlistFilePath);
+            ZipArchiveEntry entry = testPackageArchive.CreateEntry(assessmentItem.KeywordListMetadataFullPath);
             XDocument document = new XDocument(CreateEmptyMetaData(assessmentItem.KeywordListItemId, assessmentItem.ItemId));
             itemsModifier.SaveItem(document, entry);
         }
@@ -138,26 +129,13 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             ItemDocument document = SelectByID(contentItems, key);
             if(document != null)
             {
-                return new AssessmentItem
-                {
-                    ItemId = key,
-                    Illustrations = illustrations.ToList(),
-                    Document = document.Document,
-                    FullPath = document.FullPath,
-                    KeywordListItemId = GetKeywordListItemId(document.Document),
-                    Name = document.Name,
-                    Identifier = Path.GetFileNameWithoutExtension(document.FullPath)
-                };
+                string keywordlistItemId = GetKeywordListItemId(document.Document);
+                return new AssessmentItem(key, keywordlistItemId, illustrations, document);
             }
             else
             {
-                return new AssessmentItem
-                {
-                    ItemId = key,
-                    Illustrations = illustrations.ToList(),
-                };
+                return new AssessmentItem(key, illustrations);
             }
-            
         }
 
         /// <summary>
@@ -168,11 +146,11 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         private string GetKeywordListItemId(XDocument d)
         {
             IEnumerable<XElement> resourceElements = GetResourceElements(d);
-            XElement wordlist = resourceElements.FirstOrDefault(y => itemsModifier.GetAttribute(y, "type") == "wordList");
+            XElement wordlist = resourceElements.FirstOrDefault(y => y.GetAttribute("type") == "wordList");
             string keywordListId = null;
             if (wordlist != null)
             {
-                keywordListId = itemsModifier.GetAttribute(wordlist, "id");
+                keywordListId = wordlist.GetAttribute("id");
             }
              
             return keywordListId;
@@ -255,7 +233,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
 
         private XDocument CreateEmptyMetaData(string id, string assessmentItemId)
         {
-            XNamespace ns = "http://www.smarterapp.org/ns/1/assessment_item_metadata";
+            XNamespace ns = ManifestModifier.Namespace;
             return new XDocument(new XDeclaration("1.0", "iso-8859-1", "yes"),
                         new XElement("metadata",
                             new XElement(ns + "smarterAppMetadata",

@@ -94,5 +94,28 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             }
             return elts;
         }
+
+        /// <summary>
+        /// null safe way to get an attributes value from an xml element
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="attributeName"></param>
+        /// <returns></returns>
+        public static string GetAttribute(this XElement e, string attributeName)
+        {
+            XAttribute attribute = e.Attribute(attributeName);
+            return NullSaveValue(attribute);
+        }
+
+        public static string GetAttribute(this XElement e, XName attributeName)
+        {
+            XAttribute attribute = e.Attribute(attributeName);
+            return NullSaveValue(attribute);
+        }
+
+        private static string NullSaveValue(this XAttribute attribute)
+        {
+            return attribute == null ? string.Empty : attribute.Value;
+        }
     }
 }

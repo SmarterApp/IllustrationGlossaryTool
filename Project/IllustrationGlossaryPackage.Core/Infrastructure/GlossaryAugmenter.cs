@@ -50,22 +50,21 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
 
         private void AddKeywordListItemsToManifest(IList<KeywordListItem> keywordListItems, ZipArchive testPackageArchive, XDocument manifest)
         {
-            XNamespace ns = "http://www.imsglobal.org/xsd/apip/apipv1p0/imscp_v1p1";
-            IList<XElement> resources = manifest
-                .ElementOrException(ns + "manifest")
-                .ElementOrException(ns + "resources")
-                .ElementsOrException(ns + "resource").ToList();
+            IList<XElement> resources = manifestModifier.GetResourcesList(manifest).ToList();
             foreach (KeywordListItem keywordListItem in keywordListItems)
             {
                 foreach(AssessmentItem assessmentItem in keywordListItem.AssessmentItems)
                 {
-                    foreach(Illustration illustration in assessmentItem.Illustrations)
+                    XElement assessmentItemResource = resources.FirstOrDefault(x =>
+                             x.GetAttribute("identifier") == assessmentItem.Identifier);
+                    AddNonexistingKeywordlist(keywordListItem, assessmentItem, assessmentItemResource, resources);
+                    AddNonexistingKeywordlistToAssessmentItem(keywordListItem, assessmentItem, assessmentItemResource, resources);
+
+                    foreach (Illustration illustration in assessmentItem.Illustrations)
                     {
-                        XElement assessmentItemResource = resources.FirstOrDefault(x =>
-                             itemsModifier.GetAttribute(x, "identifier") == assessmentItem.Identifier);
                         ClearElements(resources, illustration, assessmentItemResource);
-                        assessmentItemResource.AddAfterSelf(GetManifestResourceElement(illustration, ns));
-                        assessmentItemResource.Add(GetManifestDependencyElement(illustration, ns));
+                        assessmentItemResource.AddAfterSelf(GetManifestResourceElement(illustration));
+                        assessmentItemResource.Add(GetManifestDependencyElement(illustration));
                     }
                 }
             }
@@ -73,12 +72,33 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             manifestModifier.SaveManifest(manifest, testPackageArchive);
         }
 
+        private void AddNonexistingKeywordlist(KeywordListItem keywordListItem, AssessmentItem assessmentItem, XElement assessmentItemResource, IList<XElement> resources)
+        {
+            if(!resources.Any(x => x.GetAttribute("identifier") == keywordListItem.Identifier))
+            {
+                assessmentItemResource.Parent.Add(GetKeywordlistItemResource(keywordListItem));
+            }
+            if (!resources.Any(x => x.GetAttribute("identifier") == keywordListItem.MetadataIdentifier))
+            {
+                assessmentItemResource.Parent.Add(GetKeywordlistItemMetadataResource(keywordListItem, assessmentItem.KeywordListMetadataFullPath));
+            }
+        }
+
+        private void AddNonexistingKeywordlistToAssessmentItem(KeywordListItem keywordListItem, AssessmentItem assessmentItem, XElement assessmentItemResource, IList<XElement> resources)
+        {
+            IEnumerable<XElement> dependencies = assessmentItemResource.Descendants("dependency");
+            if (!dependencies.Any(x => x.GetAttribute("identifierref") == keywordListItem.Identifier))
+            {
+                assessmentItemResource.Add(GetKeywordlistItemDepency(keywordListItem));
+            }
+        }
+
         private void ClearElements(IList<XElement> resources, Illustration illustration, XElement assessmentItemResource)
         {
             XElement existingIllResource = resources.FirstOrDefault(x =>
-                            itemsModifier.GetAttribute(x, "identifier") == illustration.Identifier);
+                            x.GetAttribute("identifier") == illustration.Identifier);
             XElement existingIllDependency = assessmentItemResource.Descendants().FirstOrDefault(x =>
-                itemsModifier.GetAttribute(x, "identifierref") == illustration.Identifier);
+                            x.GetAttribute("identifierref") == illustration.Identifier);
 
             RemoveTag(existingIllResource, "identifier", illustration);
             RemoveTag(existingIllDependency, "identifierref", illustration);
@@ -89,7 +109,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             if (existingElt != null)
             {
                 string msg = string.Format("In manifest file: Overwriting <{0}> tag with identifier {1}",
-                                existingElt.Name.LocalName, itemsModifier.GetAttribute(existingElt, idAttribute));
+                                existingElt.Name.LocalName, existingElt.GetAttribute(idAttribute));
                 errors.Add(new Error(Error.Exception.OverwriteWarning, msg, illustration.LineNumber, Error.Type.Warning));
                 existingElt.Remove();
             }
@@ -148,13 +168,13 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             if (keywords != null && keywords.Count() > 0)
             {
                 keyword = keywords.FirstOrDefault(
-                        x => itemsModifier.GetAttribute(x, "text") == illustration.Term);
+                        x => x.GetAttribute("text") == illustration.Term);
             }
             if (keyword == null)
             {
                 IEnumerable<int> indicies = keywords.Select(x =>
                 {
-                    string index = itemsModifier.GetAttribute(x, "index");
+                    string index = x.GetAttribute("index");
                     return index == string.Empty ? 0 : int.Parse(index);
                 });
                 int maxIndex = indicies == null || indicies.Count() < 1 ? 0 : indicies.Max();
@@ -163,8 +183,8 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             else
             {
                 IEnumerable<XElement> existingHtmlElt = keyword.ElementsOrException("html")
-                                        .Where(x => itemsModifier.GetAttribute(x, "listType") == "illustration"
-                                           && itemsModifier.GetAttribute(x, "listCode") == "TDS_WL_Illustration");
+                                        .Where(x => x.GetAttribute("listType") == "illustration"
+                                           && x.GetAttribute("listCode") == "TDS_WL_Illustration");
                 if(existingHtmlElt != null && existingHtmlElt.Count() > 0)
                 {
                     string msg = string.Format("In item {0}: Overwriting illustration <html> tag under keyword {1}",
@@ -203,8 +223,9 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                         new XRaw(string.Format("<![CDATA[<p style=\"\"><img src=\"{0}\" width=\"100\" height=\"200\" /></p>]]>", fileName)));
         }
 
-        private XElement GetManifestResourceElement(Illustration illustration, XNamespace ns)
+        private XElement GetManifestResourceElement(Illustration illustration)
         {
+            XNamespace ns = ManifestModifier.Namespace;
             return new XElement(ns + "resource",
                         new XAttribute("identifier", illustration.Identifier),
                         new XAttribute("type", "associatedcontent/apip_xmlv1p0/learning-application-resource"),
@@ -212,11 +233,41 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                             new XAttribute("href", illustration.CopiedToPath))); 
         }
 
-        private XElement GetManifestDependencyElement(Illustration illustration, XNamespace ns)
+        private XElement GetManifestDependencyElement(Illustration illustration)
         {
+            XNamespace ns = ManifestModifier.Namespace;
             return new XElement(ns + "dependency",
                         new XAttribute("identifierref", illustration.Identifier));
         }
+        
+        private XElement GetKeywordlistItemDepency(KeywordListItem keywordlistItem)
+        {
+            XNamespace ns = ManifestModifier.Namespace;
+            return new XElement(ns + "dependency",
+                        new XAttribute("identifierref", keywordlistItem.Identifier));
+        }
+
+        private XElement GetKeywordlistItemResource(KeywordListItem keywordlistItem)
+        {
+            XNamespace ns = ManifestModifier.Namespace;
+            return new XElement(ns + "resource",
+                        new XAttribute("identifier", keywordlistItem.Identifier),
+                        new XAttribute("type", "imsqti_apipitem_xmlv2p2"), 
+                        new XElement(ns + "file", 
+                            new XAttribute("href", keywordlistItem.FullPath)),
+                        new XElement(ns + "dependency", 
+                            new XAttribute("identifierref", keywordlistItem.MetadataIdentifier)));
+        }
+
+        private XElement GetKeywordlistItemMetadataResource(KeywordListItem keywordlistItem, string metaPath)
+        {
+            XNamespace ns = ManifestModifier.Namespace;
+            return new XElement(ns + "resource",
+                        new XAttribute("identifier", keywordlistItem.MetadataIdentifier),
+                        new XAttribute("type", "resourcemetadata/apipv1p0"),
+                        new XElement(ns + "file",
+                            new XAttribute("href", metaPath)));
+        }  
     }
 #pragma warning restore CS4014
 #pragma warning restore CS1998
