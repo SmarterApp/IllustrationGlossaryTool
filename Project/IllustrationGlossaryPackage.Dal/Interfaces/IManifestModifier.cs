@@ -5,7 +5,7 @@ using System.Xml.Linq;
 
 namespace IllustrationGlossaryPackage.Dal.Interfaces
 {
-    public interface IManifestModifier
+    public interface IManifestModifier : IItemsModifier
     {
         XDocument GetManifestXml(string testPackageFilePath);
         XDocument GetManifestXml(ZipArchive testPackageArchive);

@@ -9,17 +9,10 @@ using System.Xml.Linq;
 
 namespace IllustrationGlossaryPackage.Dal.Infrastructure
 {
-    public class ManifestModifier : IManifestModifier
+    public class ManifestModifier : ItemsModifier, IManifestModifier
     {
 
         public static XNamespace Namespace = "http://www.imsglobal.org/xsd/apip/apipv1p0/imscp_v1p1";
-
-        private IItemsModifier itemsModifier;
-        public ManifestModifier() : this(new ItemsModifier()) { }
-        public ManifestModifier(ItemsModifier itemsModifier)
-        {
-            this.itemsModifier = itemsModifier;
-        }
 
         public IEnumerable<XElement> GetResourcesList(XDocument manifest)
         {
@@ -36,10 +29,8 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
 
         public void SaveManifest(XDocument manifest, ZipArchive testPackageArchive)
         {
-            // TODO: Avoid hardcoded file name
             ZipArchiveEntry manifestXml = GetManifestEntry(testPackageArchive);
-            // TODO: ManifestModifier should extend items modifier
-            itemsModifier.SaveItem(manifest, manifestXml);
+            SaveItem(manifest, manifestXml);
         }
 
         public XDocument GetManifestXml(string testPackageFilePath)

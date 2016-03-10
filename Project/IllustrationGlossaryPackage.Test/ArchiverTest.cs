@@ -32,7 +32,12 @@ namespace IllustrationGlossaryPackage.Test
             archiver.CreateArchive(zipPath);
 
             string archiveDirectory = currentDirectory + "\\" + "Archive";
-            // TODO Test that the archive was created correctly
+            string archive = archiveDirectory + "\\" + zippedFiles + "Archive.zip";
+            FileInfo archiveFI = new FileInfo(archive);
+            FileInfo zipFI = new FileInfo(zipPath);
+
+            Assert.IsTrue(archiveFI.Length > 0);
+            Assert.AreEqual(zipFI.Length, archiveFI.Length);
 
             Directory.Delete(zipFolderPath, true);
             Directory.Delete(archiveDirectory, true);

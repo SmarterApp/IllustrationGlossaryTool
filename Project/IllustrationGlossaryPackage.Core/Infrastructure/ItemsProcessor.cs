@@ -70,12 +70,12 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 foreach (AssessmentItem assessmentItem in assessmentItems)
                 {
                     XDocument d = assessmentItem.Document;
-                    XElement resourcesList = GetResourcesListElement(d);
-                    if (!resourcesList.Descendants().Any(y => y.GetAttribute("type") == "wordList"))
+                    XElement resources = GetResourcesListElement(d);
+                    IEnumerable<XElement> resourcesList = resources.Descendants("resource");
+                    if (!resourcesList.Any(y => y.GetAttribute("type") == "wordList"))
                     {
                         assessmentItem.KeywordListItemId = Convert.ToString(Convert.ToInt32(assessmentItem.ItemId) + 1000000);
-                        XElement e = CreateNewWordlistResource(assessmentItem);
-                        resourcesList.Add(e);
+                        resources.Add(CreateNewWordlistResource(assessmentItem, resourcesList));
                         itemsModifier.SaveItem(d, assessmentItem.GetZipArchiveEntry(testPackageArchive));
                         CreateNonexistantKeywordlistItem(assessmentItem, testPackageArchive);
                         CreateMetaData(assessmentItem, testPackageArchive);
@@ -213,13 +213,12 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             return itemXmls;
         }
 
-        private XElement CreateNewWordlistResource(AssessmentItem assessmentItem)
+        private XElement CreateNewWordlistResource(AssessmentItem assessmentItem, IEnumerable<XElement> resourcesList)
         {
             return new XElement("resource",
                         new XAttribute("type", "wordList"),
                         new XAttribute("id", assessmentItem.KeywordListItemId),
-                        // TODO: Make index actually do stufff
-                        new XAttribute("index", 1),
+                        new XAttribute("index", resourcesList.Count() + 1),
                         new XAttribute("bankkey", assessmentItem.Bankkey));
         }
 

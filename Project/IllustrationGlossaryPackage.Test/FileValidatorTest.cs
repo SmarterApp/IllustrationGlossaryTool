@@ -41,8 +41,5 @@ namespace IllustrationGlossaryPackage.Test
             fileValidator.ValidateTestPackage(filePath);
             File.Delete(filePath);
         }
-
-        /* TODO: Test method for illustration csv file vaildator:
-                Note: Want to validate headers of csv */
     }
 }
