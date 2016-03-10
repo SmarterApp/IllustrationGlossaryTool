@@ -53,7 +53,7 @@ namespace IllustrationGlossaryPackage.App
                 Console.WriteLine("Creating archive of test package...");
                 CreateArchive(testPackageFilePath);
             }
-           
+
             Console.WriteLine("Adding illustrations to test package...");
             IEnumerable<Error> errors = AddIllustrationToTestPackage(testPackageFilePath, csvFilePath);
 
@@ -128,11 +128,11 @@ namespace IllustrationGlossaryPackage.App
             {
                 augmenter.AddItemsToGlossary(testPackageFilePath, csvFilePath);
             }
-            catch (IOException e) 
+            catch (IOException e)
             {
                 ExitWithErrorString("Error: IOException: " + e.Message);
             }
-            catch(ElementDoesNotExistException e)
+            catch (ElementDoesNotExistException e)
             {
                 ExitWithErrorString("Error: InvalidXmlFile: " + e.Message);
             }
@@ -157,7 +157,8 @@ namespace IllustrationGlossaryPackage.App
         static void ExitWithErrorString(string errorString)
         {
             Console.WriteLine(errorString);
-            Environment.Exit(0);
+            Console.Read();
+            Environment.Exit(1);
         }
 
         static void ShowHelpPageAndExit()
@@ -165,6 +166,7 @@ namespace IllustrationGlossaryPackage.App
             Console.WriteLine(getHelpPage(noArchiveArgs, helpPageArgs));
             Environment.Exit(0);
         }
+
 
         public static string getHelpPage(IEnumerable<string> noArchiveArgs, IEnumerable<string> helpPageArgs)
         {
