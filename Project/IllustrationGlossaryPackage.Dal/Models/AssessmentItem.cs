@@ -18,10 +18,11 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         public string Name;
         public string Identifier;
         public string Bankkey;
+        public string ItemVersion;
         public XDocument Document;
         public IEnumerable<Illustration> Illustrations;
 
-        public AssessmentItem(string ItemId, string KeywordListItemId, string bankKey, IEnumerable<Illustration> illustrations, ItemDocument document)
+        public AssessmentItem(string ItemId, string KeywordListItemId, string bankKey, string itemVersion, IEnumerable<Illustration> illustrations, ItemDocument document)
         {
             if (document != null)
             {
@@ -32,6 +33,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 this.FullPath = document.FullPath;
                 this.Name = document.Name;
                 this.Bankkey = bankKey;
+                this.ItemVersion = itemVersion;
                 this.Identifier = Path.GetFileNameWithoutExtension(document.FullPath);
             }   
         }

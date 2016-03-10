@@ -129,9 +129,11 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             if(document != null)
             {
                 string keywordlistItemId = GetKeywordListItemId(document.Document);
-                string bankKey = document.Document.Element("itemrelease")
-                                    .Element("item").GetAttribute("bankkey");
-                return new AssessmentItem(key, keywordlistItemId, bankKey, illustrations, document);
+                XElement item = document.Document.Element("itemrelease")
+                                    .Element("item");
+                string bankKey = item.GetAttribute("bankkey");
+                string itemVersion = item.GetAttribute("version");
+                return new AssessmentItem(key, keywordlistItemId, bankKey, itemVersion, illustrations, document);
             }
             else
             {
@@ -230,7 +232,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                             new XElement("item",
                                 new XAttribute("type", "wordList"),
                                 new XAttribute("id", assessmentItem.KeywordListItemId),
-                                new XAttribute("version", "10"),
+                                new XAttribute("version", assessmentItem.ItemVersion),
                                 new XAttribute("bankkey", assessmentItem.Bankkey),
                                 new XElement("keywordList", string.Empty))));
         }
