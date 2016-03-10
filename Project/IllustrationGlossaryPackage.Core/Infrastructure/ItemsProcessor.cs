@@ -191,6 +191,10 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// <returns></returns>
         private static IEnumerable<ItemDocument> GetItemsXml(string testPackageFilePath, IEnumerable<string> itemsIds)
         {
+            if (!File.Exists(testPackageFilePath))
+            {
+                throw new FileNotFoundException(testPackageFilePath);
+            }
             IList<ItemDocument> itemXmls = new List<ItemDocument>();
             using (ZipArchive testPackageArchive = ZipFile.Open(testPackageFilePath, ZipArchiveMode.Update))
             {
