@@ -9,11 +9,8 @@ namespace IllustrationGlossaryPackage.Dal.Interfaces
 {
     public interface IItemsModifier : IErrorable
     {
-        string GetAttribute(XElement e, string attributeName);
-        string GetAttribute(XElement e, XName attributeName);
         void SaveItem(KeywordListItem keywordListItem, ZipArchive testPackageArchive);
         void SaveItem(XDocument document, ZipArchiveEntry zipEntry);
         void MoveMediaFileForIllustration(Illustration illustration, AssessmentItem assessmentItem, ZipArchive testPackageArchive);
-        string GetIllustrationCopyToLocation(Illustration illustration, KeywordListItem keywordListItem, ZipArchive testPackageArchive);
     }
 }

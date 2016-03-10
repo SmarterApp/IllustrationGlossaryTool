@@ -43,29 +43,31 @@ namespace IllustrationGlossaryPackage.App
 
             string testPackageFilePath = args[0];
             string csvFilePath = args[1];
+            string errorsDirectory = Path.GetDirectoryName(testPackageFilePath);
 
-            Console.WriteLine("Validating test package..." + Environment.NewLine);
-            ValidateFiles(testPackageFilePath, csvFilePath);
+            Console.WriteLine("Validating test package...");
+            ValidateFiles(testPackageFilePath, csvFilePath, errorsDirectory);
 
             if (!noArchive)
             {
-                Console.WriteLine("Creating archive of test package..." + Environment.NewLine);
+                Console.WriteLine("Creating archive of test package...");
                 CreateArchive(testPackageFilePath);
             }
-           
-            Console.WriteLine("Adding illustrations to test package..." + Environment.NewLine);
+
+            Console.WriteLine("Adding illustrations to test package...");
             IEnumerable<Error> errors = AddIllustrationToTestPackage(testPackageFilePath, csvFilePath);
 
-            Console.WriteLine("Recording Errors..." + Environment.NewLine);
-            RecordErrors(errors, Path.GetDirectoryName(testPackageFilePath));
+            Console.WriteLine("Recording Errors...");
+            RecordErrors(errors, errorsDirectory);
 
             Console.WriteLine("Finished!");
-            Console.Read();
         }
 
-        static void ValidateFiles(string testPackageFilePath, string csvFilePath)
+        static void ValidateFiles(string testPackageFilePath, string csvFilePath, string errorsDirectory)
         {
             IFileValidator fileValidator = new FileValidator();
+            ErrorRecorder errorRecorder = new ErrorRecorder();
+
             try
             {
                 fileValidator.ValidateTestPackage(testPackageFilePath);
@@ -79,7 +81,7 @@ namespace IllustrationGlossaryPackage.App
                 ExitWithErrorString("Error: Test package is invalid: " + e.Message);
             }
 
-            Console.WriteLine("Validating illustration list..." + Environment.NewLine);
+            Console.WriteLine("Validating illustration list...");
 
             try
             {
@@ -92,6 +94,17 @@ namespace IllustrationGlossaryPackage.App
             catch (InvalidFileException e)
             {
                 ExitWithErrorString("Error: Illustration spreadsheet is invalid: " + e.Message);
+            }
+
+            Console.WriteLine("Removing previous warning and error files...");
+
+            try
+            {
+                errorRecorder.RemoveExistingErrors(errorsDirectory);
+            }
+            catch (IOException e)
+            {
+                ExitWithErrorString("Error: IOException: " + e.Message);
             }
         }
 
@@ -115,9 +128,13 @@ namespace IllustrationGlossaryPackage.App
             {
                 augmenter.AddItemsToGlossary(testPackageFilePath, csvFilePath);
             }
-            catch (IOException e) 
+            catch (IOException e)
             {
                 ExitWithErrorString("Error: IOException: " + e.Message);
+            }
+            catch (ElementDoesNotExistException e)
+            {
+                ExitWithErrorString("Error: InvalidXmlFile: " + e.Message);
             }
 
             return augmenter.GetErrors();
@@ -141,15 +158,15 @@ namespace IllustrationGlossaryPackage.App
         {
             Console.WriteLine(errorString);
             Console.Read();
-            Environment.Exit(0);
+            Environment.Exit(1);
         }
 
         static void ShowHelpPageAndExit()
         {
             Console.WriteLine(getHelpPage(noArchiveArgs, helpPageArgs));
-            Console.Read();
             Environment.Exit(0);
         }
+
 
         public static string getHelpPage(IEnumerable<string> noArchiveArgs, IEnumerable<string> helpPageArgs)
         {

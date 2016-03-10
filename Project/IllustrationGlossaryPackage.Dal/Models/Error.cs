@@ -17,8 +17,6 @@ namespace IllustrationGlossaryPackage.Dal.Models
 
         public Error() { }
 
-        public Error(Exception e, string m) : this(e, m, 0, Type.Error) { }
-        public Error(Exception e, string m, Type t) : this(e, m, 0, t) { }
         public Error(Exception e, string m, int i) : this(e, m, i, Type.Error) { }
         public Error(Exception e, string m, int i, Type t)
         {

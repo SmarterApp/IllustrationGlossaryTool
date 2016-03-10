@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,11 @@ namespace IllustrationGlossaryPackage.Dal.Models
             {
                 return Path.GetFileName(OriginalFilePath);
             }
+        }
+
+        public ZipArchiveEntry GetZipArchiveEntry(ZipArchive z)
+        {
+            return z.Entries.FirstOrDefault(x => x.FullName == this.CopiedToPath);
         }
     }
 }

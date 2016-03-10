@@ -11,27 +11,30 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
 {
     public class ErrorRecorder : IErrorRecorder
     {
+        static string errorsFileName = "\\GlossaryUtilityErrors.csv";
+        static string warningsFileName = "\\GlossaryUtilityWarnings.csv";
+
         public void RecordErrors(IEnumerable<Error> errorsAndWarnings, string directory)
         {
-            string errorsFileName = directory + "\\GlossaryUtilityErrors.csv";
-            string warningsFileName = directory + "\\GlossaryUtilityWarnings.csv";
+            WriteErrorsToFile(errorsAndWarnings.Where(x => x.type == Error.Type.Error), directory + errorsFileName);
+            WriteErrorsToFile(errorsAndWarnings.Where(x => x.type == Error.Type.Warning), directory + warningsFileName);
+        }
 
-            IEnumerable<Error> errors = errorsAndWarnings
-                .Where(x => x.type == Error.Type.Error)
-                .OrderBy(x => x.CsvLine);
-            IEnumerable<Error> warnings = errorsAndWarnings
-                .Where(x => x.type == Error.Type.Warning);
+        private void WriteErrorsToFile(IEnumerable<Error> errors, string file)
+        {
+            errors = errors.OrderBy(x => x.CsvLine);
 
             List<string> errorText = new List<string>();
             errorText.Add("Line, Type, Message");
             errorText.AddRange(errors.Select(e => e.CsvLine + "," + e.exception.ToString() + "," + e.Message));
 
-            List<string> warningText = new List<string>();
-            warningText.Add("Type, Message");
-            warningText.AddRange(warnings.Select(e => e.exception.ToString() + "," + e.Message));
+            File.WriteAllLines(file, errorText);
+        }
 
-            File.WriteAllLines(errorsFileName, errorText);
-            File.WriteAllLines(warningsFileName, warningText);
+        public void RemoveExistingErrors(string errorsDirectory)
+        {
+            File.Delete(errorsDirectory + errorsFileName);
+            File.Delete(errorsDirectory + warningsFileName);
         }
     }
 }

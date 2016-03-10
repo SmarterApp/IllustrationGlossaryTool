@@ -40,13 +40,6 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             }
         }
 
-        public string GetIllustrationCopyToLocation(Illustration illustration, KeywordListItem keywordListItem, ZipArchive testPackageArchive)
-        {
-            string directory = Path.GetDirectoryName(keywordListItem.FullPath);
-            string illPath = directory + "\\" + illustration.FileName;
-            return illPath;
-        }
-
         /// <summary>
         /// Moves an illustration to the appropreate keywordlist item in the archive
         /// </summary>
@@ -55,10 +48,10 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
         /// <param name="testPackageArchive"></param>
         public void MoveMediaFileForIllustration(Illustration illustration, AssessmentItem assessmentItem, ZipArchive testPackageArchive)
         {
-            ZipArchiveEntry existingIll = testPackageArchive.Entries.FirstOrDefault(x => x.FullName == illustration.CopiedToPath);
+            ZipArchiveEntry existingIll = illustration.GetZipArchiveEntry(testPackageArchive);
             if(existingIll != null)
             {
-                errors.Add(new Error(Error.Exception.OverwriteWarning, "Overwriting image file: " + illustration.CopiedToPath, Error.Type.Warning));
+                errors.Add(new Error(Error.Exception.OverwriteWarning, "Overwriting image file: " + illustration.CopiedToPath, illustration.LineNumber, Error.Type.Warning));
                 existingIll.Delete();
             }
 
@@ -76,27 +69,5 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             return testPackageArchive.Entries.FirstOrDefault(x => x.FullName == filePath);
         }
 
-        /// <summary>
-        /// null safe way to get an attributes value from an xml element
-        /// </summary>
-        /// <param name="e"></param>
-        /// <param name="attributeName"></param>
-        /// <returns></returns>
-        public string GetAttribute(XElement e, string attributeName)
-        {
-            XAttribute attribute = e.Attribute(attributeName);
-            return NullSaveValue(attribute);
-        }
-
-        public string GetAttribute(XElement e, XName attributeName)
-        {
-            XAttribute attribute = e.Attribute(attributeName);
-            return NullSaveValue(attribute);
-        }
-
-        private string NullSaveValue(XAttribute attribute)
-        {
-            return attribute == null ? string.Empty : attribute.Value;
-        }
     }
 }
