@@ -17,10 +17,11 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         public string FullPath;
         public string Name;
         public string Identifier;
+        public string Bankkey;
         public XDocument Document;
         public IEnumerable<Illustration> Illustrations;
 
-        public AssessmentItem(string ItemId, string KeywordListItemId, IEnumerable<Illustration> illustrations, ItemDocument document)
+        public AssessmentItem(string ItemId, string KeywordListItemId, string bankKey, IEnumerable<Illustration> illustrations, ItemDocument document)
         {
             if (document != null)
             {
@@ -30,6 +31,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 this.Document = document.Document;
                 this.FullPath = document.FullPath;
                 this.Name = document.Name;
+                this.Bankkey = bankKey;
                 this.Identifier = Path.GetFileNameWithoutExtension(document.FullPath);
             }   
         }
@@ -44,7 +46,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         {
             get
             {
-                return string.Format("Items/Item-{0}-{1}/item-{0}-{1}.xml", "187", KeywordListItemId);
+                return string.Format("Items/Item-{0}-{1}/item-{0}-{1}.xml", Bankkey, KeywordListItemId);
             }
         }
 
@@ -52,12 +54,9 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         {
             get
             {
-                return string.Format("Items/Item-{0}-{1}/metadata.xml", "187", KeywordListItemId);
+                return string.Format("Items/Item-{0}-{1}/metadata.xml", Bankkey, KeywordListItemId);
             }
         }
-
-        
-
 
         public ZipArchiveEntry GetZipArchiveEntry(ZipArchive z)
         {

@@ -45,23 +45,22 @@ namespace IllustrationGlossaryPackage.App
             string csvFilePath = args[1];
             string errorsDirectory = Path.GetDirectoryName(testPackageFilePath);
 
-            Console.WriteLine("Validating test package..." + Environment.NewLine);
+            Console.WriteLine("Validating test package...");
             ValidateFiles(testPackageFilePath, csvFilePath, errorsDirectory);
 
             if (!noArchive)
             {
-                Console.WriteLine("Creating archive of test package..." + Environment.NewLine);
+                Console.WriteLine("Creating archive of test package...");
                 CreateArchive(testPackageFilePath);
             }
            
-            Console.WriteLine("Adding illustrations to test package..." + Environment.NewLine);
+            Console.WriteLine("Adding illustrations to test package...");
             IEnumerable<Error> errors = AddIllustrationToTestPackage(testPackageFilePath, csvFilePath);
 
-            Console.WriteLine("Recording Errors..." + Environment.NewLine);
+            Console.WriteLine("Recording Errors...");
             RecordErrors(errors, errorsDirectory);
 
             Console.WriteLine("Finished!");
-            Console.Read();
         }
 
         static void ValidateFiles(string testPackageFilePath, string csvFilePath, string errorsDirectory)
@@ -82,7 +81,7 @@ namespace IllustrationGlossaryPackage.App
                 ExitWithErrorString("Error: Test package is invalid: " + e.Message);
             }
 
-            Console.WriteLine("Validating illustration list..." + Environment.NewLine);
+            Console.WriteLine("Validating illustration list...");
 
             try
             {
@@ -97,7 +96,7 @@ namespace IllustrationGlossaryPackage.App
                 ExitWithErrorString("Error: Illustration spreadsheet is invalid: " + e.Message);
             }
 
-            Console.WriteLine("Removing previous warning and error files..." + Environment.NewLine);
+            Console.WriteLine("Removing previous warning and error files...");
 
             try
             {
@@ -158,14 +157,12 @@ namespace IllustrationGlossaryPackage.App
         static void ExitWithErrorString(string errorString)
         {
             Console.WriteLine(errorString);
-            Console.Read();
             Environment.Exit(0);
         }
 
         static void ShowHelpPageAndExit()
         {
             Console.WriteLine(getHelpPage(noArchiveArgs, helpPageArgs));
-            Console.Read();
             Environment.Exit(0);
         }
 
