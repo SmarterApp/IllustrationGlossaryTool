@@ -106,6 +106,15 @@ namespace IllustrationGlossaryPackage.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;![CDATA[&lt;p style=\&quot;\&quot;&gt;&lt;img src=\&quot;{0}\&quot; width=\&quot;100\&quot; height=\&quot;200\&quot; /&gt;&lt;/p&gt;]]&gt;.
+        /// </summary>
+        internal static string html {
+            get {
+                return ResourceManager.GetString("html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Illustration Glossary Spreadsheet must be a csv.
         /// </summary>
         internal static string IllMustCsv {
@@ -115,11 +124,65 @@ namespace IllustrationGlossaryPackage.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IllustrationGlossaryPackage.
+        /// </summary>
+        internal static string IllustrationGlossaryPackage {
+            get {
+                return ResourceManager.GetString("IllustrationGlossaryPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to associatedcontent/apip_xmlv1p0/learning-application-resource.
+        /// </summary>
+        internal static string IllustrationResourceTypeInManifest {
+            get {
+                return ResourceManager.GetString("IllustrationResourceTypeInManifest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TDS_WL_Illustration.
+        /// </summary>
+        internal static string listCode {
+            get {
+                return ResourceManager.GetString("listCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to illustration.
+        /// </summary>
+        internal static string listType {
+            get {
+                return ResourceManager.GetString("listType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to resourcemetadata/apipv1p0.
+        /// </summary>
+        internal static string MetadataResourceTypeInManifest {
+            get {
+                return ResourceManager.GetString("MetadataResourceTypeInManifest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Test package must be a zip file.
         /// </summary>
         internal static string TestMustZip {
             get {
                 return ResourceManager.GetString("TestMustZip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to imsqti_apipitem_xmlv2p2.
+        /// </summary>
+        internal static string WordlistResourceTypeInManifest {
+            get {
+                return ResourceManager.GetString("WordlistResourceTypeInManifest", resourceCulture);
             }
         }
         

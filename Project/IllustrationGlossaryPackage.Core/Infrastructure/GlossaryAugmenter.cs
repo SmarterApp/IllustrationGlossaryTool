@@ -144,8 +144,8 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         {
             XDocument itemXml = keywordListItem.Document;
             XElement rootElement = itemXml
-                .ElementOrException("itemrelease")
-                .ElementOrException("item");
+                .OptionalElement("itemrelease")
+                .OptionalElement("item");
             XElement keywordListElt = rootElement.ElementOrCreate("keywordList");
             foreach (AssessmentItem assessmentItem in keywordListItem.AssessmentItems)
             {
@@ -218,9 +218,9 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         private XElement GetHtmlXElementForFile(string fileName)
         {
             return new XElement("html",
-                        new XAttribute("listType", "illustration"),
-                        new XAttribute("listCode", "TDS_WL_Illustration"),
-                        new XRaw(string.Format("<![CDATA[<p style=\"\"><img src=\"{0}\" width=\"100\" height=\"200\" /></p>]]>", fileName)));
+                        new XAttribute("listType", Properties.Resources.listType),
+                        new XAttribute("listCode", Properties.Resources.listCode),
+                        new XRaw(string.Format(Properties.Resources.html, fileName)));
         }
 
         private XElement GetManifestResourceElement(Illustration illustration)
@@ -228,7 +228,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             XNamespace ns = ManifestModifier.Namespace;
             return new XElement(ns + "resource",
                         new XAttribute("identifier", illustration.Identifier),
-                        new XAttribute("type", "associatedcontent/apip_xmlv1p0/learning-application-resource"),
+                        new XAttribute("type", Properties.Resources.IllustrationResourceTypeInManifest),
                         new XElement(ns + "file",
                             new XAttribute("href", illustration.CopiedToPath))); 
         }
@@ -252,7 +252,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             XNamespace ns = ManifestModifier.Namespace;
             return new XElement(ns + "resource",
                         new XAttribute("identifier", keywordlistItem.Identifier),
-                        new XAttribute("type", "imsqti_apipitem_xmlv2p2"), 
+                        new XAttribute("type", Properties.Resources.WordlistResourceTypeInManifest), 
                         new XElement(ns + "file", 
                             new XAttribute("href", keywordlistItem.FullPath)),
                         new XElement(ns + "dependency", 
@@ -264,7 +264,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             XNamespace ns = ManifestModifier.Namespace;
             return new XElement(ns + "resource",
                         new XAttribute("identifier", keywordlistItem.MetadataIdentifier),
-                        new XAttribute("type", "resourcemetadata/apipv1p0"),
+                        new XAttribute("type", Properties.Resources.MetadataResourceTypeInManifest),
                         new XElement(ns + "file",
                             new XAttribute("href", metaPath)));
         }  

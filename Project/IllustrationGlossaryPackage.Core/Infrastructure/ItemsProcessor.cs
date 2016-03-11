@@ -129,8 +129,8 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             if(document != null)
             {
                 string keywordlistItemId = GetKeywordListItemId(document.Document);
-                XElement item = document.Document.Element("itemrelease")
-                                    .Element("item");
+                XElement item = document.Document.OptionalElement("itemrelease")
+                                    .OptionalElement("item");
                 string bankKey = item.GetAttribute("bankkey");
                 string itemVersion = item.GetAttribute("version");
                 return new AssessmentItem(key, keywordlistItemId, bankKey, itemVersion, illustrations, document);
@@ -166,7 +166,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
 
         private XElement GetResourcesListElement(XDocument d)
         {
-            XElement resourcesList = d.ElementOrException("itemrelease")
+            XElement resourcesList = d.OptionalElement("itemrelease")
                 .ElementOrCreate("item")
                 .ElementOrCreate("resourceslist");
             return resourcesList;
@@ -180,8 +180,8 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// <returns></returns>
         private ItemDocument SelectByID(IEnumerable<ItemDocument> items, string id)
         {
-            return items.FirstOrDefault(x => x.Document.ElementOrException("itemrelease")
-                        .ElementOrException("item").Attribute("id").ToString()
+            return items.FirstOrDefault(x => x.Document.OptionalElement("itemrelease")
+                        .OptionalElement("item").Attribute("id").ToString()
                         .Contains(id));
         }
 
@@ -245,8 +245,8 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                             new XElement(ns + "smarterAppMetadata",
                                 new XElement(ns + "Identifier", id),
                                 new XElement(ns + "SmarterAppItemDescriptor", assessmentItemId),
-                                new XElement(ns + "ItemAuthorIdentifier", "IllustrationGlossaryPackage"),
-                                new XElement(ns + "LastModifiedBy", "IllustrationGlossaryPackage"))));
+                                new XElement(ns + "ItemAuthorIdentifier", Properties.Resources.IllustrationGlossaryPackage),
+                                new XElement(ns + "LastModifiedBy", Properties.Resources.IllustrationGlossaryPackage))));
         }
     }
 }

@@ -96,6 +96,36 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         }
 
         /// <summary>
+        /// Optional element grabs the wanted element if it exists, 
+        ///     but keeps you at the current element if the wanted element
+        ///     does not exist
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="elName"></param>
+        /// <returns></returns>
+
+        public static XElement OptionalElement(this XDocument document, string elName)
+        {
+            if (document.Root.Name != elName)
+            {
+                XElement element = document.Element(elName);
+                return element != null ? element : document.Root;
+            }
+            return document.Root;
+                
+        }
+
+        public static XElement OptionalElement(this XElement currentElt, string elName)
+        {
+            if(currentElt.Name != elName)
+            {
+                XElement wantedElt = currentElt.Element(elName);
+                return wantedElt != null ? wantedElt : currentElt;
+            }
+            return currentElt;
+        }
+
+        /// <summary>
         /// null safe way to get an attributes value from an xml element
         /// </summary>
         /// <param name="e"></param>
