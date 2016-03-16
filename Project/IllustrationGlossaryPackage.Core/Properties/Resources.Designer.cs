@@ -106,7 +106,7 @@ namespace IllustrationGlossaryPackage.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;![CDATA[&lt;p style=\&quot;\&quot;&gt;&lt;img src=\&quot;{0}\&quot; width=\&quot;100\&quot; height=\&quot;200\&quot; /&gt;&lt;/p&gt;]]&gt;.
+        ///   Looks up a localized string similar to &lt;![CDATA[&lt;p style=&quot;&quot;&gt;&lt;img src=&quot;{0}&quot; /&gt;&lt;/p&gt;]]&gt;.
         /// </summary>
         internal static string html {
             get {
