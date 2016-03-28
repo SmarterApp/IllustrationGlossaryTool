@@ -192,7 +192,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                     errors.Add(new Error(Error.Exception.OverwriteWarning, msg, illustration.LineNumber, Error.Type.Warning));
                     existingHtmlElt.Remove();
                 }
-                keyword.Add(GetHtmlXElementForFile(illustration.FileName));
+                keyword.Add(GetHtmlXElementForFile(illustration.FileName, illustration.Width, illustration.Height));
             }
         }
 
@@ -207,7 +207,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             return new XElement("keyword",
                         new XAttribute("text", illustration.Term),
                         new XAttribute("index", (maxIndex + 1).ToString()),
-                            GetHtmlXElementForFile(illustration.FileName));
+                            GetHtmlXElementForFile(illustration.FileName, illustration.Width, illustration.Height));
         }
 
         /// <summary>
@@ -215,12 +215,12 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        private XElement GetHtmlXElementForFile(string fileName)
+        private XElement GetHtmlXElementForFile(string fileName, int width, int height)
         {
             return new XElement("html",
                         new XAttribute("listType", Properties.Resources.listType),
                         new XAttribute("listCode", Properties.Resources.listCode),
-                        new XRaw(string.Format(Properties.Resources.html, fileName)));
+                        new XRaw(string.Format(Properties.Resources.html, fileName, width, height)));
         }
 
         private XElement GetManifestResourceElement(Illustration illustration)

@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace IllustrationGlossaryPackage.Dal.Infrastructure
 {
@@ -31,6 +32,7 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                     IList<string> lineItems = line.Split(',').Where(s => !string.IsNullOrWhiteSpace(s)).ToList();
                     if (lineItems.Count() == 3)
                     {
+                        //TODO: parse illustration location path and find viewbox, find last two for size
                         Illustration illustration = new Illustration
                         {
                             ItemId = lineItems[0],
@@ -40,6 +42,30 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                             Identifier = Path.GetFileNameWithoutExtension(lineItems[2]),
                             LineNumber = count
                         };
+                        try
+                        {
+                            XElement illustrationFile = XElement.Load(illustration.OriginalFilePath);
+                            string size = illustrationFile
+                                                       .Element("svg")
+                                                       .Attribute("viewBox")
+                                                       .Value;
+                            string[] sizeValues = size.Split(' ');
+                            if (size.Count() == 1)
+                            {
+
+                                illustration.Width = Int32.Parse(sizeValues[2]);  //3rd element
+                                illustration.Height = Int32.Parse(sizeValues[3]); //4th element
+                            }
+                            else //no size values available
+                            {
+                                errors.Add(new Error(Error.Exception.IllustrationSize, illustration.OriginalFilePath + " has no size value", count));
+                            }
+                        }
+                        catch
+                        {
+                            errors.Add(new Error(Error.Exception.IllustrationSize, illustration.OriginalFilePath + " does not exist", count));
+                        }
+
                         if (illustration.FileExists)
                         {
                             illustrations.Add(illustration);
@@ -47,6 +73,7 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                         else
                         {
                             errors.Add(new Error(Error.Exception.FileDNE, illustration.OriginalFilePath + " does not exist", count));
+
                         }
                     }
                     else

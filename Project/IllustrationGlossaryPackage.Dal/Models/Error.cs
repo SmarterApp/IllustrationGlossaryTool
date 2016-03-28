@@ -8,7 +8,7 @@ namespace IllustrationGlossaryPackage.Dal.Models
 {
     public class Error
     {
-        public enum Exception { FileDNE, InvalidCsvLine, ItemDNE, OverwriteWarning };
+        public enum Exception { FileDNE, InvalidCsvLine, ItemDNE, OverwriteWarning, IllustrationSize};
         public enum Type { Error, Warning };
         public Exception exception;
         public Type type;
