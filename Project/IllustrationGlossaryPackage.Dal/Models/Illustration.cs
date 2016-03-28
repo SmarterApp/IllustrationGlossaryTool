@@ -17,8 +17,8 @@ namespace IllustrationGlossaryPackage.Dal.Models
         public string CopiedToPath { get; set; }
         public string Identifier { get; set; }
         public int LineNumber { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
+        public string Width { get; set; }
+        public string Height { get; set; }
         public string FileName
         {
             get

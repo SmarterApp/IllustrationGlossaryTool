@@ -215,7 +215,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        private XElement GetHtmlXElementForFile(string fileName, int width, int height)
+        private XElement GetHtmlXElementForFile(string fileName, string width, string height)
         {
             return new XElement("html",
                         new XAttribute("listType", Properties.Resources.listType),

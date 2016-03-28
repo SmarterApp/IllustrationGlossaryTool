@@ -44,17 +44,15 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                         };
                         try
                         {
-                            XElement illustrationFile = XElement.Load(illustration.OriginalFilePath);
-                            string size = illustrationFile
-                                                       .Element("svg")
-                                                       .Attribute("viewBox")
-                                                       .Value;
+                            XDocument illustrationFile = XDocument.Load(illustration.OriginalFilePath);
+                            XElement node = illustrationFile.Root;
+                            var size = node.Attribute("viewBox").Value;
                             string[] sizeValues = size.Split(' ');
-                            if (size.Count() == 1)
+                            if (sizeValues.Count() == 4)
                             {
 
-                                illustration.Width = Int32.Parse(sizeValues[2]);  //3rd element
-                                illustration.Height = Int32.Parse(sizeValues[3]); //4th element
+                                illustration.Width = sizeValues[2];  //3rd element
+                                illustration.Height = sizeValues[3]; //4th element
                             }
                             else //no size values available
                             {
