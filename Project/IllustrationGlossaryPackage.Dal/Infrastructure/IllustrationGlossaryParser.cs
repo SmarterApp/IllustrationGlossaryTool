@@ -46,13 +46,24 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                         {
                             XDocument illustrationFile = XDocument.Load(illustration.OriginalFilePath);
                             XElement node = illustrationFile.Root;
-                            var size = node.Attribute("viewBox").Value;
+                            string size = node.Attribute("viewBox").Value;
                             string[] sizeValues = size.Split(' ');
                             if (sizeValues.Count() == 4)
                             {
+                                /* scale the image to a 4 inch canvas
+                                *  72 pixels per inch
+                                *  ratio = 72*4 / max(width | height)
+                                *  multiply both by ratio
+                                */
+                                double width = Convert.ToDouble(sizeValues[2]);
+                                double height = Convert.ToDouble(sizeValues[3]);
+                                //72 pixels * 4 inches = 288 pixel inches
+                                double ratio = 288 / Math.Max(width, height);
+                                width = width * ratio;
+                                height = height * ratio;
 
-                                illustration.Width = sizeValues[2];  //3rd element
-                                illustration.Height = sizeValues[3]; //4th element
+                                illustration.Width = Convert.ToString(width);  //3rd element
+                                illustration.Height = Convert.ToString(height); //4th element
                             }
                             else //no size values available
                             {
