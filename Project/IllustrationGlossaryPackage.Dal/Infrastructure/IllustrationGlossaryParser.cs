@@ -42,7 +42,7 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                             LineNumber = count
                         };
 
-                        SetIllustrationSize(ref illustration, count);
+                        SetIllustrationSize(illustration, count);
 
                         if (illustration.FileExists)
                         {
@@ -66,7 +66,13 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             return illustrations;
         }
 
-        private void SetIllustrationSize(ref Illustration illustration, int count)
+        /// <summary>
+        /// Parses the svg item for the natural width and height and calculates the max dimensions for the html tag
+        /// image to a 4 inch canvas, 72 pixels per inch
+        /// </summary>
+        /// <param name="illustration"></param>
+        /// <param name="count"></param>
+        private void SetIllustrationSize(Illustration illustration, int count)
         {
             try
             {
@@ -76,25 +82,20 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                 string[] sizeValues = size.Split(' ');
                 if (sizeValues.Count() == 4)
                 {
-                    /* scale the image to a 4 inch canvas
-                    *  72 pixels per inch
-                    *  ratio = 72*4 / max(width | height)
-                    *  multiply both by ratio
-                    */
                     double width = Convert.ToDouble(sizeValues[2]);
                     double height = Convert.ToDouble(sizeValues[3]);
-                    //72 pixels * 4 inches = 288 pixel inches
                     double ratio = 288 / Math.Max(width, height);
                     width = Math.Round(width * ratio, 2);
                     height = Math.Round(height * ratio, 2);
 
-                    illustration.Width = Convert.ToString(width);  //3rd element
-                    illustration.Height = Convert.ToString(height); //4th element
+                    illustration.Width = Convert.ToString(width); 
+                    illustration.Height = Convert.ToString(height);
                 }
-                else //no size values available
+                else
                 {
                     errors.Add(new Error(Error.Exception.IllustrationSize, illustration.OriginalFilePath + " has no size value", count));
                 }
+
             }
             catch
             {
