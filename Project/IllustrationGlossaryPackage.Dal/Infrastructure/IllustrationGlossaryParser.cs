@@ -42,6 +42,8 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                             Identifier = Path.GetFileNameWithoutExtension(lineItems[2]),
                             LineNumber = count
                         };
+
+                        //TODO: break out into separate method
                         try
                         {
                             XDocument illustrationFile = XDocument.Load(illustration.OriginalFilePath);
@@ -59,8 +61,8 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                                 double height = Convert.ToDouble(sizeValues[3]);
                                 //72 pixels * 4 inches = 288 pixel inches
                                 double ratio = 288 / Math.Max(width, height);
-                                width = width * ratio;
-                                height = height * ratio;
+                                width = Math.Round(width * ratio, 2);
+                                height = Math.Round(height * ratio, 2);
 
                                 illustration.Width = Convert.ToString(width);  //3rd element
                                 illustration.Height = Convert.ToString(height); //4th element
