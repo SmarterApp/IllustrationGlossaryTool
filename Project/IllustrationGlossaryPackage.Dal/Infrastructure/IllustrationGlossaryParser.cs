@@ -32,7 +32,6 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                     IList<string> lineItems = line.Split(',').Where(s => !string.IsNullOrWhiteSpace(s)).ToList();
                     if (lineItems.Count() == 3)
                     {
-                        //TODO: parse illustration location path and find viewbox, find last two for size
                         Illustration illustration = new Illustration
                         {
                             ItemId = lineItems[0],
@@ -43,39 +42,7 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                             LineNumber = count
                         };
 
-                        //TODO: break out into separate method
-                        try
-                        {
-                            XDocument illustrationFile = XDocument.Load(illustration.OriginalFilePath);
-                            XElement node = illustrationFile.Root;
-                            string size = node.Attribute("viewBox").Value;
-                            string[] sizeValues = size.Split(' ');
-                            if (sizeValues.Count() == 4)
-                            {
-                                /* scale the image to a 4 inch canvas
-                                *  72 pixels per inch
-                                *  ratio = 72*4 / max(width | height)
-                                *  multiply both by ratio
-                                */
-                                double width = Convert.ToDouble(sizeValues[2]);
-                                double height = Convert.ToDouble(sizeValues[3]);
-                                //72 pixels * 4 inches = 288 pixel inches
-                                double ratio = 288 / Math.Max(width, height);
-                                width = Math.Round(width * ratio, 2);
-                                height = Math.Round(height * ratio, 2);
-
-                                illustration.Width = Convert.ToString(width);  //3rd element
-                                illustration.Height = Convert.ToString(height); //4th element
-                            }
-                            else //no size values available
-                            {
-                                errors.Add(new Error(Error.Exception.IllustrationSize, illustration.OriginalFilePath + " has no size value", count));
-                            }
-                        }
-                        catch
-                        {
-                            errors.Add(new Error(Error.Exception.IllustrationSize, illustration.OriginalFilePath + " does not exist", count));
-                        }
+                        SetIllustrationSize(ref illustration, count);
 
                         if (illustration.FileExists)
                         {
@@ -97,6 +64,42 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             }
 
             return illustrations;
+        }
+
+        private void SetIllustrationSize(ref Illustration illustration, int count)
+        {
+            try
+            {
+                XDocument illustrationFile = XDocument.Load(illustration.OriginalFilePath);
+                XElement node = illustrationFile.Root;
+                string size = node.Attribute("viewBox").Value;
+                string[] sizeValues = size.Split(' ');
+                if (sizeValues.Count() == 4)
+                {
+                    /* scale the image to a 4 inch canvas
+                    *  72 pixels per inch
+                    *  ratio = 72*4 / max(width | height)
+                    *  multiply both by ratio
+                    */
+                    double width = Convert.ToDouble(sizeValues[2]);
+                    double height = Convert.ToDouble(sizeValues[3]);
+                    //72 pixels * 4 inches = 288 pixel inches
+                    double ratio = 288 / Math.Max(width, height);
+                    width = Math.Round(width * ratio, 2);
+                    height = Math.Round(height * ratio, 2);
+
+                    illustration.Width = Convert.ToString(width);  //3rd element
+                    illustration.Height = Convert.ToString(height); //4th element
+                }
+                else //no size values available
+                {
+                    errors.Add(new Error(Error.Exception.IllustrationSize, illustration.OriginalFilePath + " has no size value", count));
+                }
+            }
+            catch
+            {
+                errors.Add(new Error(Error.Exception.IllustrationSize, illustration.OriginalFilePath + " does not exist", count));
+            }
         }
     }
 }
