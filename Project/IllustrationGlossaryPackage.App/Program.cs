@@ -61,6 +61,8 @@ namespace IllustrationGlossaryPackage.App
             RecordErrors(errors, errorsDirectory);
 
             Console.WriteLine("Finished!");
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey();
         }
 
         static void ValidateFiles(string testPackageFilePath, string csvFilePath, string errorsDirectory)
@@ -157,7 +159,8 @@ namespace IllustrationGlossaryPackage.App
         static void ExitWithErrorString(string errorString)
         {
             Console.WriteLine(errorString);
-            Console.Read();
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey();
             Environment.Exit(1);
         }
 
