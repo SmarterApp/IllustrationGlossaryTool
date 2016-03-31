@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace IllustrationGlossaryPackage.Dal.Infrastructure
 {
@@ -40,6 +41,9 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                             Identifier = Path.GetFileNameWithoutExtension(lineItems[2]),
                             LineNumber = count
                         };
+
+                        SetIllustrationSize(illustration, count);
+
                         if (illustration.FileExists)
                         {
                             illustrations.Add(illustration);
@@ -47,6 +51,7 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                         else
                         {
                             errors.Add(new Error(Error.Exception.FileDNE, illustration.OriginalFilePath + " does not exist", count));
+
                         }
                     }
                     else
@@ -59,6 +64,43 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             }
 
             return illustrations;
+        }
+
+        /// <summary>
+        /// Parses the svg item for the natural width and height and calculates the max dimensions for the html tag
+        /// image to a 4 inch canvas, 72 pixels per inch
+        /// </summary>
+        /// <param name="illustration"></param>
+        /// <param name="count"></param>
+        private void SetIllustrationSize(Illustration illustration, int count)
+        {
+            try
+            {
+                XDocument illustrationFile = XDocument.Load(illustration.OriginalFilePath);
+                XElement node = illustrationFile.Root;
+                string size = node.Attribute("viewBox").Value;
+                string[] sizeValues = size.Split(' ');
+                if (sizeValues.Count() == 4)
+                {
+                    double width = Convert.ToDouble(sizeValues[2]);
+                    double height = Convert.ToDouble(sizeValues[3]);
+                    double ratio = 288 / Math.Max(width, height);
+                    width = Math.Round(width * ratio, 2);
+                    height = Math.Round(height * ratio, 2);
+
+                    illustration.Width = Convert.ToString(width); 
+                    illustration.Height = Convert.ToString(height);
+                }
+                else
+                {
+                    errors.Add(new Error(Error.Exception.IllustrationSize, illustration.OriginalFilePath + " has no size value", count));
+                }
+
+            }
+            catch
+            {
+                errors.Add(new Error(Error.Exception.IllustrationSize, illustration.OriginalFilePath + " does not exist", count));
+            }
         }
     }
 }

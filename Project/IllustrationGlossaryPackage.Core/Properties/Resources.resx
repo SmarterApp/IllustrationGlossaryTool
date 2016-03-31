@@ -133,7 +133,7 @@
     <value>File {0} does not exist:</value>
   </data>
   <data name="html" xml:space="preserve">
-    <value>&lt;![CDATA[&lt;p style=""&gt;&lt;img src="{0}" /&gt;&lt;/p&gt;]]&gt;</value>
+    <value>&lt;![CDATA[&lt;p style=""&gt;&lt;img src="{0}" width="{1}" height="{2}" /&gt;&lt;/p&gt;]]&gt;</value>
   </data>
   <data name="IllMustCsv" xml:space="preserve">
     <value>Illustration Glossary Spreadsheet must be a csv</value>
