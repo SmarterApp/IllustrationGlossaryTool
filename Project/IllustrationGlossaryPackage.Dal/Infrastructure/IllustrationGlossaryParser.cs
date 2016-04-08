@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Configuration;
 
 namespace IllustrationGlossaryPackage.Dal.Infrastructure
 {
@@ -68,7 +69,7 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
 
         /// <summary>
         /// Parses the svg item for the natural width and height and calculates the max dimensions for the html tag
-        /// image to a 4 inch canvas, 72 pixels per inch
+        /// image. The image is scaled using the DefaultPixelSize in the project settings.
         /// </summary>
         /// <param name="illustration"></param>
         /// <param name="count"></param>
@@ -80,11 +81,13 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                 XElement node = illustrationFile.Root;
                 string size = node.Attribute("viewBox").Value;
                 string[] sizeValues = size.Split(' ');
+                double maxPixels = Properties.Settings.Default.DefaultPixelSize;
+
                 if (sizeValues.Count() == 4)
                 {
                     double width = Convert.ToDouble(sizeValues[2]);
                     double height = Convert.ToDouble(sizeValues[3]);
-                    double ratio = 288 / Math.Max(width, height);
+                    double ratio = maxPixels / Math.Max(width, height);
                     width = Math.Round(width * ratio, 2);
                     height = Math.Round(height * ratio, 2);
 
