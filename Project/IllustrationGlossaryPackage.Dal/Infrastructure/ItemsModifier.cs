@@ -1,4 +1,5 @@
 ﻿using IllustrationGlossaryPackage.Core.Infrastructure;
+using IllustrationGlossaryPackage.Dal.Extensions;
 using IllustrationGlossaryPackage.Dal.Interfaces;
 using IllustrationGlossaryPackage.Dal.Models;
 using System;
@@ -55,7 +56,7 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                 existingIll.Delete();
             }
 
-            testPackageArchive.CreateEntryFromFile(illustration.OriginalFilePath, illustration.CopiedToPath);
+            testPackageArchive.CreateEntryFromFile(illustration.OriginalFilePath, illustration.CopiedToPathForCreate);
         }
         
         /// <summary>

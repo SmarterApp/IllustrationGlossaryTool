@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IllustrationGlossaryPackage.Dal.Extensions;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -30,6 +31,14 @@ namespace IllustrationGlossaryPackage.Dal.Models
         public ZipArchiveEntry GetZipArchiveEntry(ZipArchive z)
         {
             return z.Entries.FirstOrDefault(x => x.FullName == this.CopiedToPath);
+        }
+
+        public string CopiedToPathForCreate
+        {
+            get
+            {
+                return CopiedToPath.ToPath();
+            }
         }
     }
 }

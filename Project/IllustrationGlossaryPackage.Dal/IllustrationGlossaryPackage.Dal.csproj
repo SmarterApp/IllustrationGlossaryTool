@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\PathExtensions.cs" />
     <Compile Include="Infrastructure\Errorable.cs" />
     <Compile Include="Interfaces\IErrorable.cs" />
     <Compile Include="Models\AssessmentItem.cs" />
