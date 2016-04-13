@@ -168,7 +168,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             if (keywords != null && keywords.Count() > 0)
             {
                 keyword = keywords.FirstOrDefault(
-                        x => x.GetAttribute("text") == illustration.Term);
+                        x => isTextMatch(x.GetAttribute("text"), illustration.Term));
             }
             if (keyword == null)
             {
@@ -179,6 +179,8 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 });
                 int maxIndex = indicies == null || indicies.Count() < 1 ? 0 : indicies.Max();
                 keywordListElt.Add(GetKeywordXElementForFile(illustration, maxIndex));
+                string msg = string.Format("Added new keyword - {0} - to keywordlist item {1}", illustration.Term, KeywordListItemId);
+                errors.Add(new Error(Error.Exception.NewKeywordWarning, msg, illustration.LineNumber, Error.Type.Warning));
             }
             else
             {
@@ -194,6 +196,12 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 }
                 keyword.Add(GetHtmlXElementForFile(illustration.FileName, illustration.Width, illustration.Height));
             }
+        }
+
+        private bool isTextMatch(string textAttribute, string illustrationTerm)
+        {
+            textAttribute = textAttribute.ToLower();
+            return illustrationTerm.ToLower().Split().Any(s => textAttribute.Contains(s));
         }
 
         /// <summary>

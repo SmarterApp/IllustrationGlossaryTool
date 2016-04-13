@@ -61,8 +61,8 @@ namespace IllustrationGlossaryPackage.App
             RecordErrors(errors, errorsDirectory);
 
             Console.WriteLine("Finished!");
-            //Console.WriteLine("Press any key to exit.");
-            //Console.ReadKey();
+            Console.WriteLine("Press any key to exit."); //TODO REMOVE
+            Console.Read(); //TODO REMOVE
             Environment.Exit(0);
         }
 
@@ -160,8 +160,8 @@ namespace IllustrationGlossaryPackage.App
         static void ExitWithErrorString(string errorString)
         {
             Console.WriteLine(errorString);
-            //Console.WriteLine("Press any key to exit.");
-            //Console.ReadKey();
+            Console.WriteLine("Press any key to exit."); //TODO REMOVE
+            Console.Read(); //TODO REMOVE
             Environment.Exit(1);
         }
 
