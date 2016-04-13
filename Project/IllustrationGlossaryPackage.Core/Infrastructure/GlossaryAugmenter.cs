@@ -179,7 +179,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 });
                 int maxIndex = indicies == null || indicies.Count() < 1 ? 0 : indicies.Max();
                 keywordListElt.Add(GetKeywordXElementForFile(illustration, maxIndex));
-                string msg = string.Format("Added new keyword - {0} - to keywordlist item {1}", illustration.Term, KeywordListItemId);
+                string msg = string.Format("Added new keyword \"{0}\" to keywordlist item {1}", illustration.Term, KeywordListItemId);
                 errors.Add(new Error(Error.Exception.NewKeywordWarning, msg, illustration.LineNumber, Error.Type.Warning));
             }
             else
@@ -193,6 +193,13 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                                                 KeywordListItemId, illustration.Term);
                     errors.Add(new Error(Error.Exception.OverwriteWarning, msg, illustration.LineNumber, Error.Type.Warning));
                     existingHtmlElt.Remove();
+                }
+                string textAttribute = keyword.GetAttribute("text");
+                if (textAttribute.ToLower() != illustration.Term.ToLower())
+                {
+                    string msg = string.Format("In item {0}: Matched illustration term \"{1}\" to keyword \"{2}\"",
+                                               KeywordListItemId, illustration.Term, textAttribute);
+                    errors.Add(new Error(Error.Exception.KeywordNotExactMatchWarning, msg, illustration.LineNumber, Error.Type.Warning));
                 }
                 keyword.Add(GetHtmlXElementForFile(illustration.FileName, illustration.Width, illustration.Height));
             }
