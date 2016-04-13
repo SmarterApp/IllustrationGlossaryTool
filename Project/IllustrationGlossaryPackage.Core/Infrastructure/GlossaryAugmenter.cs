@@ -168,7 +168,12 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             if (keywords != null && keywords.Count() > 0)
             {
                 keyword = keywords.FirstOrDefault(
-                        x => isTextMatch(x.GetAttribute("text"), illustration.Term));
+                        x => x.GetAttribute("text").ToLower() == illustration.Term.ToLower());
+                if(keyword == null)
+                {
+                    keyword = keywords.FirstOrDefault(
+                        x => isInexactTextMatch(x.GetAttribute("text"), illustration.Term));
+                }
             }
             if (keyword == null)
             {
@@ -205,11 +210,11 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             }
         }
 
-        private bool isTextMatch(string textAttribute, string illustrationTerm)
+        private bool isInexactTextMatch(string textAttribute, string illustrationTerm)
         {
             illustrationTerm = illustrationTerm.ToLower();
             textAttribute = textAttribute.ToLower();
-            return illustrationTerm == textAttribute || textAttribute.Split().Any(s => s == illustrationTerm);
+            return textAttribute.Split().Any(s => s == illustrationTerm);
         }
 
         /// <summary>
