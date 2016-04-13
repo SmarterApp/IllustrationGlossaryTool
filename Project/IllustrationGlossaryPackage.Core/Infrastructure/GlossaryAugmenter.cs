@@ -200,8 +200,9 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
 
         private bool isTextMatch(string textAttribute, string illustrationTerm)
         {
+            illustrationTerm = illustrationTerm.ToLower();
             textAttribute = textAttribute.ToLower();
-            return illustrationTerm.ToLower().Split().Any(s => textAttribute.Contains(s));
+            return illustrationTerm == textAttribute || textAttribute.Split().Any(s => s == illustrationTerm);
         }
 
         /// <summary>
