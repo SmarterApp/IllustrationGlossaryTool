@@ -190,7 +190,8 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                     return index == string.Empty ? 0 : int.Parse(index);
                 });
                 int maxIndex = indicies == null || indicies.Count() < 1 ? 0 : indicies.Max();
-                keywordListElt.Add(GetKeywordXElementForFile(illustration, maxIndex));
+                illustration.Index = maxIndex + 1;
+                keywordListElt.Add(GetKeywordXElementForFile(illustration));
                 string msg = string.Format("Added new keyword \"{0}\" to keywordlist item {1}", illustration.Term, KeywordListItemId);
                 errors.Add(new Error(Error.Exception.NewKeywordWarning, msg, illustration.LineNumber, Error.Type.Warning));
                 illustration.KeywordAdded = true;
@@ -207,6 +208,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                     errors.Add(new Error(Error.Exception.OverwriteWarning, msg, illustration.LineNumber, Error.Type.Warning));
                     existingHtmlElt.Remove();
                 }
+
                 string textAttribute = keyword.GetAttribute("text");
                 if (textAttribute.ToLower() != illustration.Term.ToLower())
                 {
@@ -214,6 +216,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                                                KeywordListItemId, illustration.Term, textAttribute);
                     errors.Add(new Error(Error.Exception.KeywordNotExactMatchWarning, msg, illustration.LineNumber, Error.Type.Warning));
                 }
+
                 keyword.Add(GetHtmlXElementForFile(illustration.FileName, illustration.Width, illustration.Height));
             }
         }
@@ -263,9 +266,8 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
 
         private string GetSpan(string termWithCase, Illustration illustration, AssessmentItem assessmentItem)
         {
-            string termIndex = "TODO";
-            string datawordIndex = "TODO";
-            return string.Format(Properties.Resources.SpanString, assessmentItem.ItemId, termIndex, datawordIndex, termWithCase);
+            string tagIndex = "TODO";
+            return string.Format(Properties.Resources.SpanString, assessmentItem.ItemId, tagIndex, illustration.Index, termWithCase);
         }
 
         /// <summary>
@@ -274,11 +276,11 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// <param name="illustration"></param>
         /// <param name="maxIndex"></param>
         /// <returns></returns>
-        private XElement GetKeywordXElementForFile(Illustration illustration, int maxIndex)
+        private XElement GetKeywordXElementForFile(Illustration illustration)
         {
             return new XElement("keyword",
                         new XAttribute("text", illustration.Term),
-                        new XAttribute("index", (maxIndex + 1).ToString()),
+                        new XAttribute("index", illustration.Index.ToString()),
                             GetHtmlXElementForFile(illustration.FileName, illustration.Width, illustration.Height));
         }
 
