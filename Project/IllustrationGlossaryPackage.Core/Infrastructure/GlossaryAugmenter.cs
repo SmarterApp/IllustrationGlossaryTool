@@ -10,6 +10,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Xml;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace IllustrationGlossaryPackage.Core.Infrastructure
 {
@@ -154,6 +155,12 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                     AddIllustrationToKeywordListItem(illustration, keywordListElt, keywordListItem.ItemId);
                     itemsModifier.MoveMediaFileForIllustration(illustration, assessmentItem, testPackageArchive);
                 }
+
+                if(assessmentItem.Illustrations.Any(x => x.KeywordAdded))
+                {
+                    AddNewKeywordsToAssessmentItemContent(assessmentItem);
+                    itemsModifier.SaveItem(assessmentItem, testPackageArchive);
+                }
             }
 
             itemsModifier.SaveItem(keywordListItem, testPackageArchive);
@@ -186,6 +193,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                 keywordListElt.Add(GetKeywordXElementForFile(illustration, maxIndex));
                 string msg = string.Format("Added new keyword \"{0}\" to keywordlist item {1}", illustration.Term, KeywordListItemId);
                 errors.Add(new Error(Error.Exception.NewKeywordWarning, msg, illustration.LineNumber, Error.Type.Warning));
+                illustration.KeywordAdded = true;
             }
             else
             {
@@ -215,6 +223,49 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             illustrationTerm = illustrationTerm.ToLower();
             textAttribute = textAttribute.ToLower();
             return textAttribute.Split().Any(s => s == illustrationTerm);
+        }
+
+        private void AddNewKeywordsToAssessmentItemContent(AssessmentItem assessmentItem)
+        {
+            foreach(Illustration i in assessmentItem.Illustrations)
+            {
+                if (i.KeywordAdded)
+                {
+                    AddKeywordToContent(assessmentItem, i);
+                }
+            }
+        }
+
+        private void AddKeywordToContent(AssessmentItem assessmentItem, Illustration i)
+        {
+            IEnumerable<XElement> contents = assessmentItem.Document.OptionalElement("itemrelease")
+                                    .OptionalElement("item").Elements("content");
+            foreach(XElement content in contents)
+            {
+                XElement stem = content.ElementOrException("stem");
+                stem.ReplaceNodes(new XRaw(AddKeywordToStem(stem, i, assessmentItem)));
+            }
+        }
+
+        private string AddKeywordToStem(XElement stemElt, Illustration illustration, AssessmentItem assessmentItem)
+        {
+            string stem = stemElt.FirstNode.ToString();
+            IEnumerable<string> matches = Regex.Matches(stem, illustration.Term, RegexOptions.IgnoreCase)
+                                            .Cast<Match>()
+                                            .Select(x => x.Value);
+            foreach (string s in matches)
+            {
+                stem = stem.Replace(s, GetSpan(s, illustration, assessmentItem));
+            }
+
+            return stem;
+        }
+
+        private string GetSpan(string termWithCase, Illustration illustration, AssessmentItem assessmentItem)
+        {
+            string termIndex = "TODO";
+            string datawordIndex = "TODO";
+            return string.Format(Properties.Resources.SpanString, assessmentItem.ItemId, termIndex, datawordIndex, termWithCase);
         }
 
         /// <summary>

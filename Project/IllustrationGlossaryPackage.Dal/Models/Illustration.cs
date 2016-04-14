@@ -20,6 +20,7 @@ namespace IllustrationGlossaryPackage.Dal.Models
         public int LineNumber { get; set; }
         public string Width { get; set; }
         public string Height { get; set; }
+        public bool KeywordAdded = false;
         public string FileName
         {
             get

@@ -5,4 +5,7 @@
     <StartWorkingDirectory>
     </StartWorkingDirectory>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <StartArguments>C:\Users\crabtres\Downloads\2015.08.19.IrpTestPackageAndContent\IrpContentPackage.zip C:\Users\crabtres\workspace\IllustrationGlossaryTool\TestDocuments\illustrations.csv</StartArguments>
+  </PropertyGroup>
 </Project>

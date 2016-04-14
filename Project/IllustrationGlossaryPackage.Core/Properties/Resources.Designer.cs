@@ -169,6 +169,15 @@ namespace IllustrationGlossaryPackage.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;span id=&quot;item_{0}_TAG_{1}&quot; class=&quot;its-tag&quot; data-tag=&quot;word&quot; data-tag-boundary=&quot;start&quot; data-word-index=&quot;{2}&quot;&gt;&lt;/span&gt;{3}&lt;span class=&quot;its-tag&quot; data-tag-ref=&quot;item_{0}_TAG_{1}&quot; data-tag-boundary=&quot;end&quot;&gt;&lt;/span&gt;.
+        /// </summary>
+        internal static string SpanString {
+            get {
+                return ResourceManager.GetString("SpanString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Test package must be a zip file.
         /// </summary>
         internal static string TestMustZip {

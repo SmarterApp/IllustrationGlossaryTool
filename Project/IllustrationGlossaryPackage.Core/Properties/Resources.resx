@@ -162,4 +162,7 @@
   <data name="ZipFileExtention" xml:space="preserve">
     <value>.zip</value>
   </data>
+  <data name="SpanString" xml:space="preserve">
+    <value>&lt;span id="item_{0}_TAG_{1}" class="its-tag" data-tag="word" data-tag-boundary="start" data-word-index="{2}"&gt;&lt;/span&gt;{3}&lt;span class="its-tag" data-tag-ref="item_{0}_TAG_{1}" data-tag-boundary="end"&gt;&lt;/span&gt;</value>
+  </data>
 </root>
