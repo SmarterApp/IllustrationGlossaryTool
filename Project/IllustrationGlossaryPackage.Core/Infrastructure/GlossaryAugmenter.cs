@@ -122,7 +122,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// <param name="keywordListItems"></param>
         /// <param name="testPackageArchive"></param>
         /// <returns></returns>
-        private async Task UpdateKeywordListItems(IList<KeywordListItem> keywordListItems, ZipArchive testPackageArchive)
+        private void UpdateKeywordListItems(IList<KeywordListItem> keywordListItems, ZipArchive testPackageArchive)
         {
             //IList<Task<int>> tasks = new List<Task<int>>();
             foreach (KeywordListItem keywordListItem in keywordListItems)
@@ -141,7 +141,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// <param name="keywordListItem"></param>
         /// <param name="testPackageArchive"></param>
         /// <returns></returns>
-        private async Task<int> AddIllustrationInfoToKeywordListItemXml(KeywordListItem keywordListItem, ZipArchive testPackageArchive)
+        private void AddIllustrationInfoToKeywordListItemXml(KeywordListItem keywordListItem, ZipArchive testPackageArchive)
         {
             XDocument itemXml = keywordListItem.Document;
             XElement rootElement = itemXml
@@ -164,7 +164,6 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             }
 
             itemsModifier.SaveItem(keywordListItem, testPackageArchive);
-            return 0;
         }
 
         private void AddIllustrationToKeywordListItem(Illustration illustration, XElement keywordListElt, string KeywordListItemId)
@@ -256,18 +255,36 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             IEnumerable<string> matches = Regex.Matches(stem, illustration.Term, RegexOptions.IgnoreCase)
                                             .Cast<Match>()
                                             .Select(x => x.Value);
+            string tagNumber = GetNextTagNumber(stem);
             foreach (string s in matches)
             {
-                stem = stem.Replace(s, GetSpan(s, illustration, assessmentItem));
+                stem = stem.Replace(s, GetSpan(s, illustration, assessmentItem, tagNumber));
             }
 
             return stem;
         }
 
-        private string GetSpan(string termWithCase, Illustration illustration, AssessmentItem assessmentItem)
+        private string GetNextTagNumber(string stem)
         {
-            string tagIndex = "TODO";
-            return string.Format(Properties.Resources.SpanString, assessmentItem.ItemId, tagIndex, illustration.Index, termWithCase);
+            IEnumerable<string> matches = Regex.Matches(stem, Properties.Resources.regmatch, RegexOptions.IgnoreCase)
+                                            .Cast<Match>()
+                                            .Select(x => x.Value);
+            int maxTn = 0;
+            foreach(string s in matches)
+            {
+                string strippedstr = s.Replace("\"", string.Empty);
+                int i = strippedstr.LastIndexOf("_");
+                string tagstr = strippedstr.Substring(i+1);
+                int tn = int.Parse(tagstr);
+                maxTn = tn > maxTn ? tn : maxTn;
+            }
+
+            return (maxTn+1).ToString();
+        }
+
+        private string GetSpan(string termWithCase, Illustration illustration, AssessmentItem assessmentItem, string tagNumber)
+        {
+            return string.Format(Properties.Resources.SpanString, assessmentItem.ItemId, tagNumber, illustration.Index, termWithCase);
         }
 
         /// <summary>
