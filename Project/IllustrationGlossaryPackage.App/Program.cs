@@ -46,20 +46,48 @@ namespace IllustrationGlossaryPackage.App
             string errorsDirectory = Path.GetDirectoryName(testPackageFilePath);
 
             Console.WriteLine("Validating test package...");
-            ValidateFiles(testPackageFilePath, csvFilePath, errorsDirectory);
+            try
+            {
+                ValidateFiles(testPackageFilePath, csvFilePath, errorsDirectory);
+            }
+            catch (Exception e)
+            {
+                ExitWithErrorString("Error: Unable to validate files");
+            }
 
             if (!noArchive)
             {
                 Console.WriteLine("Creating archive of test package...");
-                CreateArchive(testPackageFilePath);
+                try
+                {
+                    CreateArchive(testPackageFilePath);
+                }
+                catch (Exception e)
+                {
+                    ExitWithErrorString("Error: Unable to create archive");
+                }
             }
 
             Console.WriteLine("Adding illustrations to test package...");
-            IEnumerable<Error> errors = AddIllustrationToTestPackage(testPackageFilePath, csvFilePath);
+            IEnumerable<Error> errors = Enumerable.Empty<Error>();
+            try
+            {
+                errors = AddIllustrationToTestPackage(testPackageFilePath, csvFilePath);
+            }
+            catch (Exception e)
+            {
+                ExitWithErrorString("Error: Unable to add illustrations");
+            }
 
             Console.WriteLine("Recording Errors...");
-            RecordErrors(errors, errorsDirectory);
-
+            try
+            {
+                RecordErrors(errors, errorsDirectory);
+            }
+            catch (Exception e)
+            {
+                ExitWithErrorString("Error: Unable to record errors");
+            }
             Exit("Finished!", 0);
         }
 
