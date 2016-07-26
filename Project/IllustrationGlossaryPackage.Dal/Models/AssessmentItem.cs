@@ -1,4 +1,5 @@
-﻿using IllustrationGlossaryPackage.Dal.Models;
+﻿using IllustrationGlossaryPackage.Dal.Extensions;
+using IllustrationGlossaryPackage.Dal.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -48,7 +49,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         {
             get
             {
-                return string.Format("Items/Item-{0}-{1}/item-{0}-{1}.xml", Bankkey, KeywordListItemId);
+                return string.Format("Items/Item-{0}-{1}/item-{0}-{1}.xml", Bankkey, KeywordListItemId).ToPath();
             }
         }
 
@@ -56,7 +57,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         {
             get
             {
-                return string.Format("Items/Item-{0}-{1}/metadata.xml", Bankkey, KeywordListItemId);
+                return string.Format("Items/Item-{0}-{1}/metadata.xml", Bankkey, KeywordListItemId).ToPath(); ;
             }
         }
 

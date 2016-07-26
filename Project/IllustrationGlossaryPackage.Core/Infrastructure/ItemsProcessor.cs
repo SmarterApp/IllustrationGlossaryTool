@@ -1,4 +1,5 @@
-﻿using IllustrationGlossaryPackage.Dal.Infrastructure;
+﻿using IllustrationGlossaryPackage.Dal.Extensions;
+using IllustrationGlossaryPackage.Dal.Infrastructure;
 using IllustrationGlossaryPackage.Dal.Interfaces;
 using IllustrationGlossaryPackage.Dal.Models;
 using System;

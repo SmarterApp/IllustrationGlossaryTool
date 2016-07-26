@@ -1,4 +1,5 @@
 ﻿using IllustrationGlossaryPackage.Core.Infrastructure;
+using IllustrationGlossaryPackage.Dal.Extensions;
 using IllustrationGlossaryPackage.Dal.Interfaces;
 using IllustrationGlossaryPackage.Dal.Models;
 using System;
@@ -32,6 +33,12 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
             SaveItem(keywordListItem.Document, itemXmlEntry);
         }
 
+        public void SaveItem(AssessmentItem ai, ZipArchive testPackageArchive)
+        {
+            ZipArchiveEntry itemXmlEntry = SelectItemZipEntry(ai.FullPath, testPackageArchive);
+            SaveItem(ai.Document, itemXmlEntry);
+        }
+
         public void SaveItem(XDocument document, ZipArchiveEntry zipEntry)
         {
             using (StreamWriter writer = new StreamWriter(zipEntry.Open()))
@@ -55,7 +62,7 @@ namespace IllustrationGlossaryPackage.Dal.Infrastructure
                 existingIll.Delete();
             }
 
-            testPackageArchive.CreateEntryFromFile(illustration.OriginalFilePath, illustration.CopiedToPath);
+            testPackageArchive.CreateEntryFromFile(illustration.OriginalFilePath, illustration.CopiedToPathForCreate);
         }
         
         /// <summary>

@@ -1,8 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>C:\Users\smithgar\Downloads\IrpContentPackage.zip C:\Users\smithgar\Source\smarter-balanced-glossary-service\TestDocuments\illustrations.csv</StartArguments>
+    <StartArguments>C:\Users\schallee\Downloads\bad\IrpContentPackage.zip C:\Users\schallee\Downloads\illustrations.csv</StartArguments>
     <StartWorkingDirectory>
     </StartWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <StartArguments>C:\Users\crabtres\Downloads\2015.08.19.IrpTestPackageAndContent\IrpContentPackage.zip C:\Users\crabtres\workspace\IllustrationGlossaryTool\TestDocuments\illustrations.csv</StartArguments>
+    <RemoteDebugEnabled>true</RemoteDebugEnabled>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PublishUrlHistory>C:\Users\schallee\Desktop\Publish\|publish\</PublishUrlHistory>
+    <InstallUrlHistory />
+    <SupportUrlHistory />
+    <UpdateUrlHistory />
+    <BootstrapperUrlHistory />
+    <ErrorReportUrlHistory />
+    <FallbackCulture>en-US</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
 </Project>
