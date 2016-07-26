@@ -1,4 +1,4 @@
-# smarter-balanced-glossary-service
+# Smarter Balanced Illustration Glossary Tool 
 
 ## Overview
 This project adds illustrations to an existing test package.
