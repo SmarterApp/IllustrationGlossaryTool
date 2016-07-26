@@ -34,5 +34,14 @@ This project adds illustrations to an existing test package.
   2. Path to illustration csv
 4. Click Start to run project 
 
+## Creating a Release
+1. Download and install ILMerge.
+2. Build a Release copy of the application in Visual Studio 2015.
+3. Navigate to the `\Project\IllustrationGlossaryPackage.App\bin\Release` directory of the project.
+4. Run ILMerge with the following command to link the .dlls with the .exe:
+
+`"<path_to_ILMerge>\ILMerge.exe" /target:exe /targetplatform:"v4,<path_to_.net4.0>\Microsoft.NET\Framework\v4.0.30319" /out:<output_exe_name>.exe .\IllustrationGlossaryPackage.Console.exe .\IllustrationGlossaryPackage.Core.dll .\IllustrationGlossaryPackage.Dal.dll`
+
+
 ## License
 Mozilla Public License Version 2.0. See LICENSE for more details.
