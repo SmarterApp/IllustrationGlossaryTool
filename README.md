@@ -9,6 +9,7 @@ This project adds illustrations to an existing test package.
 ## Installation/Usage
 1. Download the latest release .exe.
 2. Run according to the following specifications.
+3. Upon completion, an errors file and a warnings will be logged in the present working directory.
 
 ####Required Arguments
 1. Test Package
@@ -26,7 +27,7 @@ This project adds illustrations to an existing test package.
 `IllustrationGlossaryPackage -n MyTestPackes/IrpContentPackage.zip MyIllustrations/Illustrations.csv`
 
 ## Contributing/Project setup
-1. Clone project and open in Visual Studio 2015
+1. Fork project and open in Visual Studio 2015
 2. In the Solution Explorer, right click on the IllustrationGlossaryPackage.App project and select "Set As StartUp Project"
 3. In the Solution Explorer, right click on the IllustrationGlossaryPackage.App project. Open the Debug tab and enter two command line arguments
   1. Path to test package zip file
