@@ -10,6 +10,7 @@ namespace IllustrationGlossaryPackage.Dal.Interfaces
     public interface IItemsModifier : IErrorable
     {
         void SaveItem(KeywordListItem keywordListItem, ZipArchive testPackageArchive);
+        void SaveItem(AssessmentItem ai, ZipArchive testPackageArchive);
         void SaveItem(XDocument document, ZipArchiveEntry zipEntry);
         void MoveMediaFileForIllustration(Illustration illustration, AssessmentItem assessmentItem, ZipArchive testPackageArchive);
     }

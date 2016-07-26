@@ -10,6 +10,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Xml;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace IllustrationGlossaryPackage.Core.Infrastructure
 {
@@ -55,21 +56,25 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
             {
                 foreach(AssessmentItem assessmentItem in keywordListItem.AssessmentItems)
                 {
-                    XElement assessmentItemResource = resources.FirstOrDefault(x =>
-                             x.GetAttribute("identifier") == assessmentItem.Identifier);
-                    AddNonexistingKeywordlist(keywordListItem, assessmentItem, assessmentItemResource, resources);
-                    AddNonexistingKeywordlistToAssessmentItem(keywordListItem, assessmentItem, assessmentItemResource, resources);
-
-                    foreach (Illustration illustration in assessmentItem.Illustrations)
-                    {
-                        ClearElements(resources, illustration, assessmentItemResource);
-                        assessmentItemResource.AddAfterSelf(GetManifestResourceElement(illustration));
-                        assessmentItemResource.Add(GetManifestDependencyElement(illustration));
-                    }
+                    AddKeywordListItems(keywordListItem, assessmentItem, resources);
                 }
             }
-
             manifestModifier.SaveManifest(manifest, testPackageArchive);
+        }
+
+        private void AddKeywordListItems(KeywordListItem keywordListItem, AssessmentItem assessmentItem, IList<XElement> resources)
+        {
+            XElement assessmentItemResource = resources.FirstOrDefault(x =>
+                             x.GetAttribute("identifier") == assessmentItem.Identifier);
+            AddNonexistingKeywordlist(keywordListItem, assessmentItem, assessmentItemResource, resources);
+            AddNonexistingKeywordlistToAssessmentItem(keywordListItem, assessmentItem, assessmentItemResource, resources);
+
+            foreach (Illustration illustration in assessmentItem.Illustrations)
+            {
+                ClearElements(resources, illustration, assessmentItemResource);
+                assessmentItemResource.AddAfterSelf(GetManifestResourceElement(illustration));
+                assessmentItemResource.Add(GetManifestDependencyElement(illustration));
+            }
         }
 
         private void AddNonexistingKeywordlist(KeywordListItem keywordListItem, AssessmentItem assessmentItem, XElement assessmentItemResource, IList<XElement> resources)
@@ -116,21 +121,17 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         }
 
         /// <summary>
-        /// Asyncronously updates the keywordlist items with keywords
+        /// Updates the keywordlist items with keywords
         /// </summary>
         /// <param name="keywordListItems"></param>
         /// <param name="testPackageArchive"></param>
         /// <returns></returns>
-        private async Task UpdateKeywordListItems(IList<KeywordListItem> keywordListItems, ZipArchive testPackageArchive)
+        private void UpdateKeywordListItems(IList<KeywordListItem> keywordListItems, ZipArchive testPackageArchive)
         {
-            //IList<Task<int>> tasks = new List<Task<int>>();
             foreach (KeywordListItem keywordListItem in keywordListItems)
             {
-                //Task<int> task = Task.Run(() => AddIllustrationInfoToKeywordListItemXml(keywordListItem, testPackageArchive));
-                //tasks.Add(task);
                 AddIllustrationInfoToKeywordListItemXml(keywordListItem, testPackageArchive);
             }
-            //Task.WaitAll(tasks.ToArray());
         }
 
         /// <summary>
@@ -140,7 +141,7 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// <param name="keywordListItem"></param>
         /// <param name="testPackageArchive"></param>
         /// <returns></returns>
-        private async Task<int> AddIllustrationInfoToKeywordListItemXml(KeywordListItem keywordListItem, ZipArchive testPackageArchive)
+        private void AddIllustrationInfoToKeywordListItemXml(KeywordListItem keywordListItem, ZipArchive testPackageArchive)
         {
             XDocument itemXml = keywordListItem.Document;
             XElement rootElement = itemXml
@@ -154,46 +155,172 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
                     AddIllustrationToKeywordListItem(illustration, keywordListElt, keywordListItem.ItemId);
                     itemsModifier.MoveMediaFileForIllustration(illustration, assessmentItem, testPackageArchive);
                 }
+
+                if(assessmentItem.Illustrations.Any(x => x.KeywordAdded))
+                {
+                    AddNewKeywordsToAssessmentItemContent(assessmentItem);
+                    itemsModifier.SaveItem(assessmentItem, testPackageArchive);
+                }
             }
 
             itemsModifier.SaveItem(keywordListItem, testPackageArchive);
-            return 0;
         }
 
         private void AddIllustrationToKeywordListItem(Illustration illustration, XElement keywordListElt, string KeywordListItemId)
         {
-            // TODO REFACTOR THIS METHOD
             IEnumerable<XElement> keywords = keywordListElt.Elements("keyword");
+            XElement keyword = GetKeyword(illustration, keywords);
+            if (keyword == null)
+            {
+                AddIllustrationNullKeyword(illustration, keywordListElt, KeywordListItemId, keywords);
+            }
+            else
+            {
+                AddIllustration(illustration, keyword, KeywordListItemId);
+            }
+        }
+
+        /// <summary>
+        /// Helper for AddIllustrationToKeywordListItem, gets keyword for illustration
+        /// </summary>
+        /// <param name="illustration"></param>
+        /// <param name="keywords"></param>
+        /// <returns></returns>
+        private XElement GetKeyword(Illustration illustration, IEnumerable<XElement> keywords)
+        {
             XElement keyword = null;
             if (keywords != null && keywords.Count() > 0)
             {
                 keyword = keywords.FirstOrDefault(
-                        x => x.GetAttribute("text") == illustration.Term);
-            }
-            if (keyword == null)
-            {
-                IEnumerable<int> indicies = keywords.Select(x =>
+                        x => x.GetAttribute("text").ToLower() == illustration.Term.ToLower());
+                if (keyword == null)
                 {
-                    string index = x.GetAttribute("index");
-                    return index == string.Empty ? 0 : int.Parse(index);
-                });
-                int maxIndex = indicies == null || indicies.Count() < 1 ? 0 : indicies.Max();
-                keywordListElt.Add(GetKeywordXElementForFile(illustration, maxIndex));
-            }
-            else
-            {
-                IEnumerable<XElement> existingHtmlElt = keyword.ElementsOrException("html")
-                                        .Where(x => x.GetAttribute("listType") == "illustration"
-                                           && x.GetAttribute("listCode") == "TDS_WL_Illustration");
-                if(existingHtmlElt != null && existingHtmlElt.Count() > 0)
-                {
-                    string msg = string.Format("In item {0}: Overwriting illustration <html> tag under keyword {1}",
-                                                KeywordListItemId, illustration.Term);
-                    errors.Add(new Error(Error.Exception.OverwriteWarning, msg, illustration.LineNumber, Error.Type.Warning));
-                    existingHtmlElt.Remove();
+                    keyword = keywords.FirstOrDefault(
+                        x => isInexactTextMatch(x.GetAttribute("text"), illustration.Term));
                 }
-                keyword.Add(GetHtmlXElementForFile(illustration.FileName, illustration.Width, illustration.Height));
             }
+            return keyword;
+        }
+
+        /// <summary>
+        /// Helper for AddIllustrationToKeywordListItem
+        /// Adds illustration to KeywordListItem for null keywords
+        /// </summary>
+        /// <param name="illustration"></param>
+        /// <param name="keywordListElt"></param>
+        /// <param name="KeywordListItemId"></param>
+        /// <param name="keywords"></param>
+        private void AddIllustrationNullKeyword(Illustration illustration, XElement keywordListElt, string KeywordListItemId, IEnumerable<XElement> keywords)
+        {
+            IEnumerable<int> indicies = keywords.Select(x =>
+            {
+                string index = x.GetAttribute("index");
+                return index == string.Empty ? 0 : int.Parse(index);
+            });
+            int maxIndex = indicies == null || indicies.Count() < 1 ? 0 : indicies.Max();
+            illustration.Index = maxIndex + 1;
+            keywordListElt.Add(GetKeywordXElementForFile(illustration));
+            string msg = string.Format("Added new keyword \"{0}\" to keywordlist item {1}", illustration.Term, KeywordListItemId);
+            errors.Add(new Error(Error.Exception.NewKeywordWarning, msg, illustration.LineNumber, Error.Type.Warning));
+            illustration.KeywordAdded = true;
+        }
+
+        /// <summary>
+        /// Helper for AddIllustrationToKeywordListItem
+        /// Adds illustration to KeywordListItem given a keyword
+        /// </summary>
+        /// <param name="illustration"></param>
+        /// <param name="keyword"></param>
+        /// <param name="KeywordListItemId"></param>
+        private void AddIllustration(Illustration illustration, XElement keyword, string KeywordListItemId)
+        {
+            IEnumerable<XElement> existingHtmlElt = keyword.ElementsOrException("html")
+                        .Where(x => x.GetAttribute("listType") == "illustration"
+                           && x.GetAttribute("listCode") == "TDS_WL_Illustration");
+            if (existingHtmlElt != null && existingHtmlElt.Count() > 0)
+            {
+                string msg = string.Format("In item {0}: Overwriting illustration <html> tag under keyword {1}",
+                                            KeywordListItemId, illustration.Term);
+                errors.Add(new Error(Error.Exception.OverwriteWarning, msg, illustration.LineNumber, Error.Type.Warning));
+                existingHtmlElt.Remove();
+            }
+
+            string textAttribute = keyword.GetAttribute("text");
+            if (textAttribute.ToLower() != illustration.Term.ToLower())
+            {
+                string msg = string.Format("In item {0}: Matched illustration term \"{1}\" to keyword \"{2}\"",
+                                           KeywordListItemId, illustration.Term, textAttribute);
+                errors.Add(new Error(Error.Exception.KeywordNotExactMatchWarning, msg, illustration.LineNumber, Error.Type.Warning));
+            }
+
+            keyword.Add(GetHtmlXElementForFile(illustration.FileName, illustration.Width, illustration.Height));
+        }
+
+        private bool isInexactTextMatch(string textAttribute, string illustrationTerm)
+        {
+            illustrationTerm = illustrationTerm.ToLower();
+            textAttribute = textAttribute.ToLower();
+            return textAttribute.Split().Any(s => s == illustrationTerm);
+        }
+
+        private void AddNewKeywordsToAssessmentItemContent(AssessmentItem assessmentItem)
+        {
+            foreach(Illustration i in assessmentItem.Illustrations)
+            {
+                if (i.KeywordAdded)
+                {
+                    AddKeywordToContent(assessmentItem, i);
+                }
+            }
+        }
+
+        private void AddKeywordToContent(AssessmentItem assessmentItem, Illustration i)
+        {
+            IEnumerable<XElement> contents = assessmentItem.Document.OptionalElement("itemrelease")
+                                    .OptionalElement("item").Elements("content");
+            foreach(XElement content in contents)
+            {
+                XElement stem = content.ElementOrException("stem");
+                stem.ReplaceNodes(new XRaw(AddKeywordToStem(stem, i, assessmentItem)));
+            }
+        }
+
+        private string AddKeywordToStem(XElement stemElt, Illustration illustration, AssessmentItem assessmentItem)
+        {
+            string stem = stemElt.FirstNode.ToString();
+            IEnumerable<string> matches = Regex.Matches(stem, illustration.Term, RegexOptions.IgnoreCase)
+                                            .Cast<Match>()
+                                            .Select(x => x.Value);
+            string tagNumber = GetNextTagNumber(stem);
+            foreach (string s in matches)
+            {
+                stem = stem.Replace(s, GetSpan(s, illustration, assessmentItem, tagNumber));
+            }
+
+            return stem;
+        }
+
+        private string GetNextTagNumber(string stem)
+        {
+            IEnumerable<string> matches = Regex.Matches(stem, Properties.Resources.regmatch, RegexOptions.IgnoreCase)
+                                            .Cast<Match>()
+                                            .Select(x => x.Value);
+            int maxTn = 0;
+            foreach(string s in matches)
+            {
+                string strippedstr = s.Replace("\"", string.Empty);
+                int i = strippedstr.LastIndexOf("_");
+                string tagstr = strippedstr.Substring(i+1);
+                int tn = int.Parse(tagstr);
+                maxTn = tn > maxTn ? tn : maxTn;
+            }
+
+            return (maxTn+1).ToString();
+        }
+
+        private string GetSpan(string termWithCase, Illustration illustration, AssessmentItem assessmentItem, string tagNumber)
+        {
+            return string.Format(Properties.Resources.SpanString, assessmentItem.ItemId, tagNumber, illustration.Index, termWithCase);
         }
 
         /// <summary>
@@ -202,11 +329,11 @@ namespace IllustrationGlossaryPackage.Core.Infrastructure
         /// <param name="illustration"></param>
         /// <param name="maxIndex"></param>
         /// <returns></returns>
-        private XElement GetKeywordXElementForFile(Illustration illustration, int maxIndex)
+        private XElement GetKeywordXElementForFile(Illustration illustration)
         {
             return new XElement("keyword",
                         new XAttribute("text", illustration.Term),
-                        new XAttribute("index", (maxIndex + 1).ToString()),
+                        new XAttribute("index", illustration.Index.ToString()),
                             GetHtmlXElementForFile(illustration.FileName, illustration.Width, illustration.Height));
         }
 
